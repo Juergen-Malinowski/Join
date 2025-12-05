@@ -1,1 +1,89 @@
-/* You can add global styles to this file, and also import other style files */
+
+// GET FONT "Inter" ...
+@font-face {
+    font-family: 'Inter';
+    src: url('/assets/fonts/Inter-VariableFont_slnt,wght.ttf') format('truetype');
+    font-weight: 400 500 700;   
+    font-style: regular medium bold;
+    font-display: swap;  /* verwendet die Standard-Schrift, bis Schriftart geladen ist */
+}
+
+
+// GLOBALE STYLES
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-style: regular;
+    font-size: 16px;
+    line-height: 1.2;
+    color: $black;
+    background-color: $white;
+}
+
+h1 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-style: bold;
+    font-size: 61px;
+    line-height: 1.2;
+    color: $black;
+    background-color: $white;
+}
+
+h2 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-style: medium;
+    font-size: 47px;
+    line-height: 1.2;
+    color: $black;
+    background-color: $white;
+}
+
+h3 {
+    /* Figma: "subtitle" */
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-style: bold;
+    font-size: 27px;
+    line-height: 1.2;
+    color: $black;
+    background-color: $white;
+}
+
+h4 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-style: bold;
+    font-size: 20px;
+    line-height: 1.2;
+    color: $black;
+    background-color: $white;
+}
+
+h5 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-style: regular;
+    font-size: 27px;
+    line-height: 1.2;
+    color: $black;
+    background-color: $white;
+}
+
+h6 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-style: regular;
+    font-size: 20px;
+    line-height: 1.2;
+    color: $black;
+    background-color: $white;
+}
