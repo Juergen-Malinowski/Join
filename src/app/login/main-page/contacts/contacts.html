@@ -1,40 +1,44 @@
-<section class="contacts-wrapper">
+<main class="main-area">
 
-  <!-- Add contact button -->
-  <button class="add-contact-btn" (click)="onAddContact()">
-    Add new contact
-    <span class="add-contact-icon">👤+</span>
-  </button>
+  <section class="contacts-wrapper">
 
-  <!-- Contacts-SROLL-AREA -->
-  <div class="contacts-scroll-area">
+    <!-- Add contact button -->
+    <button class="add-contact-btn" (click)="onAddContact()">
+      Add new contact
+      <span class="add-contact-icon">👤+</span>
+    </button>
 
-    <div *ngFor="let group of groupedContacts" class="contacts-group">
+    <!-- Contacts-SROLL-AREA -->
+    <div class="contacts-scroll-area">
 
-      <div class="group-letter">{{ group.letter }}</div>
+      <div *ngFor="let group of groupedContacts" class="contacts-group">
 
-      <div *ngFor="let c of group.contacts" class="contact-box">
+        <div class="group-letter">{{ group.letter }}</div>
 
-        <div class="contact-avatar" [style.backgroundColor]="c.color">
-          {{ getInitials(c.name) }}
+        <div *ngFor="let c of group.contacts" class="contact-box">
+
+          <div class="contact-avatar" [style.backgroundColor]="c.color">
+            {{ getInitials(c.name) }}
+          </div>
+
+          <div class="contact-info">
+            <div class="contact-name text_3">{{ c.name }}</div>
+            <div class="contact-email">{{ c.email }}</div>
+          </div>
+
         </div>
 
-        <div class="contact-info">
-          <div class="contact-name text_3">{{ c.name }}</div>
-          <div class="contact-email">{{ c.email }}</div>
-        </div>
+        <img class="contact-divider" src="/IMG/Frame-120.svg" alt="divider">
 
       </div>
 
-      <img class="contact-divider" src="/IMG/Frame-120.svg" alt="divider">
-
     </div>
 
-  </div>
+  </section>
 
-</section>
+  <!-- SINGLE-Contact -->
+  <section>
+    <app-single-contact></app-single-contact>
+  </section>
 
-<!-- SINGLE-Contact -->
-<section>
-  <app-single-contact></app-single-contact>
-</section>
+</main>
