@@ -11,6 +11,9 @@ import { Dialog } from '../../../../shared/dialog/dialog';
 })
 
 export class SingleContact {
+
+  constructor(private contactService: FirebaseServices) {}
+
 }
 
 
