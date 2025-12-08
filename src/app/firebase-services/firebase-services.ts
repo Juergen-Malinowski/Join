@@ -12,6 +12,8 @@ import { Contact } from '../interfaces/contact.interface';
   providedIn: 'root',
 })
 export class FirebaseServices {
+
+  contactsList: Contact[] = [];
   unsubList;
 
   firestore = inject(Firestore);
@@ -26,8 +28,9 @@ export class FirebaseServices {
 
   subContactsList() {
     return onSnapshot(this.getContactsRef(), (list) => {
+      this.contactsList = [];
       list.forEach((element) => {
-        console.log(this.setContactObject(element.data(), element.id));
+        this.contactsList.push(this.setContactObject(element.data(), element.id));
       });
     });
   }

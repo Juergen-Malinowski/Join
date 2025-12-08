@@ -12,6 +12,6 @@ import { FirebaseServices } from '../../../firebase-services/firebase-services';
 export class Contacts {
   contactsList: Contact[] = [];
 
-  constructor(public contactService: FirebaseServices) {    
+  constructor(private contactService: FirebaseServices) {
   }
 }
