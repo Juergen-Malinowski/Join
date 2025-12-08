@@ -13,51 +13,14 @@
     width: 520px;
     max-width: 90vw;
     max-height: 90vh;
-    background: #fff;
+    background: #ffffff;
     border-radius: 12px;
     box-shadow: 0 14px 48px rgba(0, 0, 0, 0.18);
     padding: 16px 16px 12px;
     overflow: auto;
     animation: dialog-in 240ms cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
 
-    // Header
-    &__header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 12px;
 
-      .dialog__close {
-        border: none;
-        background: transparent;
-        font-size: 20px;
-        cursor: pointer;
-        line-height: 1;
-        padding: 4px;
-        border-radius: 6px;
-        transition: background-color 160ms ease, transform 160ms ease;
-
-        &:hover { background: rgba(0, 0, 0, 0.06); }
-        &:active { transform: scale(0.96); }
-        &:focus-visible {
-          outline: 2px solid #5aa9ff;
-          outline-offset: 2px;
-        }
-      }
-    }
-
-    // Body
-    &__body {
-      margin-bottom: 12px;
-    }
-
-    // Footer
-    &__footer {
-      display: flex;
-      justify-content: flex-end;
-      gap: 8px;
-    }
   }
 }
 

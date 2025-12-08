@@ -1,52 +1,69 @@
-  <header class="sc_header">
-    <h2>Contacts</h2>
-    <div class="seperator"></div>
-    <p>Better with a team</p>
-  </header>
+<header class="sc_header">
+  <h2>Contacts</h2>
+  <div class="seperator"></div>
+  <p>Better with a team</p>
+</header>
 
-  <article class="sc_information sc_information--active">
-    <div class="sc_top">
-      <span>AM</span>
+<article class="sc_information sc_information--active">
+  <div class="sc_top">
+    <span class="sc_logo">AM</span>
 
-      <div class="sc_menu">
-        <h2>Anton Mayer</h2>
-        <div>
-          <button type="button" (click)="dialog.open()">
-            <!-- <img src="./IMG/edit.png" alt="Pencil" />
+    <div class="sc_menu">
+      <h2>Anton Mayer</h2>
+      <div>
+        <button type="button" (click)="dialog.open()">
+          <!-- <img src="./IMG/edit.png" alt="Pencil" />
             <span>Edit</span> -->
-          </button>
+        </button>
 
-          <button>
-               <br>
-            <!-- <img src="./IMG/delete.png" alt="Trash" />
+        <button>
+          <br />
+          <!-- <img src="./IMG/delete.png" alt="Trash" />
             <span>Delete</span> -->
-          </button>
-        </div>
-
+        </button>
       </div>
     </div>
+  </div>
 
-    <div class="sc_bot">
-      <span>Contact Information</span>
+  <div class="sc_bot">
+    <span>Contact Information</span>
 
-      <p>
-        <strong>Email</strong>
-        <a href="mailto:anton@gmail.com">antonAtgmail.com</a>
-      </p>
+    <p>
+      <strong>Email</strong>
+      <a href="mailto:anton@gmail.com">antonAtgmail.com</a>
+    </p>
 
-      <p>
-        <strong>Telefon</strong>
-        <a href="tel:+491782468268">+49 178 2468268</a>
-      </p>
-    </div>
-  </article>
+    <p>
+      <strong>Telefon</strong>
+      <a href="tel:+491782468268">+49 178 2468268</a>
+    </p>
+  </div>
+</article>
 
 <!-- ----------------------------- Dialog:Edit ----------------------------- -->
-  <app-dialog #dialog width="520px">
-  <div dialog-title>Kontakt bearbeiten</div>
-<!-- ------------------------------- Inhalt -------------------------------- -->
-  <div dialog-actions>
-    <button type="button" (click)="dialog.close()">Abbrechen</button>
-    <button type="button">Speichern</button>
+<app-dialog #dialog>
+  <button class="close" type="button" (click)="dialog.close()">Abbrechen</button>
+<article class="sc_dialog">
+  
+    <div class="left_side">
+    <span>logo</span>
+    <span>Edit contact</span>
   </div>
+
+  <div class="right_side">
+    <span class="sc_logo">AM</span>
+
+    <article>
+      <form action="">
+        <input type="text" placeholder="hier könnte ihre werbung stehen" />
+        <input type="text" placeholder="hier könnte ihre werbung stehen" />
+        <input type="text" placeholder="hier könnte ihre werbung stehen" />
+      </form>
+      <div>
+        <button type="button">Delete</button>
+        <button type="button">Save</button>
+      </div>
+    </article>
+  </div>
+</article>
 </app-dialog>

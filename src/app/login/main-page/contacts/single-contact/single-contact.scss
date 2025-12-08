@@ -12,42 +12,31 @@
     font-size: 27px;
   }
 }
-.seperator{
-height: 59px;
-border: 3px solid #29ABE2;
-border-radius: 3px;
+.seperator {
+  height: 59px;
+  border: 3px solid #29abe2;
+  border-radius: 3px;
 }
 
 .sc_information--active {
   opacity: 1;
   transform: translateX(0);
   animation: sc-slide-in 280ms ease forwards;
-}
-
-@keyframes sc-slide-in {
-  from { opacity: 0; transform: translateX(1200px); }
-  to   { opacity: 1; transform: translateX(0); }
+  @keyframes sc-slide-in {
+    from {
+      opacity: 0;
+      transform: translateX(1200px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
 }
 
 .sc_top {
   display: flex;
   gap: 54px;
-
-  > span {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background-color: orange;
-    border-radius: 70px;
-    height: 120px;
-    width: 120px;
-
-    font-family: 'Inter', sans-serif;
-    font-size: 47px;
-    font-weight: 500;
-    color: #ffffff;
-  }
 
   .sc_menu {
     gap: 8px;
@@ -97,6 +86,21 @@ border-radius: 3px;
     // }
   }
 }
+.sc_logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: orange;
+  border-radius: 70px;
+  height: 120px;
+  width: 120px;
+
+  font-family: 'Inter', sans-serif;
+  font-size: 47px;
+  font-weight: 500;
+  color: #ffffff;
+}
 
 .sc_bot {
   display: flex;
@@ -118,6 +122,37 @@ border-radius: 3px;
       color: #007cee;
       font-size: 16px;
       font-weight: 400;
+    }
+  }
+}
+
+:host ::ng-deep app-dialog {
+  .dialog {
+    background: #f8f8f8;
+    display: flex;
+    flex-direction: column;
+    width: 880px;
+  }
+  .close{
+    display: flex;
+    align-self: flex-end;
+  }
+  .sc_dialog{
+    display: flex;
+  }
+
+  .left_side{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .right_side{
+    display: flex;
+    gap: 40px;
+    .sc_logo{
+      width: 120px;
+      height: 120px;
     }
   }
 }
