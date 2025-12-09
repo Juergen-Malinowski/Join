@@ -24,7 +24,6 @@ export class SingleContact {
   );
 
   getInitials(name: string): string {
-    if (!name) return '';
     const parts = name.trim().split(' ');
     const first = parts[0]?.charAt(0).toUpperCase() ?? '';
     const last = parts.length > 1 ? parts[parts.length - 1].charAt(0).toUpperCase() : '';
