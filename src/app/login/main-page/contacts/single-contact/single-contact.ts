@@ -20,7 +20,7 @@ export class SingleContact {
   private readonly firebase = inject(FirebaseServices);
 
   readonly contact$ = computed<Observable<Contact | undefined>>(() =>
-    this.firebase.subSingleContact(this.contactId())
+    this.firebase.subSingleContact("BR8kjYcp6f5fCLvM5f2b") // PLACEHOLDER!!!!!!!!!!!!!!!!!!!!!!!!!
   );
 
   getInitials(name: string): string {
