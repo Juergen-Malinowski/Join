@@ -7,7 +7,7 @@ import { AddTask } from './login/main-page/add-task/add-task';
 import { Summary } from './login/main-page/summary/summary';
 
 export const routes: Routes = [
-    {path:"",component:MainPage},
+    
     {path:"contacs",component:Contacts},
     {path:"board",component:Board},
     {path:"add-task",component:AddTask},
