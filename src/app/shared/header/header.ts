@@ -26,7 +26,8 @@ export class Header implements OnInit {
 
     // Wenn Menü offen ist
     if (this.menuOpen) {
-      const clickedInsideMenu = target.closest('.menu');
+      const clickedInsideMenu = target.closest('.menu, .menu-mobil');
+      
       const clickedOnMenuIcon = target.closest('.menu-icon');
 
       if (!clickedInsideMenu && !clickedOnMenuIcon) {
