@@ -28,6 +28,7 @@
     </div>
   </article>
 
+  
   <!-- SINGLE-Contact -->
   <article class="single-contact">
     <header class="sc_header">
@@ -39,8 +40,9 @@
   </article>
 </section>
 
+
 <!-- Diolag add-contact -->
-<app-dialog #addDialog>
+<app-dialog #addDialog class="add-contact-dialog">
   <div>
 
     <article class="sc_dialog">
@@ -59,6 +61,7 @@
           <img class="sc_logo" src="IMG/person.svg" alt="person-icon">
         </div>
       </div>
+
       <!-- ------------------------- Dialog: Right Side ------------------------- -->
       <div class="right_side">
         <button class="close" type="button" (click)="addDialog.close()">X</button>
@@ -83,13 +86,13 @@
         </article>
 
         <div class="dialog_buttons">
-          <button class="button_light" type="button">Delete</button>
-          <button class="button_dark" type="button" (click)="saveNewContact()">Save</button>
+          <button class="button_light" type="button" (click)="addDialog.close()">Cancel</button>
+          <button class="button_dark" type="button" (click)="saveNewContact()">
+            Create contact
+            <img src="/IMG/check_white.svg" alt="check icon">
+          </button>
         </div>
       </div>
     </article>
-
-
-    <!-- <button class="close" type="button" (click)="addDialog.close()">CLOSE</button> -->
   </div>
 </app-dialog>
