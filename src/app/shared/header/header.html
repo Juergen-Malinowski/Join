@@ -14,9 +14,9 @@
  <nav class="menu" *ngIf="menuOpen">
     
     <ul>
-      <li><a routerLink="/Legal notice"routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Legal notice</a></li>
-      <li><a routerLink="/Privacy Policy"routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Privacy Policy</a></li>
-      <li><a routerLink="/Legal notice"routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">LogOut</a></li>
+      <li><a routerLink="/Legal notice"routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMenu()">Legal notice</a></li>
+      <li><a routerLink="/Privacy Policy"routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }"(click)="closeMenu()">Privacy Policy</a></li>
+      <li><a routerLink="/Legal notice"routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }"(click)="closeMenu()">LogOut</a></li>
     </ul>
   </nav>
 
