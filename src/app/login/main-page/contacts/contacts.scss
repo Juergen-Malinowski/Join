@@ -8,6 +8,52 @@
 
 
 //  SINGLE CONTACT ...
+.sc_dialog {
+  max-width: 1212px;
+  height: 590px;
+  display: flex;
+  flex-direction: row;
+  padding: 0px;
+  margin: 0px;
+  gap: 20px;
+}
+
+// Dialog Add Contact
+.left_side {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: $bgGrey;
+  padding: 60px 40px 60px 40px;
+  border-radius: 16px 0 0 16px;
+
+  .seperator {
+    height: 0px;
+    width: 90px;
+    margin-top: 20px;
+  }
+
+  img {
+    height: 64px;
+    width: 52px;
+  }
+
+  p {
+    font-size: 27px;
+    // line-height: 1.2;
+    color: $white;
+    background-color: $bgGrey;
+  }
+
+  span {
+    font-weight: 700;
+    // font-style: bold;
+    font-size: 61px;
+    line-height: 1.2;
+    color: $white;
+  }
+}
+
 .single_contacts {
   display: flex;
   flex-direction: column;

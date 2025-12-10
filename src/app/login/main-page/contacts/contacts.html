@@ -1,7 +1,7 @@
 <section class="main-area">
   <article class="contacts-wrapper">
     <!-- Add contact button -->
-    <button class="add-contact-btn text_4" (click)="onAddContact()">
+    <button class="add-contact-btn text_4" (click)="onAddContact()" aria-label="Add a Contact">
       Add new contact
       <img class="add-contact-icon" src="/IMG/person_add.svg" alt="Add person icon" />
     </button>
@@ -46,8 +46,10 @@
     <article class="sc_dialog">
       <!-- ------------------------- Dialog:Linke Seite -------------------------- -->
       <div class="left_side">
-        <img src="IMG/Capa 1.png" alt="" />
+        <img src="IMG/Capa 1.png" alt="JOIN-Logo" />
         <span>Add contact</span>
+        <p>Tasks are better with a team!</p>
+
         <div class="seperator"></div>
       </div>
 
@@ -86,7 +88,6 @@
     </article>
 
 
-    <button class="close" type="button" (click)="addDialog.close()">CLOSE</button>
-    <p>BLA BLA</p>
+    <!-- <button class="close" type="button" (click)="addDialog.close()">CLOSE</button> -->
   </div>
 </app-dialog>
