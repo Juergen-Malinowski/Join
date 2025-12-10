@@ -4,11 +4,13 @@ import { SingleContact } from './single-contact/single-contact';
 import { FirebaseServices } from '../../../firebase-services/firebase-services';
 import { Contact } from '../../../interfaces/contact.interface';
 import { map } from 'rxjs/operators';
+import { Dialog } from '../../../shared/dialog/dialog';
+import { ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-contacts',
   standalone: true,
-  imports: [CommonModule, SingleContact],
+  imports: [CommonModule, SingleContact,Dialog],
   templateUrl: './contacts.html',
   styleUrl: './contacts.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -16,6 +18,8 @@ import { map } from 'rxjs/operators';
 export class Contacts {
   
   private readonly firebase = inject(FirebaseServices);
+
+  @ViewChild('addDialog') addDialog!: Dialog;
 
   selectedContactId = signal<string | null>(null);
 
@@ -56,5 +60,6 @@ export class Contacts {
    */
   onAddContact(): void {
     console.log('Sprint 1 Dummy: Add new contact');
+     this.addDialog.open();
   }
 }
