@@ -14,17 +14,23 @@ main {
     >.user {
 
 
-        >.help-icon {
+        >a .help-icon {
             height: 32px;
             transition: height 2 s;
-
-            &:hover {
+             &:hover {
                 cursor: pointer;
                 height: 35px;
 
 
 
             }
+            @media( max-width:900px){
+                display:none
+
+            
+        }
+
+           
         }
 
         svg rect {

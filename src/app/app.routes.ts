@@ -18,6 +18,7 @@ export const routes: Routes = [
     {path:"Privacy Policy",component:PrivacyPolicy},
     {path:"Legal notice",component:LegalNotice},
     {path:"Helper",component:Helper},
+    {path:"main-area main_body_m_g",component:Helper}
 
     
 ];

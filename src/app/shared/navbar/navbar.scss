@@ -89,7 +89,7 @@ main {
         display: flex;
         justify-content: center;
         width: 100vw;
-        height: 0px;
+        height: 80px;
         position: fixed;
         bottom: 0;
 
@@ -107,11 +107,11 @@ main {
         padding: 0;
         display: flex;
         flex-direction: column;
-        font-size: 2vw;
+        font-size: 17px;
 
                 >img {
                     display: block;
-                    height: 3vw;
+                    height: 24px;
                     width: auto;
                 }
             }
