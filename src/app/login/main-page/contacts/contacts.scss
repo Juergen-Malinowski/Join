@@ -20,6 +20,7 @@
   height: 100%;
   padding: 24px;
   background-color: $white;
+  box-sizing: border-box;
 }
 
 .add-contact-btn {
@@ -41,6 +42,7 @@
   overflow-y: auto;
   margin-top: 24px;
   padding-right: 8px;
+  max-height: calc(100vh - 122px);
 }
 
 /* Alphabet-Gruppen */
@@ -224,8 +226,8 @@
 
 .sc_logo {
   fill: $white;
-      width: 43px;
-    height: 43px;
+  width: 43px;
+  height: 43px;
 }
 
 /* --------------------------- */
