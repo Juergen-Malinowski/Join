@@ -5,7 +5,7 @@ import {
   computed,
   inject,
   input,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import { FirebaseServices } from '../../../../firebase-services/firebase-services';
 import { Contact } from '../../../../interfaces/contact.interface';
@@ -19,10 +19,9 @@ import { FormsModule } from '@angular/forms';
   imports: [CommonModule, Dialog, FormsModule],
   templateUrl: './single-contact.html',
   styleUrl: './single-contact.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SingleContact {
-
   contactId = input.required<string>();
 
   private readonly firebase = inject(FirebaseServices);
@@ -43,19 +42,30 @@ export class SingleContact {
   }
 
   openEdit(contact: Contact): void {
+    this.closeMenu();
     this.editModel = { ...contact };
     this.editDialog.open();
   }
 
   async saveEdit(): Promise<void> {
     if (!this.editModel.id) return;
+    this.closeMenu();
     await this.firebase.editContact(this.editModel as Contact);
     this.editDialog.close();
   }
 
   async deleteContact(): Promise<void> {
     const id = this.contactId();
+    this.closeMenu();
     await this.firebase.deleteContact(id);
     this.editDialog.close();
+  }
+
+  isMenuOpen = false;
+  toggleMenu(): void {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+  closeMenu(): void {
+    this.isMenuOpen = false;
   }
 }

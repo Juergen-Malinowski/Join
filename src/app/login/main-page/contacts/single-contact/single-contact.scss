@@ -115,24 +115,58 @@
   }
 }
 
-.menu_circle {
+.circle_menu {
+  display: none;
+
+  @media (max-width: 1050px) {
+    display: grid;
+    place-items: center;
+    position: fixed;
+    right: 24px;
+    bottom: -200px; // Button runter
+    width: 56px;
+    height: 56px;
+    border: none;
+    border-radius: 50%;
+    background: #2a3647;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    padding: 0;
+    cursor: pointer;
+
+    img {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+
+.circle_menu + div {
   display: none;
 
   @media (max-width: 1050px) {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     gap: 8px;
     padding: 10px;
-    width: 116px;
+    width: 140px;
 
     position: fixed;
     right: 24px;
-    bottom: -110px;
-
+    bottom: -200px; // Panel gleich weit unten
     background: #fff;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 20px 20px 0 20px;
+    box-shadow: -6px 8px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 16px 0 0 16px;
+
+    transform: translateX(140%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 220ms ease, opacity 220ms ease;
+
+    &.is-open {
+      transform: translateX(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
 
     button {
       display: flex;
@@ -145,16 +179,15 @@
       background: transparent;
       color: #2a3647;
       font: 400 16px/1.2 'Inter', sans-serif;
-    }
+      cursor: pointer;
 
-    button svg {
-      width: 24px;
-      height: 24px;
-      flex-shrink: 0;
+      svg {
+        width: 24px;
+        height: 24px;
+      }
     }
   }
 }
-
 
 
 /* ------------------------------- Dialog:Edit ------------------------------ */

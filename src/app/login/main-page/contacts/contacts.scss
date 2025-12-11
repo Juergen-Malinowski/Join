@@ -4,7 +4,6 @@
 //  MAIN-Container-Contacts
 //  #######################
 
-
 /* -------------------------------------------------------------------------- */
 /* -------------------------- Singe-Contact:Header -------------------------- */
 /* -------------------------------------------------------------------------- */
@@ -15,6 +14,11 @@
   gap: 30px;
   width: fit-content;
   margin-top: 150px;
+  @media (max-width: 1050px) {
+ 
+      margin-top: 0px;
+    
+  }
 
   p {
     font-size: 27px;
@@ -35,7 +39,6 @@
   flex-direction: row;
   background-color: rgb(246, 247, 248);
 }
-
 
 // ###################
 // CONTACT-LIST
@@ -92,7 +95,6 @@
   margin-bottom: 8px;
 }
 
-
 /* ############################ */
 /* CONTACT-LIST Box (344 × 100) */
 /* ############################ */
@@ -114,11 +116,10 @@
     cursor: pointer;
     background: linear-gradient($bgLightGrey, $bgMiddleGrey);
     .text_6 {
-    background-color: transparent;
+      background-color: transparent;
     }
   }
 }
-
 
 /* Avatar */
 .contact-avatar {
@@ -144,7 +145,6 @@
 .contact-email {
   color: $buttonBlue;
   font-weight: 400;
-  ;
   font-size: 16px;
 }
 
@@ -160,14 +160,11 @@
   display: none;
 }
 
-
-
 /* ################## */
 /* ADD-CONTACT-DIALOG */
 /* ################## */
 
 :host ::ng-deep app-dialog.add-contact-dialog {
-
   /* Dialog-BOX */
   .dialog {
     background: transparent;
@@ -297,7 +294,6 @@
   height: 24px;
 }
 
-
 /* Formular-Fields */
 form.contact_form {
   display: flex;
@@ -380,7 +376,7 @@ form.contact_form {
     background-color: $buttonBlue;
     color: $white;
     transition: background-color 150ms ease-in-out;
-    cursor: pointer
+    cursor: pointer;
   }
 }
 
@@ -388,7 +384,8 @@ form.contact_form {
 // MEDIA für Mobile
 // ##################
 
-@media(min-width:1921px) {}
+@media (min-width: 1921px) {
+}
 
 // @media (max-width: 1439px) {
 //   /* MAIN-AREA now in column */
@@ -397,14 +394,11 @@ form.contact_form {
 //   }
 // }
 
-
 /* ============================================ */
 /* RESPONSIVE up to 900px – CONTACT-List Mobile */
 /* ============================================ */
 @media (max-width: 900px) {
-
   :host ::ng-deep app-dialog.add-contact-dialog {
-
     .dialog {
       border-radius: 16px;
       background: transparent;
