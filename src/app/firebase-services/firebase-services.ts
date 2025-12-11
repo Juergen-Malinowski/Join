@@ -5,6 +5,7 @@ import {
   doc,
   collectionData,
   docData,
+  getDoc,
   addDoc,
   updateDoc,
   deleteDoc
@@ -18,6 +19,8 @@ import { Observable } from 'rxjs';
 export class FirebaseServices {
 
   private readonly firestore = inject(Firestore);
+
+  private settingsDoc = doc(this.firestore, 'appSettings/contacts');
 
   subContactsList(): Observable<Contact[]> {
     const ref = collection(this.firestore, 'contacts');
@@ -62,5 +65,17 @@ export class FirebaseServices {
 
     const ref = doc(this.firestore, `contacts/${contactId}`);
     await deleteDoc(ref);
+  }
+
+  async getLastUserColor(): Promise<number> {
+    const snap = await getDoc(this.settingsDoc);
+
+    return snap.exists() ? snap.data()['lastUserColor'] ?? 0 : 0;
+  }
+
+  async setLastUserColor(index: number): Promise<void> {
+    await updateDoc(this.settingsDoc, {
+      lastUserColor: index,
+    });
   }
 }

@@ -44,10 +44,12 @@ $userColor13: #FFE62B;
 $userColor14: #FF4646;
 $userColor15: #FFBB2B;
 
-
-
-
-
-
-
-
+:root {
+  @for $i from 1 through 15 {
+    --userColor#{$i}: #{nth((
+      $userColor1, $userColor2, $userColor3, $userColor4, $userColor5,
+      $userColor6, $userColor7, $userColor8, $userColor9, $userColor10,
+      $userColor11, $userColor12, $userColor13, $userColor14, $userColor15
+    ), $i)};
+  }
+}

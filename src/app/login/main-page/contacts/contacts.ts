@@ -26,14 +26,21 @@ export class Contacts {
     name: '',
     email: '',
     phone: '',
-    color: this.getColor()
+    color: this.getColor(),
   });
 
   selectedContactId = signal<string | null>(null);
 
+  private lastUserColor = 7;
+  private maxColors = 15;
+
   readonly groupedContacts$ = this.firebase
     .subContactsList()
     .pipe(map((contacts: Contact[]) => this.sortAndGroup(contacts)));
+
+  constructor() {
+    this.loadLastUserColor();
+  }
 
   onSelectContact(id: string) {
     this.selectedContactId.set(id);
@@ -63,23 +70,20 @@ export class Contacts {
     return first + last;
   }
 
-  /**
-   * Dummy (Sprint 1)
-   */
-    onAddContact(): void {
+  onAddContact(): void {
     this.formModel.set({
       name: '',
       email: '',
       phone: '',
-      color: this.getColor()
+      color: this.getColor(),
     });
     this.addDialog.open();
   }
 
   async saveNewContact(): Promise<void> {
     const data = this.formModel();
-
     if (!data.name?.trim()) return;
+    await this.firebase.setLastUserColor(this.lastUserColor);
 
     await this.firebase.addContact({
       name: data.name.trim(),
@@ -92,7 +96,16 @@ export class Contacts {
   }
 
   private getColor(): string {
-    return '#' + Math.floor(Math.random() * 16777215).toString(16);
+    this.lastUserColor = (this.lastUserColor % this.maxColors) + 1;
+
+    const cssVar = `--userColor${this.lastUserColor}`;
+    const style = getComputedStyle(document.documentElement);
+    const color = style.getPropertyValue(cssVar).trim();
+
+    return color;
+  }
+
+  private async loadLastUserColor() {
+    this.lastUserColor = await this.firebase.getLastUserColor();
   }
 }
-
