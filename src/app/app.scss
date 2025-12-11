@@ -1,11 +1,17 @@
 @import '../styles.scss';
-div{
-    
+div{    
     margin-left: 16em;
     padding-top: 6em;
   max-height: 100vh;
   overflow-y: hidden;
+
   @media(min-width:1921px){
     margin-left: 80em;
+  }
+
+  @media (max-width: 900px) {
+    // When the navigation bar moves down, 
+    // free up the space on the left ...
+    margin-left: 0;
   }
 }
