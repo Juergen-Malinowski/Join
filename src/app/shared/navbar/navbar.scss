@@ -85,6 +85,7 @@ main {
 }
 
 @media(max-width: 900px) {
+   
     main {
         display: flex;
         justify-content: center;
@@ -119,6 +120,19 @@ main {
 
         .Legal {
             display: none;
+        }
+    }
+}
+
+@media(min-width:1921px){
+    section{
+        width: 100vw;
+        height: 100vh;
+        position: absolute;
+        >main{
+            position: absolute;
+            margin-left: 25%;
+            
         }
     }
 }

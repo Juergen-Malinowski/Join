@@ -17,20 +17,20 @@ main {
         >a .help-icon {
             height: 32px;
             transition: height 2 s;
-             &:hover {
+
+            &:hover {
                 cursor: pointer;
                 height: 35px;
 
 
 
             }
-            @media( max-width:900px){
-                display:none
 
-            
-        }
+            @media(max-width:900px) {
+                display: none
+            }
 
-           
+
         }
 
         svg rect {
@@ -75,7 +75,7 @@ main {
 
     .menu li {
         margin: 8px 0;
-        
+
     }
 
     .menu a {
@@ -90,7 +90,7 @@ main {
 
 
 
-  
+
 }
 
 @media(max-width: 900px) {
@@ -150,13 +150,14 @@ main {
             right: 100;
         }
     }
-    .menu{
+
+    .menu {
         display: none;
     }
-   
 
 
-      .menu-mobil {
+
+    .menu-mobil {
         position: absolute;
         top: 102%;
         right: 3%;
@@ -167,7 +168,7 @@ main {
 
     }
 
-     ul {
+    ul {
         list-style: none;
         margin: 0;
         padding: 0;
@@ -177,7 +178,7 @@ main {
         margin: 8px 0;
         text-decoration: none;
         ;
-        
+
     }
 
     .menu-mobil a {
@@ -188,5 +189,19 @@ main {
             background-color: $navActive
         }
     }
+
+}
+
+@media(min-width:1921px) {
+    section {
+        position: relative;
+        margin-left: 27%;
+        margin-right: 25%;
+    
+
+    >main {
+        box-shadow: -1vw -14px 24px black;
+    }
+}
 
 }

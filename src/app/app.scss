@@ -5,4 +5,7 @@ div{
     padding-top: 6em;
   max-height: 100vh;
   overflow-y: hidden;
+  @media(min-width:1921px){
+    margin-left: 80em;
+  }
 }

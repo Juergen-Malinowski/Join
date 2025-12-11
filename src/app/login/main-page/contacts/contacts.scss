@@ -14,15 +14,17 @@
   align-items: center;
   gap: 30px;
   width: fit-content;
+  margin-top: 150px;
 
   p {
     font-size: 27px;
+    font-weight: 400;
   }
 }
 
 .seperator {
   height: 59px;
-  border: 3px solid #29abe2;
+  border: 3px solid $buttonBlue;
   border-radius: 3px;
 }
 
@@ -67,6 +69,7 @@
 .contacts-scroll-area {
   overflow-y: auto;
   margin-top: 24px;
+  padding-bottom: 24px;
   padding-right: 8px;
   max-height: calc(100vh - 122px);
 }
@@ -86,7 +89,7 @@
 /* ############################ */
 .contact-box {
   width: 344px;
-  height: 100px;
+  height: 80px;
   background-color: $white;
   border-radius: 16px;
   padding: 16px 8px;
@@ -95,6 +98,7 @@
   gap: 16px;
   box-sizing: border-box;
   transition: background-color 120ms ease-in-out;
+  // margin: 15px 24px 15px 24px;
 
   &:hover {
     background-color: $bgLightGrey;
@@ -223,9 +227,9 @@
   }
 
   p {
-    margin-top: 16px;
+    padding-top: 16px;
     font-size: 27px;
-    font-weight: 400;
+    font-weight: 300;
     color: $white;
   }
 
@@ -251,7 +255,7 @@
   width: 120px;
   height: 120px;
   border-radius: 70px;
-  background-color: $bgYellow;
+  background-color: $bgMiddleGrey;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -259,8 +263,8 @@
 
 .sc_logo {
   fill: $white;
-  width: 43px;
-  height: 43px;
+  width: 64px;
+  height: 64px;
 }
 
 /* --------------------------- */
@@ -290,7 +294,7 @@ form.contact_form {
   gap: 32px;
 
   label.field {
-    border: 1px solid #d1d1d1;
+    border: 1px solid $bgMiddleGrey;
     border-radius: 10px;
     padding: 13px 21px;
     display: flex;
@@ -306,6 +310,7 @@ form.contact_form {
       border: none;
       width: 100%;
       font-size: 20px;
+      font-weight: 400;
 
       &:focus {
         outline: none;
@@ -322,18 +327,25 @@ form.contact_form {
 /* Buttons */
 .dialog_buttons {
   display: flex;
-  gap: 20px;
+  gap: 24px;
+  white-space: nowrap;
 
   .button_light {
-    padding: 16px 24px;
-    border-radius: 8px;
+    font-size: 20px;
+    font-weight: 400;
+    width: 126px;
+    padding: 16px 8px;
+    border-radius: 16px;
     background-color: $white;
     border: 1px solid $bgGrey;
   }
 
   .button_dark {
+    font-size: 21px;
+    font-weight: 700;
+    width: 214px;
     padding: 16px 24px;
-    border-radius: 8px;
+    border-radius: 16px;
     background-color: $bgGrey;
     color: $white;
     display: flex;
@@ -347,15 +359,16 @@ form.contact_form {
   }
 
   .button_light:hover {
-    background-color: $buttonBlue;
-    color: $white;
+    color: $buttonBlue;
     border-color: $buttonBlue;
     transition: background-color 150ms ease-in-out;
+    cursor: pointer;
   }
 
   .button_dark:hover {
     background-color: $buttonBlue;
     color: $white;
     transition: background-color 150ms ease-in-out;
+    cursor: pointer
   }
 }
