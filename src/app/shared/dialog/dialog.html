@@ -1,11 +1,10 @@
-@if (isOpen) {
-  <div class="backdrop">
-    <article class="dialog">
+@if (isOpen){
+<div class="backdrop" (click)="close()">
+    <article class="dialog"
+             [class.opening]="isOpen && !isClosing"
+             [class.closing]="isClosing"
+             (click)="$event.stopPropagation()">
       <ng-content></ng-content>
-
-      <!-- <button type="button" (click)="close()">
-        Schließen
-      </button> -->
     </article>
   </div>
 }

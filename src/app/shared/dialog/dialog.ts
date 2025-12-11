@@ -1,7 +1,8 @@
-import {  Component,EventEmitter, Input, Output, } from '@angular/core';
+import { Component, EventEmitter, Input, Output, } from '@angular/core';
+
 @Component({
   selector: 'app-dialog',
-  standalone:true,
+  standalone: true,
   imports: [],
   templateUrl: './dialog.html',
   styleUrl: './dialog.scss',
@@ -11,6 +12,23 @@ export class Dialog {
   @Output() closed = new EventEmitter<void>();
 
   isOpen = false;
-  open() { this.isOpen = true; }
-  close() { this.isOpen = false; this.closed.emit(); }
+  isClosing = false;
+
+  open(): void {
+    this.isClosing = false;
+    this.isOpen = true;
+  }
+
+  close(): void {
+    if (this.isClosing) return;
+
+    this.isClosing = true;    
+
+    setTimeout(() => {  
+      this.isClosing = false;
+      this.isOpen = false;
+      this.closed.emit();
+    }, 240);
+  }
 }
+
