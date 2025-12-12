@@ -59,6 +59,9 @@
   box-sizing: border-box;
   box-shadow: 5px -1px 5px $bgMiddleGrey;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   @media (max-width: 1050px) {
     z-index: auto;
@@ -206,7 +209,8 @@
 // MEDIA für Mobile
 // ##################
 
-@media(min-width:1921px) {}
+@media (min-width: 1921px) {
+}
 
 // @media (max-width: 1439px) {
 //   /* MAIN-AREA now in column */
@@ -219,7 +223,6 @@
 /* RESPONSIVE up to 1050px – CONTACT-List Mobile */
 /* ============================================= */
 @media (max-width: 1050px) {
-
   /* Desktop-Button don´t display */
   .add-contact-btn {
     display: none;
@@ -229,7 +232,7 @@
   .add-contact-fab {
     position: fixed;
     bottom: 100px;
-   
+
     right: 24px;
     width: 56px;
     height: 56px;
@@ -273,7 +276,7 @@
       padding-right: 6px;
     }
 
-     /* Single-Contact don´t display */
+    /* Single-Contact don´t display */
     .single-contact {
       display: none;
     }
