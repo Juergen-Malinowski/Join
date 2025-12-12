@@ -23,14 +23,24 @@
   gap: 30px;
   width: fit-content;
   margin-top: 50px;
-
-  @media (max-width: 1050px) {
-    margin-top: 0px;
+  h2 {
+    font-size: 47px;
   }
 
   p {
     font-size: 27px;
     font-weight: 400;
+  }
+
+  @media (max-width: 1250px) {
+    margin-top: 0px;
+    h2 {
+      font-size: 22px;
+    }
+    p {
+      font-size: 20px;
+      font-weight: 400;
+    }
   }
 }
 
@@ -206,7 +216,8 @@
 // MEDIA für Mobile
 // ##################
 
-@media(min-width:1921px) {}
+@media (min-width: 1921px) {
+}
 
 // @media (max-width: 1439px) {
 //   /* MAIN-AREA now in column */
@@ -219,7 +230,6 @@
 /* RESPONSIVE up to 1050px – CONTACT-List Mobile */
 /* ============================================= */
 @media (max-width: 1050px) {
-
   /* Desktop-Button don´t display */
   .add-contact-btn {
     display: none;
@@ -229,7 +239,7 @@
   .add-contact-fab {
     position: fixed;
     bottom: 100px;
-   
+
     right: 24px;
     width: 56px;
     height: 56px;
@@ -273,7 +283,7 @@
       padding-right: 6px;
     }
 
-     /* Single-Contact don´t display */
+    /* Single-Contact don´t display */
     .single-contact {
       display: none;
     }
