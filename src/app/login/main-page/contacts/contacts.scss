@@ -46,8 +46,7 @@
 
 .seperator {
   height: 59px;
-  border: 3px solid $buttonBlue;
-  border-radius: 3px;
+  border: 2px solid $buttonBlue;
 }
 
 .seperator_contacts {
@@ -79,7 +78,7 @@
 
   overflow-y: auto;
   padding-right: 8px;
-  max-height: calc(100vh - 118px);
+  max-height: calc(100vh - 100px);
 
   @media (max-width: 1050px) {
     z-index: auto;
