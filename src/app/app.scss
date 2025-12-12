@@ -24,11 +24,12 @@
   width: 100%;
 }
 
-@media (min-width: 2560px) {
+@media (min-width: 1440px) {
   .widescreen {
-   padding-right: calc((100% - 1920px) / 2);
+   padding-right: calc((100% - 1440px));
+  //  padding-left: calc((100% - 1920px) / 2);
   }
   .right_wrapper{
-            padding-left: calc((95% - 234px) / 2);
+    padding-left: 234px;
   }
 }
