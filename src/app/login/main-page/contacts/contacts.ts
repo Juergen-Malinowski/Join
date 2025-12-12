@@ -20,9 +20,6 @@ export class Contacts {
 
   @ViewChild('addDialog') addDialog!: Dialog;
 
-  isDisplayed = true;
-  isMediacheck = window.matchMedia('(max-width: 1050px)');
-
   editModel: Partial<Contact> = {};
 
   formModel = signal<Partial<Contact>>({
@@ -45,16 +42,7 @@ export class Contacts {
     this.loadLastUserColor();
   }
 
-    dnoneList(): void {
-      if (this.isMediacheck.matches && this.isDisplayed) {
-        this.isDisplayed = false;
-      } else {
-        return;
-      }
-    }
-
   onSelectContact(id: string) {
-    this.dnoneList();
     this.selectedContactId.set(id);
   }
 
@@ -120,9 +108,4 @@ export class Contacts {
   private async loadLastUserColor() {
     this.lastUserColor = await this.firebase.getLastUserColor();
   }
-
-  returnArrow(): void {
-    this.isDisplayed = true;
-  }
-
 }
