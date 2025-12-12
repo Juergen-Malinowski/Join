@@ -8,36 +8,36 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.35);
   z-index: 1000;
   width: none;
   animation: fadeIn 300ms ease-out;
 
   &.closing {
-    animation: fadeOut 420ms ease-out;
+    animation: fadeOut 420ms ease-in;
   }
 
   // Dialog-Shell
   .dialog {
     max-height: none;
     height: auto;
-    background: #ffffff;
+    background: $white;
     border-radius: 40px;
     box-shadow: 0 14px 48px rgba(0, 0, 0, 0.18);
 
     &.opening {
-      animation: dialog-in 400ms ease-in;
+      animation: dialog-in 300ms ease-in;
 
       @media (max-width: 1050px) {
-        animation: dialog-inY 400ms ease-in;
+        animation: dialog-inY 300ms ease-in;
       }
     }
 
     &.closing {
-      animation: dialog-out 500ms ease-out;
+      animation: dialog-out 450ms ease-out;
 
       @media (max-width: 1050px) {
-        animation: dialog-outY 500ms ease-out;
+        animation: dialog-outY 450ms ease-out;
       }
     }
   }
