@@ -54,7 +54,7 @@
   width: 100%;
   max-width: 456px;
   height: 100%;
-  padding: 24px 0 0 24px;
+  padding-left: 24px;
   background-color: $white;
   box-sizing: border-box;
   box-shadow: 5px -1px 5px $bgMiddleGrey;
@@ -63,12 +63,24 @@
   flex-direction: column;
   align-items: center;
 
+  overflow-y: auto;
+  padding-right: 8px;
+  max-height: calc(100vh - 122px);
+
   @media (max-width: 1050px) {
     z-index: auto;
   }
 }
 
 // Button ADD-Contact fo Desktop
+
+.button_container {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: $white;
+  padding: 28px;
+}
 .add-contact-btn {
   width: 350px;
   height: 50px;
@@ -93,12 +105,12 @@
   display: none;
 }
 
-.contacts-scroll-area {
-  overflow-y: auto;
-  margin-top: 24px;
-  padding-right: 8px;
-  max-height: calc(100vh - 194px);
-}
+// .contacts-scroll-area {
+//   overflow-y: auto;
+//   margin-top: 24px;
+//   padding-right: 8px;
+//   max-height: calc(100vh - 194px);
+// }
 
 /* Alphabet-Groups */
 .contacts-group {
