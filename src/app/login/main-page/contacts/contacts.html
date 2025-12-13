@@ -5,16 +5,18 @@
 
   <article class="single_contact" [class.d_block]="selectedContactId()">
     <header class="sc_header">
-      <h1>Contacts</h1>
-      <div class="seperator"></div>
-      <p>Better with a team</p>
-      <div class="seperator d_none"></div>
-
-
-    </header>
+      <div>
+        <h1>Contacts</h1>
+        <div class="seperator"></div>
+        <p>Better with a team</p>
+        <div class="seperator d_none"></div>
+      </div>
+      
       <button class="return_button" (click)="returnArrow()">
         <img src="/IMG/arrow_left.svg" alt="" />
       </button>
+    </header>
+
     <div class="contact_view">
       <app-single-contact
         *ngIf="selectedContactId()"
@@ -23,3 +25,7 @@
     </div>
   </article>
 </section>
+
+<button class="return_button" (click)="returnArrow()">
+  <img src="/IMG/arrow_left.svg" alt="" />
+</button>
