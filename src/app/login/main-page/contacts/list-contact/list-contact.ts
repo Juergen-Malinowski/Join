@@ -1,19 +1,21 @@
 import { CommonModule } from '@angular/common';
-import { Component, ChangeDetectionStrategy, inject, signal, viewChild, Output, EventEmitter } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject, signal, viewChild, Output, EventEmitter, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FirebaseServices } from '../../../../firebase-services/firebase-services';
 import { Contact } from '../../../../interfaces/contact.interface';
 import { map } from 'rxjs/operators';
+import { Dialog } from '../../../../shared/dialog/dialog';
 
 @Component({
   selector: 'app-list-contact',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, Dialog],
   templateUrl: './list-contact.html',
   styleUrl: './list-contact.scss',
 })
 export class ListContact {
 
   @Output() contactSelected = new EventEmitter<string>();
+  @ViewChild('addDialog') addDialog!: Dialog;
 
     private readonly firebase = inject(FirebaseServices);
 
@@ -94,6 +96,7 @@ export class ListContact {
       phone: '',
       color: this.getColor(),
     });
+    this.addDialog.open();
   }
 
   async saveNewContact(): Promise<void> {
@@ -107,7 +110,7 @@ export class ListContact {
       phone: data.phone?.trim() ?? '',
       color: data.color ?? '#000'
     });
-
+    this.addDialog.close();
   }
 
   private getColor(): string {

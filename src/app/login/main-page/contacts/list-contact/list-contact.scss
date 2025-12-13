@@ -60,6 +60,32 @@
     }
   }
 
+  .circle_add_contact {
+    display: none;
+
+    @media (max-width: 1050px) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      bottom: 100px;
+      right: 32px;
+      width: 56px;
+      height: 56px;
+      background-color: $buttonBlue;
+      border-radius: 50%;
+      border: none;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      z-index: 99;
+
+      img {
+        width: 32px;
+        height: 32px;
+      }
+    }
+  }
+
   .contacts_list {
     display: flex;
     flex-direction: column;
