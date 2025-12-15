@@ -3,106 +3,97 @@
 section {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
   height: 96px;
+  background-color: white;
   box-shadow: 0px 3px 2px #d1d1d1;
-  align-items: center;
-  padding-left: 10px;
-  background-color: white;
-}
+  padding: 0 30px; // Desktop Padding
+  box-sizing: border-box;
+  position: relative; // Für das absolute Menü
 
-@media (min-width: 1440px) {
-  .widescreen {
-    padding-right: calc((100% - 1440px));
-    //  padding-left: calc((100% - 1920px) / 2);
+  // --- Mobile Breakpoint ---
+  @media (max-width: 1050px) {
+    height: 80px;
+    padding: 0 16px; // Mobile Padding (Figma)
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
   }
 }
 
-.text_6 {
-    padding-left: 100px;
-}
-
-.content {
-  background-color: white;
+// --- LINKER BEREICH (Logo / Titel) ---
+.header-left {
   display: flex;
-  width: 100%;
-  margin-right: 30px;
-  justify-content: space-between;
   align-items: center;
-  height: 100%;
-  > span {
+
+  .logo-mobile {
+    width: 32px;
+    height: 39px;
+    object-fit: contain;
+  }
+
+  .title-desktop {
+    font-size: 20px; // Anpassen falls nötig
+    font-weight: 400;
     margin-left: 10px;
+    @media (max-width: 1050px) {
+      display: none;
+    }
   }
+}
 
-  > .user {
-    @media (max-width: 500px) {
-      justify-content: center;
-    }
+// --- RECHTER BEREICH (Icons / Profil) ---
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px; // Abstand zwischen Help und Profil
 
-    a {
-      display: inline-block;
-      cursor: pointer;
-
-      svg {
-        display: block;
-        width: 32px;
-        height: 32px;
-        transition: transform 0.2s;
-        transform-box: fill-box;
-        transform-origin: center;
-
-        path {
-          pointer-events: none;
-        }
-      }
-
-      &:hover svg path.help-icon {
-        transform: scale(1.1);
-      }
-
-      img.help-icon {
-        display: block;
-        width: 32px;
-        height: 32px;
-        transition: transform 0.2s;
-      }
-    }
-
-    > .icons {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
+  .help-icon {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    
     svg {
-      rect:hover {
-        cursor: pointer;
-        fill: #d7d3d3;
-      }
+      transition: transform 0.2s;
+    }
 
-      path,
-      circle {
-        pointer-events: none;
+    &:hover svg {
+      transform: scale(1.1);
+    }
+  }
+
+  .profile-icon {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    
+    svg {
+      width: 56px;
+      height: 56px;
+      // Mobile Größe anpassen falls nötig
+      @media (max-width: 500px) {
+        width: 40px;
+        height: 40px;
       }
     }
   }
 }
 
-.menu-icon {
-  cursor: pointer;
-}
-
-.menu,
-.menu-mobil {
+// --- DROPDOWN MENÜ ---
+.menu-dropdown {
   position: absolute;
-  top: 102%;
-  background: $bgGrey;
+  top: 96px; // Unterhalb des Headers (Desktop)
+  right: 30px;
+  background: $bgGrey; // Oder deine Variable
   padding: 12px;
   border-radius: 15px 0 15px 15px;
-}
+  z-index: 50;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
 
-.menu {
-  top: 90px;
+  @media (max-width: 1050px) {
+    top: 80px; // Unterhalb des Headers (Mobile)
+    right: 16px;
+    animation: slideIn 0.2s ease-out;
+  }
 
   ul {
     list-style: none;
@@ -116,121 +107,25 @@ section {
     a {
       color: #a8a8a8;
       text-decoration: none;
+      display: block;
+      padding: 4px 8px;
+      border-radius: 4px;
 
       &:hover {
-        background-color: $navActive;
+        background-color: $navActive; // Oder Variable
+        color: white; // Falls nötig
       }
     }
   }
 }
 
-@media (max-width: 1050px) {
-  section {
-    padding: 0;
-
-    > .content {
-      > span {
-        margin-left: 60px;
-      }
-
-      > div .user .menu-icon {
-        display: none;
-      }
-
-      > .text_6 {
-        display: none;
-      }
-
-      .user {
-        > svg {
-          flex-shrink: 0;
-        }
-      }
-
-      .user .icons a svg {
-        display: none;
-      }
-    }
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
   }
-
-  .icons {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-    }
-
-  .mobil {
-    display: flex;
-    justify-content: space-between;
-    width: 78vw;
-    padding-left: 30px;
-  }
-
-  @keyframes run {
-    0% {
-      right: 0;
-    }
-
-    50% {
-      right: 50;
-    }
-
-    100% {
-      right: 100;
-    }
-  }
-
-  .menu {
-    display: none;
-  }
-
-  .menu-mobil {
-    right: 9%;
-    animation: run 0.2s linear;
-    top: 92px;
-    right: 8vw;
-
-    &.menu-mobil {
-      list-style: none;
-      padding: 14px;
-      margin: 0;
-
-      li {
-        margin: 8px 0;
-      }
-
-      a {
-        color: #a8a8a8;
-        text-decoration: none;
-
-        &:hover {
-          background-color: $navActive;
-        }
-      }
-    }
-  }
-}
-
-@media (min-width: 1440px) {
-  section {
-    overflow-x: hidden;
-    width: 100%;
-
-    > section {
-      box-shadow: inset 0px -1px #d1d1d1;
-
-      > .content {
-        overflow: auto;
-        width: 1150px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        > span {
-          margin-left: 60px;
-        }
-      }
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
