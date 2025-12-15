@@ -97,6 +97,7 @@ export class ListContact {
       color: this.getColor(),
     });
     this.addDialog.open();
+
   }
 
   async saveNewContact(): Promise<void> {
@@ -111,6 +112,7 @@ export class ListContact {
       color: data.color ?? '#000'
     });
     this.addDialog.close();
+    this.writeConfirmation();
   }
 
   private getColor(): string {
@@ -127,4 +129,8 @@ export class ListContact {
     this.lastUserColor = await this.firebase.getLastUserColor();
   }
 
+  writeConfirmation(): void {
+    const container = document.querySelector('.confirmation_container') as HTMLElement;
+    container.classList.add('confirmation_container--active');
+  }
 }
