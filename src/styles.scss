@@ -1,6 +1,7 @@
-@import './app/styles/colors.scss';
-@import './app/styles/global-styles.scss';
-@import './app/shared/dialog/dialog.scss';
+@use './app/styles/colors.scss';
+@use './app/styles/global-styles.scss';
+@use './app/shared/dialog/dialog.scss';
+@use './app/shared/dialog/dialog_contact.scss';
 
 /* --------------------------------- Styling -------------------------------- */
 
@@ -41,8 +42,8 @@ body {
     font-weight: 400;
     font-size: 16px;
     line-height: 1.2;
-    color: $black;
-    background-color: $white;
+    color: colors.$black;
+    background-color: colors.$white;
 }
 
 h1 {
@@ -50,8 +51,8 @@ h1 {
     font-weight: 700;
     font-size: 61px;
     line-height: 1.2;
-    color: $black;
-    background-color: $white;
+    color: colors.$black;
+    background-color: colors.$white;
 }
 
 h2 {
@@ -59,8 +60,8 @@ h2 {
     font-weight: 500;
     font-size: 47px;
     line-height: 1.2;
-    color: $black;
-    background-color: $white;
+    color: colors.$black;
+    background-color: colors.$white;
 }
 
 .main_body_m_g{
@@ -80,12 +81,12 @@ h2 {
     }
     ul{
         list-style: disc;   
-        color: $black;
+        color: colors.$black;
         margin-left: 8px;
     }
     ol{
         list-style: decimal;   
-        color: $black;
+        color: colors.$black;
         margin-left: 32px;
     }
 
