@@ -16,7 +16,7 @@
             <span>Edit</span>
           </button>
 
-          <button type="button delete" (click)="deleteContact()">
+          <button type="button" (click)="deleteContact()" aria-label="Button delete">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
               <mask id="mask0_408622_5033" style="mask-type: alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24"
                 height="24">
@@ -49,8 +49,8 @@
     </div>
 
     <!-- -------------------------- @Media max 1050px -------------------------- -->
-    <button class="circle_menu" type="button" (click)="toggleMenu()" aria-label="Button Edit Contact">
-      <img src="/IMG/more_vert.svg" alt="Add person icon" />
+    <button class="circle_menu" type="button" (click)="toggleMenu()" aria-label="Button Edit or Delete Contact">
+      <img src="/IMG/more_vert.svg" alt="Edit and Delete ICON" />
     </button>
 
     <div [class.is-open]="isMenuOpen">
@@ -67,7 +67,7 @@
         <span>Edit</span>
       </button>
 
-      <button type="button delete" (click)="deleteContact()">
+      <button type="button" (click)="deleteContact()" aria-label="Button delete">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <mask id="mask0_408622_5033" style="mask-type: alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24"
             height="24">
