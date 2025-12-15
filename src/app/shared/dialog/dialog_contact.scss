@@ -16,6 +16,7 @@
     margin: 0;
     padding: 0;
     gap: 20px;
+
     @media (max-width: 1050px) {
       flex-direction: column;
       height: auto;
@@ -31,9 +32,12 @@
       position: absolute;
       border: none;
       cursor: pointer;
+
       @media (max-width: 1050px) {
         top: 24px;
         right: 24px;
+        color: $white;
+        z-index: 11;
       }
 
       img {
@@ -53,17 +57,20 @@
     width: 480px;
     background-color: $bgGrey;
     padding: 60px 40px 60px 40px;
+
     @media (max-width: 1200px) {
       width: 360px;
     }
+
     @media (max-width: 1050px) {
       width: 100%;
       padding: 80px 40px 80px 40px;
-
+      z-index: 10;
       img {
         display: none;
       }
     }
+
     @media (max-width: 500px) {
       padding: 40px 24px;
     }
@@ -85,9 +92,11 @@
       font-weight: 700;
       color: $white;
       margin-top: 32px;
+
       @media (max-width: 1200px) {
         font-size: 40px;
       }
+
       @media (max-width: 500px) {
         font-size: 32px;
       }
@@ -98,9 +107,11 @@
       font-weight: 700;
       color: $white;
       margin-top: 32px;
+
       @media (max-width: 1200px) {
         font-size: 20px;
       }
+
       @media (max-width: 500px) {
         font-size: 16px;
       }
@@ -111,12 +122,14 @@
     display: flex;
     align-items: center;
     margin: 0 0px;
+
     @media (max-width: 1200px) {
       font-size: 20px;
       margin: -60px 0px 0px 0px;
     }
 
-    .sc_logo, img {
+    .sc_logo,
+    img {
       width: 100px;
       height: 100px;
       border-radius: 50%;
@@ -124,7 +137,7 @@
       box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
       object-fit: cover;
       background-color: $bgGrey;
-      
+
       display: flex;
       justify-content: center;
       align-items: center;
@@ -141,11 +154,13 @@
     flex-direction: column;
     justify-content: center;
     gap: 32px;
+
     @media (max-width: 1050px) {
       width: 100%;
       padding: 40px 20px;
       align-items: center;
     }
+
     @media (max-width: 500px) {
       padding: 20px 16px;
     }
@@ -165,6 +180,7 @@
       padding: 13px 21px;
       width: 420px;
       transition: border-color 150ms ease;
+
       @media (max-width: 500px) {
         width: 100%;
       }
@@ -206,6 +222,7 @@
     display: flex;
     gap: 24px;
     white-space: nowrap;
+
     @media (max-width: 500px) {
       gap: 12px;
     }
