@@ -30,8 +30,8 @@
     <!-- ------------------------- Dialog:Rechte Seite ------------------------- -->
     <div class="right_side">
       <!-- ----------------------------- InputFields ----------------------------- -->
-      <article>
-        <form class="contact_form">
+      
+        <form class="contact_form" (ngSubmit)="saveEdit(contactForm)" #contactForm="ngForm">
           <label class="field">
             <input
               #nameField="ngModel"
@@ -76,12 +76,11 @@
             <img src="img/call.svg" alt="" />
           </label>
           <p class="error-msg" *ngIf="phoneField.invalid">The number format is incorrect.</p>
-        </form>
-      </article>
-
-      <div class="dialog_buttons">
+        
+      
+      <div class="dialog_buttons"> <!-- Buttons sind jetzt Teil des Forms -->
         <button class="button_light" type="button" (click)="deleteContact()">Delete</button>
-        <button class="button_dark" type="button" (click)="saveEdit()">
+        <button class="button_dark" type="submit" [disabled]="!contactForm.valid">
           <span>Save</span>
           <svg
             width="24"
@@ -110,6 +109,7 @@
           </svg>
         </button>
       </div>
+    </form>
     </div>
   </article>
 </app-dialog>

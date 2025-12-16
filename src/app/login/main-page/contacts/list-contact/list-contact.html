@@ -94,8 +94,7 @@
 
       <!-- ------------------------- Dialog: Right Side ------------------------- -->
       <div class="right_side">
-        <article>
-          <form class="contact_form">
+        <form class="contact_form" (ngSubmit)="saveNewContact(addContactForm)" #addContactForm="ngForm">
             <label class="field">
               <input #nameField="ngModel" [(ngModel)]="formModel().name" name="name" type="text" placeholder="Jane Doe"
                 required pattern="^[A-Za-zÄÖÜäöüß\-]{3,}\s[A-Za-zÄÖÜäöüß\-]{3,}$" />
@@ -112,7 +111,7 @@
                 </g>
               </svg>
             </label>
-            <p class="error-msg" *ngIf="nameField.invalid">Mindestens drei Buchstaben</p>
+            <p class="error-msg" *ngIf="nameField.invalid && nameField.touched">First and last name must contain at least 3 letters.</p>
 
             <label class="field">
               <input #emailField="ngModel" [(ngModel)]="formModel().email" name="email" type="email" required
@@ -130,7 +129,7 @@
                 </g>
               </svg>
             </label>
-            <p class="error-msg" *ngIf="emailField.invalid">E-mail valiedierung stimmt nicht.</p>
+            <p class="error-msg" *ngIf="emailField.invalid && emailField.touched">Email format is incorrect.</p>
 
             <label class="field">
               <input #phoneField="ngModel" [(ngModel)]="formModel().phone" name="tel" type="tel"
@@ -148,13 +147,11 @@
                 </g>
               </svg>
             </label>
-            <p class="error-msg" *ngIf="phoneField.invalid">Gib eine gültige Nummer ein.</p>
-          </form>
-        </article>
+            <p class="error-msg" *ngIf="phoneField.invalid && phoneField.touched">The number format is incorrect.</p>
 
         <div class="dialog_buttons">
           <button class="button_light" type="button" (click)="addDialog.close()">Cancel</button>
-          <button class="button_dark" type="button" (click)="saveNewContact()">
+          <button class="button_dark" type="submit" [disabled]="!addContactForm.valid">
             Create contact
             <!-- check.svg -->
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -170,7 +167,7 @@
             </svg>
           </button>
         </div>
-
+      </form>
       </div>
     </article>
   </div>

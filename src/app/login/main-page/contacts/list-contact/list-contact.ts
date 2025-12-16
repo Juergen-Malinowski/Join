@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, ChangeDetectionStrategy, inject, signal, viewChild, Output, EventEmitter, ViewChild } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { FirebaseServices } from '../../../../firebase-services/firebase-services';
 import { Contact } from '../../../../interfaces/contact.interface';
 import { map } from 'rxjs/operators';
@@ -100,13 +100,13 @@ export class ListContact {
 
   }
 
-  async saveNewContact(): Promise<void> {
+  async saveNewContact(form: NgForm): Promise<void> {
+    if (!form.valid) return;
     const data = this.formModel();
-    if (!data.name?.trim()) return;
     await this.firebase.setLastUserColor(this.lastUserColor);
 
     await this.firebase.addContact({
-      name: data.name.trim(),
+      name: data.name?.trim() ?? '',
       email: data.email?.trim() ?? '',
       phone: data.phone?.trim() ?? '',
       color: data.color ?? '#000'

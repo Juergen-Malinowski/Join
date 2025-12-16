@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { FirebaseServices } from '../../../../../firebase-services/firebase-services';
 import { Contact } from '../../../../../interfaces/contact.interface';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Dialog } from '../../../../../shared/dialog/dialog';
 @Component({
   selector: 'app-dialog-edit-contact',
@@ -34,9 +34,8 @@ export class DialogEditContact {
     this.editDialog.open();
   }
 
-  async saveEdit(): Promise<void> {
-    if (!this.editModel.id) return;
-    // this.closeMenu(); // Falls das Menü im Dialog auch geschlossen werden soll
+  async saveEdit(form: NgForm): Promise<void> {
+    if (!this.editModel.id || !form.valid) return;
     await this.firebase.editContact(this.editModel as Contact);
     this.editDialog.close();
   }
