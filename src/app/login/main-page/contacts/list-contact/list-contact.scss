@@ -15,7 +15,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-overflow-x: hidden;
+  overflow-x: hidden;
   overflow-y: auto;
   padding-right: 8px;
   max-height: calc(100vh - 100px);
@@ -45,7 +45,7 @@ overflow-x: hidden;
     justify-content: center;
 
     @media (max-width: 1150px) {
-    padding: 14px;
+      padding: 14px;
     }
 
     @media (max-width: 1050px) {
@@ -146,7 +146,7 @@ overflow-x: hidden;
         color: colors.$white;
 
         @media (max-width: 1050px) {
-      color: colors.$black;
+          color: colors.$black;
           background: transparent;
         }
       }
@@ -222,14 +222,17 @@ overflow-x: hidden;
       opacity: 0;
       transform: translate(-50%, 100%);
     }
+
     25% {
       opacity: 1;
       transform: translate(-50%, 0);
     }
+
     75% {
       opacity: 1;
       transform: translate(-50%, 0);
     }
+
     100% {
       opacity: 0;
       transform: translate(-50%, 100%);
@@ -311,6 +314,7 @@ overflow-x: hidden;
       width: 100%;
       padding: 80px 40px 80px 40px;
       z-index: 10;
+
       img {
         display: none;
       }
@@ -367,7 +371,7 @@ overflow-x: hidden;
       }
     }
   }
-
+y
   .mid_side {
     display: flex;
     align-items: center;
@@ -393,7 +397,7 @@ overflow-x: hidden;
       border: 3px solid colors.$white;
       box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
       object-fit: cover;
-      background-color: colors.$bgGrey;
+      background-color: colors.$navNotActive;
 
       display: flex;
       justify-content: center;
@@ -401,6 +405,11 @@ overflow-x: hidden;
       font-size: 47px;
       font-weight: 500;
       color: colors.$white;
+
+
+      @media (max-width: 1050px) {
+       
+      }
 
       @media (max-width: 500px) {
         width: 80px;
@@ -467,6 +476,7 @@ overflow-x: hidden;
         &:focus {
           outline: none;
         }
+
         @media (max-width: 500px) {
           font-size: 12px;
         }
