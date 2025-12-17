@@ -1,4 +1,76 @@
-.board{
+.board {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 24px;
+}
+
+.area_top {
+  display: flex;
+  justify-content: space-between;
+
+  >span {
+    font-weight: 700;
+    font-size: 61px;
+    color: #000000;
+  }
+  div{
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+
+  input {
+    box-sizing: border-box;
+    width: 312px;
+    height: 48px;
+    padding: 8px 16px;
+    background-color: #ffffff;
+    border: 1px solid #a8a8a8;
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: 'Inter', sans-serif;
+
+    &::placeholder {
+      color: #d1d1d1;
+    }
+  }
+}
+
+.area_bottom {
+  display: flex;
+  justify-content: space-between;
+
+  .area_tasks {
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      span {
+        font-weight: 700;
+        font-size: 20px;
+
+        color: #42526e;
+      }
+    }
+
+    .no_task {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      color: #a8a8a8;
+      width: 240px;
+      height: 48px;
+
+      background: #e7e7e7;
+      border: 1px dashed #a8a8a8;
+      box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+      border-radius: 10px;
+
+      font-weight: 400;
+      font-size: 16px;
+    }
+  }
 }
