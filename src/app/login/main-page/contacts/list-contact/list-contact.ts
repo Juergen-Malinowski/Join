@@ -5,17 +5,18 @@ import { FirebaseServices } from '../../../../firebase-services/firebase-service
 import { Contact } from '../../../../interfaces/contact.interface';
 import { map } from 'rxjs/operators';
 import { Dialog } from '../../../../shared/dialog/dialog';
+import { DialogAddNewContact } from './dialog-add-new-contact/dialog-add-new-contact';
 
 @Component({
   selector: 'app-list-contact',
-  imports: [CommonModule, FormsModule, Dialog],
+  imports: [CommonModule, FormsModule, Dialog, DialogAddNewContact],
   templateUrl: './list-contact.html',
   styleUrl: './list-contact.scss',
 })
 export class ListContact {
 
   @Output() contactSelected = new EventEmitter<string>();
-  @ViewChild('addDialog') addDialog!: Dialog;
+  @ViewChild('DialogAddNewContact') DialogAddNewContact!: Dialog;
 
     private readonly firebase = inject(FirebaseServices);
 
@@ -42,9 +43,9 @@ export class ListContact {
     .subContactsList()
     .pipe(map((contacts: Contact[]) => this.sortAndGroup(contacts)));
 
-  constructor() {
-    this.loadLastUserColor();
-  }
+  // constructor() {
+  //   this.loadLastUserColor();
+  // }
 
   dnoneList(): void {
       if (this.isMediacheck.matches && this.isDisplayed) {
@@ -96,24 +97,24 @@ export class ListContact {
       phone: '',
       color: this.getColor(),
     });
-    this.addDialog.open();
+    this.DialogAddNewContact.open();
 
   }
 
-  async saveNewContact(form: NgForm): Promise<void> {
-    if (!form.valid) return;
-    const data = this.formModel();
-    await this.firebase.setLastUserColor(this.lastUserColor);
+  // async saveNewContact(form: NgForm): Promise<void> {
+  //   if (!form.valid) return;
+  //   const data = this.formModel();
+  //   await this.firebase.setLastUserColor(this.lastUserColor);
 
-    await this.firebase.addContact({
-      name: data.name?.trim() ?? '',
-      email: data.email?.trim() ?? '',
-      phone: data.phone?.trim() ?? '',
-      color: data.color ?? '#000'
-    });
-    this.addDialog.close();
-    this.writeConfirmation();
-  }
+  //   await this.firebase.addContact({
+  //     name: data.name?.trim() ?? '',
+  //     email: data.email?.trim() ?? '',
+  //     phone: data.phone?.trim() ?? '',
+  //     color: data.color ?? '#000'
+  //   });
+  //   this.DialogAddNewContact.close();
+  //   this.writeConfirmation();
+  // }
 
   private getColor(): string {
     this.lastUserColor = (this.lastUserColor % this.maxColors) + 1;
@@ -125,9 +126,9 @@ export class ListContact {
     return color;
   }
 
-  private async loadLastUserColor() {
-    this.lastUserColor = await this.firebase.getLastUserColor();
-  }
+  // private async loadLastUserColor() {
+  //   this.lastUserColor = await this.firebase.getLastUserColor();
+  // }
 
   writeConfirmation(): void {
     const container = document.querySelector('.confirmation_container') as HTMLElement;
