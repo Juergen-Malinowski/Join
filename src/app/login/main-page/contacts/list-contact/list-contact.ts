@@ -90,6 +90,16 @@ export class ListContact {
     return first + last;
   }
 
+      private getColor(): string {
+    this.lastUserColor = (this.lastUserColor % this.maxColors) + 1;
+
+    const cssVar = `--userColor${this.lastUserColor}`;
+    const style = getComputedStyle(document.documentElement);
+    const color = style.getPropertyValue(cssVar).trim();
+
+    return color;
+  }
+
   onAddContact(): void {
     this.formModel.set({
       name: '',
@@ -114,16 +124,6 @@ export class ListContact {
     });
     this.DialogAddNewContact.close();
     this.writeConfirmation();
-  }
-
-  private getColor(): string {
-    this.lastUserColor = (this.lastUserColor % this.maxColors) + 1;
-
-    const cssVar = `--userColor${this.lastUserColor}`;
-    const style = getComputedStyle(document.documentElement);
-    const color = style.getPropertyValue(cssVar).trim();
-
-    return color;
   }
 
   // private async loadLastUserColor() {

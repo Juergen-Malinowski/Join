@@ -14,6 +14,7 @@ import { Observable } from 'rxjs';
 import { Contact } from '../interfaces/contact.interface';
 import { Task } from '../interfaces/task.interface';
 import { TaskType } from '../types/task-type';
+import { TaskStatus } from '../types/task-status';
 
 @Injectable({
   providedIn: 'root',
@@ -82,14 +83,17 @@ export class FirebaseServices {
     return docData(ref, { idField: 'id' }) as Observable<Task | undefined>;
   }
 
-  async addTask(task: Omit<Task, 'id'>): Promise<Task> {
+  async addTask(task: Omit<Task, 'id' | 'status'>): Promise<Task> {
     const ref = collection(this.firestore, 'tasks');
-    const docRef = await addDoc(ref, {
-      ...task,
-      type: task.type as TaskType,
-    });
 
-    return { id: docRef.id, ...task };
+    const taskWithDefaults: Omit<Task, 'id'> = {
+      ...task,
+      status: TaskStatus.ToDo,
+    };
+
+    const docRef = await addDoc(ref, taskWithDefaults);
+
+    return { id: docRef.id, ...taskWithDefaults };
   }
 
   async editTask(task: Task): Promise<void> {
@@ -103,6 +107,11 @@ export class FirebaseServices {
   async deleteTask(taskId: string): Promise<void> {
     const ref = doc(this.firestore, `tasks/${taskId}`);
     await deleteDoc(ref);
+  }
+
+  async updateTaskStatus(taskId: string, status: TaskStatus): Promise<void> {
+    const ref = doc(this.firestore, `tasks/${taskId}`);
+    await updateDoc(ref, { status });
   }
 
   /* ========================== TASK SUBCOLLECTIONS ========================== */
