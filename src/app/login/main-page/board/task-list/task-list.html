@@ -8,8 +8,17 @@
     <div class="board_column">
         <span class="column_title">To do</span>
 
-        <div class="column_drop_area" cdkDropList [cdkDropListData]="todoTasks" (cdkDropListDropped)="drop($event)">
-            <div class="task_card" *ngFor="let task of todoTasks" cdkDrag>
+        <div
+            class="column_drop_area"
+            cdkDropList
+            (cdkDropListDropped)="drop($event, 'todo')"
+        >
+            <div
+                class="task_card"
+                *ngFor="let task of todoTasks"
+                cdkDrag
+                [cdkDragData]="task"
+            >
 
                 <section class="task_preview">
 
@@ -40,7 +49,6 @@
                 </section>
 
             </div>
-
         </div>
     </div>
 
@@ -48,28 +56,25 @@
     <div class="board_column">
         <span class="column_title">In progress</span>
 
-        <div class="column_drop_area" cdkDropList [cdkDropListData]="inProgressTasks"
-            (cdkDropListDropped)="drop($event)">
-            <div class="task_card" *ngFor="let task of todoTasks" cdkDrag>
+        <div
+            class="column_drop_area"
+            cdkDropList
+            (cdkDropListDropped)="drop($event, 'inProgress')"
+        >
+            <div
+                class="task_card"
+                *ngFor="let task of inProgressTasks"
+                cdkDrag
+                [cdkDragData]="task"
+            >
 
                 <section class="task_preview">
-
-                    <span class="task_tag">
-                        {{ task.type }}
-                    </span>
-
-                    <span class="task_title">
-                        {{ task.title }}
-                    </span>
-
-                    <span class="task_content">
-                        {{ task.description }}
-                    </span>
+                    <span class="task_tag">{{ task.type }}</span>
+                    <span class="task_title">{{ task.title }}</span>
+                    <span class="task_content">{{ task.description }}</span>
 
                     <article class="area_progress">
-                        <div>
-                            {{ task.subtasksDone }}/{{ task.subtasksTotal }}
-                        </div>
+                        <div>{{ task.subtasksDone }}/{{ task.subtasksTotal }}</div>
                         <span>Subtasks</span>
                     </article>
 
@@ -77,11 +82,9 @@
                         <div>● ●</div>
                         <div>{{ task.priority }}</div>
                     </article>
-
                 </section>
 
             </div>
-
         </div>
     </div>
 
@@ -89,28 +92,25 @@
     <div class="board_column">
         <span class="column_title">Await feedback</span>
 
-        <div class="column_drop_area" cdkDropList [cdkDropListData]="awaitFeedbackTasks"
-            (cdkDropListDropped)="drop($event)">
-            <div class="task_card" *ngFor="let task of todoTasks" cdkDrag>
+        <div
+            class="column_drop_area"
+            cdkDropList
+            (cdkDropListDropped)="drop($event, 'awaitFeedback')"
+        >
+            <div
+                class="task_card"
+                *ngFor="let task of awaitFeedbackTasks"
+                cdkDrag
+                [cdkDragData]="task"
+            >
 
                 <section class="task_preview">
-
-                    <span class="task_tag">
-                        {{ task.type }}
-                    </span>
-
-                    <span class="task_title">
-                        {{ task.title }}
-                    </span>
-
-                    <span class="task_content">
-                        {{ task.description }}
-                    </span>
+                    <span class="task_tag">{{ task.type }}</span>
+                    <span class="task_title">{{ task.title }}</span>
+                    <span class="task_content">{{ task.description }}</span>
 
                     <article class="area_progress">
-                        <div>
-                            {{ task.subtasksDone }}/{{ task.subtasksTotal }}
-                        </div>
+                        <div>{{ task.subtasksDone }}/{{ task.subtasksTotal }}</div>
                         <span>Subtasks</span>
                     </article>
 
@@ -118,11 +118,9 @@
                         <div>● ●</div>
                         <div>{{ task.priority }}</div>
                     </article>
-
                 </section>
 
             </div>
-
         </div>
     </div>
 
@@ -130,27 +128,25 @@
     <div class="board_column">
         <span class="column_title">Done</span>
 
-        <div class="column_drop_area" cdkDropList [cdkDropListData]="doneTasks" (cdkDropListDropped)="drop($event)">
-            <div class="task_card" *ngFor="let task of todoTasks" cdkDrag>
+        <div
+            class="column_drop_area"
+            cdkDropList
+            (cdkDropListDropped)="drop($event, 'done')"
+        >
+            <div
+                class="task_card"
+                *ngFor="let task of doneTasks"
+                cdkDrag
+                [cdkDragData]="task"
+            >
 
                 <section class="task_preview">
-
-                    <span class="task_tag">
-                        {{ task.type }}
-                    </span>
-
-                    <span class="task_title">
-                        {{ task.title }}
-                    </span>
-
-                    <span class="task_content">
-                        {{ task.description }}
-                    </span>
+                    <span class="task_tag">{{ task.type }}</span>
+                    <span class="task_title">{{ task.title }}</span>
+                    <span class="task_content">{{ task.description }}</span>
 
                     <article class="area_progress">
-                        <div>
-                            {{ task.subtasksDone }}/{{ task.subtasksTotal }}
-                        </div>
+                        <div>{{ task.subtasksDone }}/{{ task.subtasksTotal }}</div>
                         <span>Subtasks</span>
                     </article>
 
@@ -158,11 +154,9 @@
                         <div>● ●</div>
                         <div>{{ task.priority }}</div>
                     </article>
-
                 </section>
 
             </div>
-
         </div>
     </div>
 
