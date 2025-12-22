@@ -61,11 +61,6 @@
 }
 
 
-// #################################################################
-// #################################################################
-// #################################################################
-
-
 .task_preview {
     display: flex;
     flex-direction: column;
@@ -99,16 +94,38 @@
     }
 }
 
-.area_progress {
-    display: flex;
-    justify-content: space-between;
-
-    div {
-        color: blue;
-    }
-}
-
 .area_prio {
     display: flex;
     justify-content: space-between;
+}
+
+// ###################
+// Progress-Bar Styles
+// ###################
+
+.area_progress {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.progress_bar {
+    flex: 1;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress_fill {
+    height: 100%;
+    background-color: #4589ff;
+    border-radius: 4px;
+    transition: width 200ms ease-in-out;
+}
+
+.progress_text {
+    font-size: 12px;
+    color: #2a3647;
+    white-space: nowrap;
 }

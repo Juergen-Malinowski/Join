@@ -13,6 +13,8 @@ import {
 import { Observable } from 'rxjs';
 import { Contact } from '../interfaces/contact.interface';
 import { Task } from '../interfaces/task.interface';
+import { TaskAssign } from '../interfaces/task-assign.interface';
+import { Subtask } from '../interfaces/subtask.interface';
 import { TaskType } from '../types/task-type';
 import { TaskStatus } from '../types/task-status';
 
@@ -116,12 +118,12 @@ export class FirebaseServices {
 
   /* ========================== TASK SUBCOLLECTIONS ========================== */
 
-  subTaskAssigns(taskId: string): Observable<any[]> {
+  subTaskAssigns(taskId: string): Observable<TaskAssign[]> {
     const ref = collection(this.firestore, `tasks/${taskId}/assigns`);
-    return collectionData(ref, { idField: 'id' });
+    return collectionData(ref, { idField: 'id' }) as Observable<TaskAssign[]>;
   }
 
-  async addTaskAssign(taskId: string, assign: any): Promise<void> {
+  async addTaskAssign(taskId: string, assign: Omit<TaskAssign, 'id'>): Promise<void> {
     const ref = collection(this.firestore, `tasks/${taskId}/assigns`);
     await addDoc(ref, assign);
   }
@@ -131,17 +133,17 @@ export class FirebaseServices {
     await deleteDoc(ref);
   }
 
-  subSubtasks(taskId: string): Observable<any[]> {
+  subSubtasks(taskId: string): Observable<Subtask[]> {
     const ref = collection(this.firestore, `tasks/${taskId}/subtasks`);
-    return collectionData(ref, { idField: 'id' });
+    return collectionData(ref, { idField: 'id' }) as Observable<Subtask[]>;
   }
 
-  async addSubtask(taskId: string, subtask: any): Promise<void> {
+  async addSubtask(taskId: string, subtask: Omit<Subtask, 'id'>): Promise<void> {
     const ref = collection(this.firestore, `tasks/${taskId}/subtasks`);
     await addDoc(ref, subtask);
   }
 
-  async editSubtask(taskId: string, subtaskId: string, data: any): Promise<void> {
+  async editSubtask(taskId: string, subtaskId: string, data: Partial<Omit<Subtask, 'id'>>): Promise<void> {
     const ref = doc(this.firestore, `tasks/${taskId}/subtasks/${subtaskId}`);
     await updateDoc(ref, data);
   }

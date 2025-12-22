@@ -10,6 +10,9 @@ import { TaskType } from '../../../types/task-type';
 import { TaskStatus } from '../../../types/task-status';
 
 
+
+
+
 @Component({
   selector: 'app-add-task',
   standalone: true,
@@ -57,12 +60,10 @@ toggleContact(contact: Contact, checked: boolean) {
   priority = signal<'urgent' | 'medium' | 'low' | null>(null);
   
 
-  // Form inputs
   title = signal('');
   description = signal('');
   dueDate = signal('');
 
-  // Daten
   contacts = signal<Contact[]>([]);
   taskTypes = Object.entries(TaskType)
     .filter(([key, value]) => typeof value === 'number')
