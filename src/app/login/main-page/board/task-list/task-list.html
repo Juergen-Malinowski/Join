@@ -10,8 +10,37 @@
 
         <div class="column_drop_area" cdkDropList [cdkDropListData]="todoTasks" (cdkDropListDropped)="drop($event)">
             <div class="task_card" *ngFor="let task of todoTasks" cdkDrag>
-                {{ task }}
+
+                <section class="task_preview">
+
+                    <span class="task_tag">
+                        {{ task.type }}
+                    </span>
+
+                    <span class="task_title">
+                        {{ task.title }}
+                    </span>
+
+                    <span class="task_content">
+                        {{ task.description }}
+                    </span>
+
+                    <article class="area_progress">
+                        <div>
+                            {{ task.subtasksDone }}/{{ task.subtasksTotal }}
+                        </div>
+                        <span>Subtasks</span>
+                    </article>
+
+                    <article class="area_prio">
+                        <div>● ●</div>
+                        <div>{{ task.priority }}</div>
+                    </article>
+
+                </section>
+
             </div>
+
         </div>
     </div>
 
@@ -21,9 +50,38 @@
 
         <div class="column_drop_area" cdkDropList [cdkDropListData]="inProgressTasks"
             (cdkDropListDropped)="drop($event)">
-            <div class="task_card" *ngFor="let task of inProgressTasks" cdkDrag>
-                {{ task }}
+            <div class="task_card" *ngFor="let task of todoTasks" cdkDrag>
+
+                <section class="task_preview">
+
+                    <span class="task_tag">
+                        {{ task.type }}
+                    </span>
+
+                    <span class="task_title">
+                        {{ task.title }}
+                    </span>
+
+                    <span class="task_content">
+                        {{ task.description }}
+                    </span>
+
+                    <article class="area_progress">
+                        <div>
+                            {{ task.subtasksDone }}/{{ task.subtasksTotal }}
+                        </div>
+                        <span>Subtasks</span>
+                    </article>
+
+                    <article class="area_prio">
+                        <div>● ●</div>
+                        <div>{{ task.priority }}</div>
+                    </article>
+
+                </section>
+
             </div>
+
         </div>
     </div>
 
@@ -33,9 +91,38 @@
 
         <div class="column_drop_area" cdkDropList [cdkDropListData]="awaitFeedbackTasks"
             (cdkDropListDropped)="drop($event)">
-            <div class="task_card" *ngFor="let task of awaitFeedbackTasks" cdkDrag>
-                {{ task }}
+            <div class="task_card" *ngFor="let task of todoTasks" cdkDrag>
+
+                <section class="task_preview">
+
+                    <span class="task_tag">
+                        {{ task.type }}
+                    </span>
+
+                    <span class="task_title">
+                        {{ task.title }}
+                    </span>
+
+                    <span class="task_content">
+                        {{ task.description }}
+                    </span>
+
+                    <article class="area_progress">
+                        <div>
+                            {{ task.subtasksDone }}/{{ task.subtasksTotal }}
+                        </div>
+                        <span>Subtasks</span>
+                    </article>
+
+                    <article class="area_prio">
+                        <div>● ●</div>
+                        <div>{{ task.priority }}</div>
+                    </article>
+
+                </section>
+
             </div>
+
         </div>
     </div>
 
@@ -44,9 +131,38 @@
         <span class="column_title">Done</span>
 
         <div class="column_drop_area" cdkDropList [cdkDropListData]="doneTasks" (cdkDropListDropped)="drop($event)">
-            <div class="task_card" *ngFor="let task of doneTasks" cdkDrag>
-                {{ task }}
+            <div class="task_card" *ngFor="let task of todoTasks" cdkDrag>
+
+                <section class="task_preview">
+
+                    <span class="task_tag">
+                        {{ task.type }}
+                    </span>
+
+                    <span class="task_title">
+                        {{ task.title }}
+                    </span>
+
+                    <span class="task_content">
+                        {{ task.description }}
+                    </span>
+
+                    <article class="area_progress">
+                        <div>
+                            {{ task.subtasksDone }}/{{ task.subtasksTotal }}
+                        </div>
+                        <span>Subtasks</span>
+                    </article>
+
+                    <article class="area_prio">
+                        <div>● ●</div>
+                        <div>{{ task.priority }}</div>
+                    </article>
+
+                </section>
+
             </div>
+
         </div>
     </div>
 

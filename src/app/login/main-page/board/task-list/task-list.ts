@@ -22,12 +22,59 @@ import {
 })
 export class TaskList {
 
-    todoTasks: string[] = ['Test Task 1'];
-    inProgressTasks: string[] = ['Test Task 2'];
-    awaitFeedbackTasks: string[] = ['Test Task 3'];
-    doneTasks: string[] = ['Test Task 4'];
+    // =========================
+    // UI-DUMMY TASKS 
+    // =========================
 
-    drop(event: CdkDragDrop<string[]>) {
+    todoTasks = [
+        {
+            type: 'User Story',
+            title: 'Kochwelt Page & Recipe Recommender',
+            description: 'Build start page with recipe recommendation',
+            subtasksDone: 1,
+            subtasksTotal: 2,
+            priority: 'medium'
+        }
+    ];
+
+    inProgressTasks = [
+        {
+            type: 'Technical Task',
+            title: 'Implement Auth Guard',
+            description: 'Protect board route',
+            subtasksDone: 0,
+            subtasksTotal: 1,
+            priority: 'urgent'
+        }
+    ];
+
+    awaitFeedbackTasks = [
+        {
+            type: 'User Story',
+            title: 'Feedback Landing Page',
+            description: 'Waiting for UX feedback',
+            subtasksDone: 0,
+            subtasksTotal: 0,
+            priority: 'low'
+        }
+    ];
+
+    doneTasks = [
+        {
+            type: 'Technical Task',
+            title: 'Setup Project Structure',
+            description: 'Initial Angular project setup',
+            subtasksDone: 3,
+            subtasksTotal: 3,
+            priority: 'low'
+        }
+    ];
+
+    // =========================
+    // DRAG & DROP LOGIC
+    // =========================
+
+    drop(event: CdkDragDrop<any[]>) {
         if (event.previousContainer === event.container) {
             moveItemInArray(
                 event.container.data,
