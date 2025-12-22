@@ -1,92 +1,101 @@
 <!-- <app-dialog> -->
-  <section class="dialog_show" [class.d_none]="isEditMode">
-    <header>
-      <span>User Story</span>
-      <button>X</button>
-    </header>
+<section class="dialog_show" [class.d_none]="isEditMode">
+  <header>
+    <span>User Story</span>
+    <button>X</button>
+  </header>
 
-    <p class="area_title">
-      <span class="task_title">Kochwelt Page & Recipe Recommender</span>
-      <small class="task_description">Build start page with recipe recommendation.</small>
+  <p class="area_title">
+    <span class="task_title">Kochwelt Page & Recipe Recommender</span>
+    <small class="task_description">Build start page with recipe recommendation.</small>
+  </p>
+
+  <p class="task_info">
+    <span>Due date:</span>
+    <span>10/05/2023</span>
+  </p>
+  <p class="task_info">
+    <span>Priority</span>
+    <span>Medium</span>
+  </p>
+
+  <span class="assigned_title">Assigned To:</span>
+  <div class="area_assigned">
+    <p><span>EM</span><span>Emmanuel Mauert</span></p>
+    <p><span>MB</span><span>Marcel Bauer</span></p>
+    <p><span>M</span><span>Anton Myer</span></p>
+  </div>
+
+  <span class="subtasks_title">Subtasks</span>
+  <div class="subtasks">
+    <p>
+      <span>?</span>
+      <span>implement Recipe Recommendation</span>
     </p>
-
-      <p class="task_info">
-        <span>Due date:</span>
-        <span>10/05/2023</span>
-      </p>
-      <p class="task_info">
-        <span>Priority</span>
-        <span>Medium</span>
-      </p>
-    
-    <span class="assigned_title">Assigned To:</span>
-    <div class="area_assigned">
-      <p><span>EM</span><span>Emmanuel Mauert</span></p>
-      <p><span>MB</span><span>Marcel Bauer</span></p>
-      <p><span>M</span><span>Anton Myer</span></p>
-    </div>
-
-    <span class="subtasks_title">Subtasks</span>
-    <div class="subtasks">
-      <p>
-        <span>?</span>
-        <span>implement Recipe Recommendation</span>
-      </p>
-      <p>
-        <span>?</span>
-        <span>Start Page Layout</span>
-      </p>
-    </div>
-    <footer>
-      <button>Delete</button>
-      <button (click)="switchPage()">Edit</button>
-    </footer>
-  </section>
+    <p>
+      <span>?</span>
+      <span>Start Page Layout</span>
+    </p>
+  </div>
+  <footer>
+    <button>Delete</button>
+    <button (click)="switchPage()">Edit</button>
+  </footer>
+</section>
 
 <!-- -------------------------- Section EditTask --------------------------- -->
-    <section class="dialog_edit" [class.d_none]="!isEditMode">
-    <header>
-      <span>Edit Fenster</span>
-      <button>X</button>
-    </header>
+<section class="dialog_edit" [class.d_none]="!isEditMode">
+  <header>
+    <button>X</button>
+  </header>
 
-    <p class="area_title">
-      <span class="task_title">Du sieht heir was anderes</span>
-      <small class="task_description">lelelelele lelelelelle.</small>
+  <div class="area_input">
+    <label>Title</label>
+    <input type="text" placeholder="Titel vom Task" />
+  </div>
+
+  <div class="area_input">
+    <label>Description</label>
+    <input type="text" placeholder="Description vom Task" />
+  </div>
+  <div class="area_input">
+    <label>Due date <span class="required">*</span></label>
+    <input type="date" required />
+  </div>
+
+  <p class="task_info">
+    <span>Priority</span>
+    <span>Urgent</span>
+    <span>Medium</span>
+    <span>Low</span>
+  </p>
+
+  <span class="assigned_title">Assigned To:</span>
+  <div class="area_assigned">
+    <span>EM</span>
+    <span>MB</span>
+    <span>MA</span>
+  </div>
+
+  <div class="subtasks">
+    <div class="area_input">
+      <label>Subtasks</label>
+      <input type="text" placeholder="Add new subtask" />
+    </div>
+    <p>
+      <span>?</span>
+      <span>implement Recipe Recommendation</span>
     </p>
+    <p>
+      <span>?</span>
+      <span>Start Page Layout</span>
+    </p>
+  </div>
 
-      <p class="task_info">
-        <span>Due date:</span>
-        <span>10/05/2023</span>
-      </p>
-      <p class="task_info">
-        <span>Priority</span>
-        <span>Medium</span>
-      </p>
-    
-    <span class="assigned_title">Assigned To:</span>
-    <div class="area_assigned">
-      <p><span>EM</span><span>Emmanuel Mauert</span></p>
-      <p><span>MB</span><span>Marcel Bauer</span></p>
-      <p><span>M</span><span>Anton Myer</span></p>
-    </div>
-
-    <span class="subtasks_title">Subtasks</span>
-    <div class="subtasks">
-      <p>
-        <span>?</span>
-        <span>implement Recipe Recommendation</span>
-      </p>
-      <p>
-        <span>?</span>
-        <span>Start Page Layout</span>
-      </p>
-    </div>
-    <footer>
-      <button>Delete</button>
-      <button (click)="switchPage()">Safe</button>
-    </footer>
-  </section>
-
+  <footer>
+    <button>Delete</button>
+    <button (click)="switchPage()">Safe</button>
+  </footer>
+</section>
 
 <!-- </app-dialog> -->
