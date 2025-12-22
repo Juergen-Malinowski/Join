@@ -1,3 +1,5 @@
+@use "../../../../../styles/colors.scss";
+
 .dialog_show {
   display: flex;
   flex-direction: column;
@@ -14,8 +16,8 @@
       padding: 4px 24px;
       gap: 10px;
 
-      color: white;
-      background: #0038ff;
+      color: colors.$white;
+      background: colors.$userColor11;
       border-radius: 8px;
     }
   }
@@ -40,19 +42,19 @@
     span:nth-child(1) {
       font-weight: 400;
       font-size: 20px;
-      color: rgba(66, 82, 110, 1);
+      color: colors.$bgGrey;
     }
     span:nth-child(2) {
       font-weight: 400;
       font-size: 20px;
-      color: rgba(0, 0, 0, 1);
+      color: colors.$black;
     }
   }
 
   .assigned_title {
     font-weight: 400;
     font-size: 20px;
-    color: #2a3647;
+    color: colors.$bgGrey;
   }
 
   .area_assigned {
@@ -76,17 +78,17 @@
         width: 42px;
         height: 42px;
         border-radius: 50%;
-        border: 2px solid #ffffff;
-        color: #ffffff;
+        border: 2px solid colors.$white;
+        color: colors.$white;
         font-size: 16px;
         font-weight: 400;
-        background-color: green;
+        background-color: colors.$bgGreen;
       }
 
       span:nth-child(2) {
         font-size: 19px;
         font-weight: 400;
-        color: #000000;
+        color: colors.$black;
       }
     }
   }
@@ -94,7 +96,7 @@
   .subtasks_title {
     font-weight: 400;
     font-size: 20px;
-    color: #2a3647;
+    color: colors.$bgGrey;
   }
 
   .subtasks {
@@ -142,16 +144,16 @@
     label {
       font-weight: 400;
       font-size: 20px;
-      color: #2a3647;
+      color: colors.$bgGrey;
       .required {
-        color: red;
+        color: colors.$errorRed;
       }
     }
 
     input {
       box-sizing: border-box;
       padding: 12px 21px;
-      border: 1px solid #d1d1d1;
+      border: 1px solid colors.$bgMiddleGrey;
       border-radius: 10px;
       font-family: 'Inter', sans-serif;
       font-weight: 400;
@@ -160,7 +162,7 @@
       width: 100%;
 
       &::placeholder {
-        color: #d1d1d1;
+        color: colors.$bgMiddleGrey;
       }
     }
   }
@@ -171,19 +173,19 @@
     span:nth-child(1) {
       font-weight: 400;
       font-size: 20px;
-      color: rgba(66, 82, 110, 1);
+      color: colors.$bgGrey;
     }
     span:nth-child(2) {
       font-weight: 400;
       font-size: 20px;
-      color: rgba(0, 0, 0, 1);
+      color: colors.$black;
     }
   }
 
   .assigned_title {
     font-weight: 400;
     font-size: 20px;
-    color: #2a3647;
+    color: colors.$bgGrey;
   }
 
   .area_assigned {
@@ -199,18 +201,18 @@
       width: 42px;
       height: 42px;
       border-radius: 50%;
-      border: 2px solid #ffffff;
-      color: #ffffff;
+      border: 2px solid colors.$white;
+      color: colors.$white;
       font-size: 16px;
       font-weight: 400;
-      background-color: green;
+      background-color: colors.$bgGreen;
     }
   }
 
   .subtasks_title {
     font-weight: 400;
     font-size: 20px;
-    color: #2a3647;
+    color: colors.$bgGrey;
   }
 
   .subtasks {
