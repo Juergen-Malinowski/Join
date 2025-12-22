@@ -9,10 +9,14 @@ import { Dialog } from '../../../../../shared/dialog/dialog';
 })
 
 export class DialogShowEditTask {
-  @ViewChild(Dialog) dialog!: Dialog; 
+  @ViewChild('DialogShowEditTask') dialog!: Dialog; 
 
   open() {
     this.dialog.open();
+  }
+
+  close() {
+    this.dialog.close();
   }
 
 

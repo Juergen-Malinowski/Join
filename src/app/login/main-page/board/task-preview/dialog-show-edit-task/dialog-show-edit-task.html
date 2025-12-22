@@ -1,101 +1,117 @@
-<!-- <app-dialog> -->
-<section class="dialog_show" [class.d_none]="isEditMode">
-  <header>
-    <span>User Story</span>
-    <button>X</button>
-  </header>
+<app-dialog #DialogShowEditTask class="edit_task_dialog">
+  <section class="dialog_show" [class.d_none]="isEditMode">
+    <header>
+      <span>User Story</span>
+      <button class="close" type="button" (click)="DialogShowEditTask.close()" aria-label="Close Button">
+        <!-- close.svg -->
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M6.575 7.975L1.675 12.875C1.49167 13.0583 1.25833 13.15 0.975 13.15C0.691667 13.15 0.458333 13.0583 0.275 12.875C0.0916667 12.6917 0 12.4583 0 12.175C0 11.8917 0.0916667 11.6583 0.275 11.475L5.175 6.575L0.275 1.675C0.0916667 1.49167 0 1.25833 0 0.975C0 0.691667 0.0916667 0.458333 0.275 0.275C0.458333 0.0916667 0.691667 0 0.975 0C1.25833 0 1.49167 0.0916667 1.675 0.275L6.575 5.175L11.475 0.275C11.6583 0.0916667 11.8917 0 12.175 0C12.4583 0 12.6917 0.0916667 12.875 0.275C13.0583 0.458333 13.15 0.691667 13.15 0.975C13.15 1.25833 13.0583 1.49167 12.875 1.675L7.975 6.575L12.875 11.475C13.0583 11.6583 13.15 11.8917 13.15 12.175C13.15 12.4583 13.0583 12.6917 12.875 12.875C12.6917 13.0583 12.4583 13.15 12.175 13.15C11.8917 13.15 11.6583 13.0583 11.475 12.875L6.575 7.975Z"
+            fill="currentColor" />
+        </svg>
 
-  <p class="area_title">
-    <span class="task_title">Kochwelt Page & Recipe Recommender</span>
-    <small class="task_description">Build start page with recipe recommendation.</small>
-  </p>
+      </button>
+    </header>
 
-  <p class="task_info">
-    <span>Due date:</span>
-    <span>10/05/2023</span>
-  </p>
-  <p class="task_info">
-    <span>Priority</span>
-    <span>Medium</span>
-  </p>
-
-  <span class="assigned_title">Assigned To:</span>
-  <div class="area_assigned">
-    <p><span>EM</span><span>Emmanuel Mauert</span></p>
-    <p><span>MB</span><span>Marcel Bauer</span></p>
-    <p><span>M</span><span>Anton Myer</span></p>
-  </div>
-
-  <span class="subtasks_title">Subtasks</span>
-  <div class="subtasks">
-    <p>
-      <span>?</span>
-      <span>implement Recipe Recommendation</span>
+    <p class="area_title">
+      <span class="task_title">Kochwelt Page & Recipe Recommender</span>
+      <small class="task_description">Build start page with recipe recommendation.</small>
     </p>
-    <p>
-      <span>?</span>
-      <span>Start Page Layout</span>
+
+    <p class="task_info">
+      <span>Due date:</span>
+      <span>10/05/2023</span>
     </p>
-  </div>
-  <footer>
-    <button>Delete</button>
-    <button (click)="switchPage()">Edit</button>
-  </footer>
-</section>
+    <p class="task_info">
+      <span>Priority</span>
+      <span>Medium</span>
+    </p>
 
-<!-- -------------------------- Section EditTask --------------------------- -->
-<section class="dialog_edit" [class.d_none]="!isEditMode">
-  <header>
-    <button>X</button>
-  </header>
-
-  <div class="area_input">
-    <label>Title</label>
-    <input type="text" placeholder="Titel vom Task" />
-  </div>
-
-  <div class="area_input">
-    <label>Description</label>
-    <input type="text" placeholder="Description vom Task" />
-  </div>
-  <div class="area_input">
-    <label>Due date <span class="required">*</span></label>
-    <input type="date" required />
-  </div>
-
-  <p class="task_info">
-    <span>Priority</span>
-    <span>Urgent</span>
-    <span>Medium</span>
-    <span>Low</span>
-  </p>
-
-  <span class="assigned_title">Assigned To:</span>
-  <div class="area_assigned">
-    <span>EM</span>
-    <span>MB</span>
-    <span>MA</span>
-  </div>
-
-  <div class="subtasks">
-    <div class="area_input">
-      <label>Subtasks</label>
-      <input type="text" placeholder="Add new subtask" />
+    <span class="assigned_title">Assigned To:</span>
+    <div class="area_assigned">
+      <p><span>EM</span><span>Emmanuel Mauert</span></p>
+      <p><span>MB</span><span>Marcel Bauer</span></p>
+      <p><span>M</span><span>Anton Myer</span></p>
     </div>
-    <p>
-      <span>?</span>
-      <span>implement Recipe Recommendation</span>
-    </p>
-    <p>
-      <span>?</span>
-      <span>Start Page Layout</span>
-    </p>
-  </div>
 
-  <footer>
-    <button>Delete</button>
-    <button (click)="switchPage()">Safe</button>
-  </footer>
-</section>
+    <span class="subtasks_title">Subtasks</span>
+    <div class="subtasks">
+      <p>
+        <span>?</span>
+        <span>implement Recipe Recommendation</span>
+      </p>
+      <p>
+        <span>?</span>
+        <span>Start Page Layout</span>
+      </p>
+    </div>
+    <footer>
+      <button>Delete</button>
+      <button (click)="switchPage()">Edit</button>
+    </footer>
+  </section>
 
-<!-- </app-dialog> -->
+  <!-- -------------------------- Section EditTask --------------------------- -->
+  <section class="dialog_edit" [class.d_none]="!isEditMode">
+    <header>
+      <button class="close" type="button" (click)="DialogShowEditTask.close()" aria-label="Close Button">
+        <!-- close.svg -->
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M6.575 7.975L1.675 12.875C1.49167 13.0583 1.25833 13.15 0.975 13.15C0.691667 13.15 0.458333 13.0583 0.275 12.875C0.0916667 12.6917 0 12.4583 0 12.175C0 11.8917 0.0916667 11.6583 0.275 11.475L5.175 6.575L0.275 1.675C0.0916667 1.49167 0 1.25833 0 0.975C0 0.691667 0.0916667 0.458333 0.275 0.275C0.458333 0.0916667 0.691667 0 0.975 0C1.25833 0 1.49167 0.0916667 1.675 0.275L6.575 5.175L11.475 0.275C11.6583 0.0916667 11.8917 0 12.175 0C12.4583 0 12.6917 0.0916667 12.875 0.275C13.0583 0.458333 13.15 0.691667 13.15 0.975C13.15 1.25833 13.0583 1.49167 12.875 1.675L7.975 6.575L12.875 11.475C13.0583 11.6583 13.15 11.8917 13.15 12.175C13.15 12.4583 13.0583 12.6917 12.875 12.875C12.6917 13.0583 12.4583 13.15 12.175 13.15C11.8917 13.15 11.6583 13.0583 11.475 12.875L6.575 7.975Z"
+            fill="currentColor" />
+        </svg>
+
+      </button>
+    </header>
+
+    <div class="area_input">
+      <label>Title</label>
+      <input type="text" placeholder="Titel vom Task" />
+    </div>
+
+    <div class="area_input">
+      <label>Description</label>
+      <input type="text" placeholder="Description vom Task" />
+    </div>
+    <div class="area_input">
+      <label>Due date <span class="required">*</span></label>
+      <input type="date" required />
+    </div>
+
+    <p class="task_info">
+      <span>Priority</span>
+      <span>Urgent</span>
+      <span>Medium</span>
+      <span>Low</span>
+    </p>
+
+    <span class="assigned_title">Assigned To:</span>
+    <div class="area_assigned">
+      <span>EM</span>
+      <span>MB</span>
+      <span>MA</span>
+    </div>
+
+    <div class="subtasks">
+      <div class="area_input">
+        <label>Subtasks</label>
+        <input type="text" placeholder="Add new subtask" />
+      </div>
+      <p>
+        <span>?</span>
+        <span>implement Recipe Recommendation</span>
+      </p>
+      <p>
+        <span>?</span>
+        <span>Start Page Layout</span>
+      </p>
+    </div>
+
+    <footer>
+      <button>Delete</button>
+      <button (click)="switchPage()">Safe</button>
+    </footer>
+  </section>
+
+</app-dialog>

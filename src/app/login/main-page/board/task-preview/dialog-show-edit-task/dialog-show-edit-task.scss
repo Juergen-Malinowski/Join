@@ -1,11 +1,12 @@
 @use "../../../../../styles/colors.scss";
+@use "../../../../../../styles.scss";
 
 .dialog_show {
   display: flex;
   flex-direction: column;
   padding: 20px;
   gap: 4px;
-  width: 440px; // evt habt ihr tipps zur breite?
+  width: 550px;
 
   header {
     display: flex;

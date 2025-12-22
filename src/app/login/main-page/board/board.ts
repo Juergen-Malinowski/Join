@@ -12,8 +12,14 @@ import { DialogShowEditTask } from './task-preview/dialog-show-edit-task/dialog-
 export class Board {
 
   @ViewChild(DialogAddTask) dialogAddTask!: DialogAddTask;
+  @ViewChild(DialogShowEditTask) dialogShowEditTask!: DialogShowEditTask;
 
   openDialogAddTask() {
     this.dialogAddTask.open();
   }
+
+  openDialogEditTask() {
+    this.dialogShowEditTask.open();
+  }
+
 }

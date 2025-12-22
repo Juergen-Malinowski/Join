@@ -30,51 +30,6 @@
       height: auto;
       align-items: center;
     }
-
-    .close {
-      top: 48px;
-      right: 48px;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: transparent;
-      position: absolute;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-
-      &:hover {
-        background-color: colors.$bgMiddleGrey;
-        transition: background-color 150ms ease-in-out;
-
-        @media (max-width: 1050px) {
-          display: none;
-        }
-      }
-
-      @media (max-width: 1050px) {
-        top: 24px;
-        right: 24px;
-        color: colors.$white;
-        z-index: 11;
-
-         .active{
-          background-color: colors.$buttonBlue;
-          transition: background-color 150ms ease-in-out;
-        }
-      }
-
-      img {
-        width: 14px;
-        height: 14px;
-        top: 9px;
-        left: 9px;
-        pointer-events: none;
-      }
-    }
   }
 
   .left_side {
