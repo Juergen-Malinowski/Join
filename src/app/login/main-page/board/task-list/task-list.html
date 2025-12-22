@@ -8,17 +8,8 @@
     <div class="board_column">
         <span class="column_title">To do</span>
 
-        <div
-            class="column_drop_area"
-            cdkDropList
-            (cdkDropListDropped)="drop($event, 'todo')"
-        >
-            <div
-                class="task_card"
-                *ngFor="let task of todoTasks"
-                cdkDrag
-                [cdkDragData]="task"
-            >
+        <div class="column_drop_area" cdkDropList (cdkDropListDropped)="drop($event, 'todo')">
+            <div class="task_card" *ngFor="let task of todoTasks" cdkDrag [cdkDragData]="task">
 
                 <section class="task_preview">
 
@@ -35,11 +26,18 @@
                     </span>
 
                     <article class="area_progress">
-                        <div>
-                            {{ task.subtasksDone }}/{{ task.subtasksTotal }}
+
+                        <div class="progress_bar">
+                            <div class="progress_fill" [style.width.%]="getSubtaskProgress(task)">
+                            </div>
                         </div>
-                        <span>Subtasks</span>
+
+                        <span class="progress_text">
+                            {{ task.subtasksDone }}/{{ task.subtasksTotal }} Subtasks
+                        </span>
+
                     </article>
+
 
                     <article class="area_prio">
                         <div>● ●</div>
@@ -56,17 +54,8 @@
     <div class="board_column">
         <span class="column_title">In progress</span>
 
-        <div
-            class="column_drop_area"
-            cdkDropList
-            (cdkDropListDropped)="drop($event, 'inProgress')"
-        >
-            <div
-                class="task_card"
-                *ngFor="let task of inProgressTasks"
-                cdkDrag
-                [cdkDragData]="task"
-            >
+        <div class="column_drop_area" cdkDropList (cdkDropListDropped)="drop($event, 'inProgress')">
+            <div class="task_card" *ngFor="let task of inProgressTasks" cdkDrag [cdkDragData]="task">
 
                 <section class="task_preview">
                     <span class="task_tag">{{ task.type }}</span>
@@ -74,9 +63,18 @@
                     <span class="task_content">{{ task.description }}</span>
 
                     <article class="area_progress">
-                        <div>{{ task.subtasksDone }}/{{ task.subtasksTotal }}</div>
-                        <span>Subtasks</span>
+
+                        <div class="progress_bar">
+                            <div class="progress_fill" [style.width.%]="getSubtaskProgress(task)">
+                            </div>
+                        </div>
+
+                        <span class="progress_text">
+                            {{ task.subtasksDone }}/{{ task.subtasksTotal }} Subtasks
+                        </span>
+
                     </article>
+
 
                     <article class="area_prio">
                         <div>● ●</div>
@@ -92,27 +90,26 @@
     <div class="board_column">
         <span class="column_title">Await feedback</span>
 
-        <div
-            class="column_drop_area"
-            cdkDropList
-            (cdkDropListDropped)="drop($event, 'awaitFeedback')"
-        >
-            <div
-                class="task_card"
-                *ngFor="let task of awaitFeedbackTasks"
-                cdkDrag
-                [cdkDragData]="task"
-            >
+        <div class="column_drop_area" cdkDropList (cdkDropListDropped)="drop($event, 'awaitFeedback')">
+            <div class="task_card" *ngFor="let task of awaitFeedbackTasks" cdkDrag [cdkDragData]="task">
 
                 <section class="task_preview">
                     <span class="task_tag">{{ task.type }}</span>
                     <span class="task_title">{{ task.title }}</span>
                     <span class="task_content">{{ task.description }}</span>
-
                     <article class="area_progress">
-                        <div>{{ task.subtasksDone }}/{{ task.subtasksTotal }}</div>
-                        <span>Subtasks</span>
+
+                        <div class="progress_bar">
+                            <div class="progress_fill" [style.width.%]="getSubtaskProgress(task)">
+                            </div>
+                        </div>
+
+                        <span class="progress_text">
+                            {{ task.subtasksDone }}/{{ task.subtasksTotal }} Subtasks
+                        </span>
+
                     </article>
+
 
                     <article class="area_prio">
                         <div>● ●</div>
@@ -128,17 +125,8 @@
     <div class="board_column">
         <span class="column_title">Done</span>
 
-        <div
-            class="column_drop_area"
-            cdkDropList
-            (cdkDropListDropped)="drop($event, 'done')"
-        >
-            <div
-                class="task_card"
-                *ngFor="let task of doneTasks"
-                cdkDrag
-                [cdkDragData]="task"
-            >
+        <div class="column_drop_area" cdkDropList (cdkDropListDropped)="drop($event, 'done')">
+            <div class="task_card" *ngFor="let task of doneTasks" cdkDrag [cdkDragData]="task">
 
                 <section class="task_preview">
                     <span class="task_tag">{{ task.type }}</span>
@@ -146,9 +134,18 @@
                     <span class="task_content">{{ task.description }}</span>
 
                     <article class="area_progress">
-                        <div>{{ task.subtasksDone }}/{{ task.subtasksTotal }}</div>
-                        <span>Subtasks</span>
+
+                        <div class="progress_bar">
+                            <div class="progress_fill" [style.width.%]="getSubtaskProgress(task)">
+                            </div>
+                        </div>
+
+                        <span class="progress_text">
+                            {{ task.subtasksDone }}/{{ task.subtasksTotal }} Subtasks
+                        </span>
+
                     </article>
+
 
                     <article class="area_prio">
                         <div>● ●</div>

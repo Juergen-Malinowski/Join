@@ -103,4 +103,15 @@ export class TaskList {
         const movedTask = event.item.data;
         movedTask.status = newStatus;
     }
+
+    // ==========================
+    // SUBTASK PROGRESS-BAR
+    // ==========================
+    getSubtaskProgress(task: any): number {
+        if (task.subtasksTotal === 0) {
+            return 0;
+        }
+
+        return (task.subtasksDone / task.subtasksTotal) * 100;
+    }
 }
