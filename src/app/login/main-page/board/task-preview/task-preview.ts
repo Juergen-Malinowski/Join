@@ -1,46 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  CdkDrag,
-  CdkDropList,
-  CdkDropListGroup,
-  CdkDragDrop,
-  moveItemInArray,
-  transferArrayItem
-} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-task-preview',
   imports: [
     CommonModule,
-    CdkDrag,
-    CdkDropList,
-    CdkDropListGroup
   ],
   templateUrl: './task-preview.html',
   styleUrl: './task-preview.scss',
+  standalone: true,
 })
+
 export class TaskPreview {
 
-  todoTasks: string[] = ['Test Task'];
-  inProgressTasks: string[] = [];
-  awaitFeedbackTasks: string[] = [];
-  doneTasks: string[] = [];
+  taskreceived: any;
 
-  drop(event: CdkDragDrop<string[]>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
-    } else {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
-    }
+  @Input() task?: object;
+
+  constructor() {
+    this.taskreceived = this.task;
+    console.log(this.taskreceived);
   }
+
+  getSubtaskProgress(task: any): number {
+        if (task.subtasksTotal === 0) {
+            return 0;
+        }
+
+        return (task.subtasksDone / task.subtasksTotal) * 100;
+    }
 }

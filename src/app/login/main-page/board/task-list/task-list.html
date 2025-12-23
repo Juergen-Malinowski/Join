@@ -165,21 +165,20 @@
 
 <br><br><br><br>
 
-<section class="task_preview">
-    <span class="task_tag">User Story</span>
-    <span class="task_title">Kochwelt Page & Recipe Recommender</span>
-    <span class="task_content">Build start page with resipe recommendation</span>
+<div class="task_card" *ngFor="let task of todoTasks" cdkDrag [cdkDragData]="task">
+    <app-task-preview [task]="task"></app-task-preview>
+</div>
 
-    <article class="area_progress">
-        <div>completion Bar</div>
-        <span>1/2</span>
-        <span>Subtasks</span>
-    </article>
+<div class="task_card" *ngFor="let task of inProgressTasks" cdkDrag [cdkDragData]="task">
+    <app-task-preview [task]="task"></app-task-preview>
+</div>
 
-    <article class="area_prio">
-        <div>kreise</div>
-        <div>Prio</div>
-    </article>
-</section>
+<div class="task_card" *ngFor="let task of awaitFeedbackTasks" cdkDrag [cdkDragData]="task">
+    <app-task-preview [task]="task"></app-task-preview>
+</div>
+
+<div class="task_card" *ngFor="let task of doneTasks" cdkDrag [cdkDragData]="task">
+    <app-task-preview [task]="task"></app-task-preview>
+</div>
 
 <!-- <app-dialog-show-edit-task></app-dialog-show-edit-task> -->

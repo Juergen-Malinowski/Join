@@ -6,15 +6,17 @@ import {
     CdkDropListGroup,
     CdkDragDrop
 } from '@angular/cdk/drag-drop';
+import { TaskPreview } from "../task-preview/task-preview";
 
 @Component({
     selector: 'app-task-list',
     imports: [
-        CommonModule,
-        CdkDrag,
-        CdkDropList,
-        CdkDropListGroup,
-    ],
+    CommonModule,
+    CdkDrag,
+    CdkDropList,
+    CdkDropListGroup,
+    TaskPreview
+],
     templateUrl: './task-list.html',
     styleUrl: './task-list.scss',
 })
