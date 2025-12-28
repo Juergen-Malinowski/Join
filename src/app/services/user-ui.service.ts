@@ -12,14 +12,23 @@ export class UserUiService {
 
   async init(): Promise<void> {
     this.lastUserColor = await this.firebase.getLastUserColor();
+  } 
+
+  getInitials(name?: string): string {
+  if (!name || typeof name !== 'string') {
+    return '?';
   }
 
-  getInitials(name: string): string {
-    const parts = name.trim().split(' ');
-    const first = parts[0]?.charAt(0).toUpperCase() ?? '';
-    const last = parts.length > 1 ? parts[parts.length - 1].charAt(0).toUpperCase() : '';
-    return first + last;
-  }
+  const parts = name.trim().split(' ').filter(Boolean);
+
+  const first = parts[0]?.charAt(0).toUpperCase() ?? '';
+  const last =
+    parts.length > 1
+      ? parts[parts.length - 1].charAt(0).toUpperCase()
+      : '';
+
+  return (first + last) || '?';
+}
 
   async getNextColorIndex(): Promise<number> {
     this.lastUserColor = (this.lastUserColor % this.maxColors) + 1;

@@ -2,7 +2,7 @@
   <div class="task_type_badge" *ngIf="taskTypeSvg">
     <img [src]="taskTypeSvg" alt="Task type" />
   </div>
-  <h3 class="task_title">{{ task.title }}</h3>
+  <h3 class="task_title">{{ task.title }}</h3>  
   <p class="task_content">{{ task.description }}</p>
 
   <article class="area_progress" *ngIf="task.subtasksTotal > 0">

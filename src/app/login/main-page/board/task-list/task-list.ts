@@ -25,11 +25,7 @@ export class TaskList {
 
   readonly tasks$: Observable<BoardTask[]> = this.firebase
     .subTasks()
-    .pipe(
-      switchMap((tasks: Task[]) =>
-        combineLatest(tasks.map((task) => this.enrichTask(task)))
-      )
-    );
+    .pipe(switchMap((tasks: Task[]) => combineLatest(tasks.map((task) => this.enrichTask(task)))));
 
   readonly todo$ = this.filterByStatus(TaskStatus.ToDo);
   readonly inProgress$ = this.filterByStatus(TaskStatus.InProgress);
@@ -53,43 +49,96 @@ export class TaskList {
       this.firebase.subTaskAssigns(task.id!),
       this.firebase.subContactsList(),
     ]).pipe(
-      switchMap(([subtasks, assigns, contacts]) => from(this.mapAssigns(subtasks, assigns, contacts, task)))
+      switchMap(([subtasks, assigns, contacts]) =>
+        from(this.mapAssigns(subtasks, assigns, contacts, task))
+      )
     );
   }
 
-  private async mapAssigns(
-    subtasks: any[],
-    assigns: any[],
-    contacts: any[],
-    task: Task
-  ): Promise<BoardTask> {
-    const uiAssigns: TaskAssign[] = [];
+//   private async mapAssigns(
+//     subtasks: any[],
+//     assigns: any[],
+//     contacts: any[],
+//     task: Task
+//   ): Promise<BoardTask> {
+//     const uiAssigns: TaskAssign[] = [];
 
-    for (const assign of assigns) {
-      const contact = contacts.find((c) => c.id === assign.contactId);
-      if (!contact) continue;
+//     for (const assign of assigns) {
+//       console.log('ASSIGN:', assign);
+//       console.log('ASSIGN.contactId:', assign.contactId);
+//       console.log('CONTACTS:', contacts);
 
-      const colorIndex = await this.userUi.getNextColorIndex();
-      const colorHex = this.userUi.getColorByIndex(colorIndex);
+//       const contact = contacts.find((c) => String(c.id) === String(assign.contactId));
 
-      uiAssigns.push({
-        contact,
-        initials: this.userUi.getInitials(contact.name),
-        color: colorHex,
-        id: assign.id,
-      });
-    }
+//       console.log('MATCHED CONTACT:', contact);
 
-    const done = subtasks.filter((st) => st.done).length;
-    const total = subtasks.length;
+//       if (!contact) {
+//         console.warn('❌ No contact found for assign', assign);
+//         continue;
+//       }
 
-    return {
-      ...task,
-      assigns: uiAssigns,
-      subtasks,
-      subtasksDone: done,
-      subtasksTotal: total,
-      progress: total === 0 ? 0 : Math.round((done / total) * 100),
-    };
+//       const colorIndex = await this.userUi.getNextColorIndex();
+//       const colorHex = this.userUi.getColorByIndex(colorIndex);
+
+//       uiAssigns.push({
+//         contact,
+//         initials: this.userUi.getInitials(contact.name),
+//         color: colorHex,
+//         id: assign.id,
+//       });
+//     }
+
+//     const done = subtasks.filter((st) => st.done).length;
+//     const total = subtasks.length;
+
+//     return {
+//       ...task,
+//       assigns: uiAssigns,
+//       subtasks,
+//       subtasksDone: done,
+//       subtasksTotal: total,
+//       progress: total === 0 ? 0 : Math.round((done / total) * 100),
+//     };
+//   }
+// }
+
+private async mapAssigns(
+  subtasks: any[],
+  assigns: any[],
+  contacts: any[],
+  task: Task
+): Promise<BoardTask> {
+
+  const uiAssigns: TaskAssign[] = [];
+
+  for (const assign of assigns) {
+
+    const contact = assign;
+
+    const colorHex = contact.color
+      ? contact.color
+      : this.userUi.getColorByIndex(
+          await this.userUi.getNextColorIndex()
+        );
+
+    uiAssigns.push({
+      id: contact.id,
+      contact,
+      initials: this.userUi.getInitials(contact.name),
+      color: colorHex,
+    });
   }
+
+  const done = subtasks.filter((st) => st.done).length;
+  const total = subtasks.length;
+
+  return {
+    ...task,
+    assigns: uiAssigns,
+    subtasks,
+    subtasksDone: done,
+    subtasksTotal: total,
+    progress: total === 0 ? 0 : Math.round((done / total) * 100),
+  };
+}
 }
