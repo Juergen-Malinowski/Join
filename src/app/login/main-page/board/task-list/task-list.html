@@ -28,10 +28,20 @@
 
             <!-- DROP AREA -->
             <div class="column_drop_area" cdkDropList (cdkDropListDropped)="drop($event, column.status)">
+
+                <!-- FALLBACK-ANZEIGE, wenn keine Tasks vorhanden sind -->
+                <div class="no_tasks_box" *ngIf="(column.data | async)?.length === 0">
+                    No tasks {{ column.title }}
+                </div>
+
+                <!-- TASKS -->
                 <div class="task_card" *ngFor="let task of column.data | async" cdkDrag [cdkDragData]="task">
+
                     <app-task-preview [task]="task"></app-task-preview>
                 </div>
+
             </div>
+
 
         </div>
 
