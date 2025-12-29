@@ -14,7 +14,10 @@
             <div class="column_header">
                 <span class="column_title">{{ column.title }}</span>
 
-                <button class="add_task_btn" type="button" aria-label="Add Task">
+                <!-- PLUS-Button nur anzeigen, wenn NICHT Done -->
+                <button class="add_task_btn" type="button" aria-label="Add Task"
+                    *ngIf="column.status !== TaskStatus.Done">
+
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="1" y="1" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2" />
                         <path d="M12 8V16" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
@@ -25,12 +28,11 @@
 
             <!-- DROP AREA -->
             <div class="column_drop_area" cdkDropList (cdkDropListDropped)="drop($event, column.status)">
-
                 <div class="task_card" *ngFor="let task of column.data | async" cdkDrag [cdkDragData]="task">
                     <app-task-preview [task]="task"></app-task-preview>
                 </div>
-
             </div>
+
         </div>
 
     </ng-container>
