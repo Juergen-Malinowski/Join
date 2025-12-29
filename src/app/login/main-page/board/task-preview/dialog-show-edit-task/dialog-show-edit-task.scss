@@ -12,21 +12,53 @@
   padding: 40px;
   gap: 4px;
   width: 525px;
+  position: relative;
 
   header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    width: 100%;
 
     span {
       font-size: 24px;
       display: flex;
-
       gap: 10px;
-
       color: colors.$white;
       background: #0038FF;
       border-radius: 8px;
     }
+
+    .close {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 40px;
+      right: 40px;
+
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      border-radius: 50%;
+      color: colors.$buttonGrey;
+
+      transition: background-color 150ms ease-in-out;
+
+      &:hover {
+        background-color: #D9D9D9; // Hover-Kreis
+      }
+
+      svg {
+        width: 14px;
+        height: 14px;
+        flex-shrink: 0;
+      }
+    }
+
   }
 
   .area_title {
@@ -131,7 +163,7 @@
 
     p {
       display: flex;
-      align-items: center; 
+      align-items: center;
       padding-top: 16px;
       gap: 8px;
 
@@ -152,13 +184,13 @@
         }
 
         .check {
-          opacity: 0; 
+          opacity: 0;
           transition: opacity 150ms ease-in-out;
         }
 
         &.done {
           .check {
-            opacity: 1; 
+            opacity: 1;
           }
         }
       }
