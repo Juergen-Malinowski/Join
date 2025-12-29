@@ -2,6 +2,10 @@
 @use "../../../../../styles/colors.scss";
 @use "../../../../../../styles.scss";
 
+// #######################################################################
+// ------------------------------ Show-Area ------------------------------
+// #######################################################################
+
 .dialog_show {
   display: flex;
   flex-direction: column;
@@ -28,6 +32,7 @@
   .area_title {
     display: flex;
     flex-direction: column;
+
     .task_title {
       font-weight: 700;
       font-size: 61px;
@@ -42,11 +47,13 @@
   .task_info {
     display: flex;
     justify-content: space-between;
+
     span:nth-child(1) {
       font-weight: 400;
       font-size: 20px;
       color: colors.$bgGrey;
     }
+
     span:nth-child(2) {
       font-weight: 400;
       font-size: 20px;
@@ -123,6 +130,36 @@
     button {
       font-size: 16px;
     }
+
+    .btn-delete,
+    .btn-edit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+
+      background: transparent;
+      border: none;
+      cursor: pointer;
+
+      font-size: 16px;
+      color: colors.$bgGrey;
+
+      padding: 8px 12px;
+      border-radius: 8px;
+    }
+
+    .btn-delete:hover,
+    .btn-edit:hover {
+      color: colors.$buttonBlue;
+    }
+
+    .btn-delete:hover svg,
+    .btn-edit:hover svg {
+      color: colors.$buttonBlue;
+    }
+
+
   }
 }
 
@@ -152,6 +189,7 @@
       font-weight: 400;
       font-size: 20px;
       color: colors.$bgGrey;
+
       .required {
         color: colors.$errorRed;
       }
@@ -177,11 +215,13 @@
   .task_info {
     display: flex;
     justify-content: space-between;
+
     span:nth-child(1) {
       font-weight: 400;
       font-size: 20px;
       color: colors.$bgGrey;
     }
+
     span:nth-child(2) {
       font-weight: 400;
       font-size: 20px;
