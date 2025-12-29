@@ -124,20 +124,18 @@
         <p>Assigned to</p>
 <mat-form-field appearance="fill" floatLabel="always">
   <mat-label>
-    {{ (assignedTo().length > 0 || selectOpened) ? 'An:' : 'Select contacts to assign' }}
+    {{ (currentAssignedSelection.length > 0 || selectOpened) ? 'An:' : 'Select contacts to assign' }}
   </mat-label>
 
   <mat-select
     multiple
-    [value]="assignedTo()"
-    (selectionChange)="assignedTo.set($event.value)"
+    [value]="currentAssignedSelection"
+    (selectionChange)="currentAssignedSelection = $event.value; updateAssignedToText()"
   >
-    <!-- Trigger OHNE Initialen -->
     <mat-select-trigger>
       {{ assignedToText }}
     </mat-select-trigger>
 
-    <!-- Liste MIT Initialen -->
     <mat-option *ngFor="let contact of contacts()" [value]="contact">
       <span class="sc_logo" [style.background]="contact.color">
         {{ userUi.getInitials(contact.name) }}
@@ -147,11 +145,10 @@
   </mat-select>
 </mat-form-field>
 
-<!-- 🔽 Initialen unter dem Inputfeld -->
-<div class="assigned-logos" *ngIf="assignedTo().length > 0">
+<div class="assigned-logos" *ngIf="currentAssignedSelection.length > 0">
   <span
     class="sc_logo"
-    *ngFor="let contact of assignedTo()"
+    *ngFor="let contact of currentAssignedSelection"
     [style.background]="contact.color"
   >
     {{ userUi.getInitials(contact.name) }}
@@ -252,7 +249,9 @@
     <span><span class="required">*</span>This field is required</span>
 <div>
 
-      <button class="button_light"> Cancel X</button>
+      <button type="button" class="button_light" (click)="resetForm()">
+  Cancel X
+</button>
 <div class="create_task_button">
         <button class="button_dark" (click)="createTask()"><img src="img/check.svg" alt="">Create Task</button>
       </div>

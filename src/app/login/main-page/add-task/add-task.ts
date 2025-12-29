@@ -1,4 +1,4 @@
-import { Component, signal, effect, ViewChildren, QueryList, ElementRef } from '@angular/core';
+import { Component, signal, effect, ViewChildren, QueryList, ElementRef,ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -9,7 +9,7 @@ import { Task } from '../../../interfaces/task.interface';
 import { Subtask } from '../../../interfaces/subtask.interface';
 import { TaskType } from '../../../types/task-type';
 import { TaskStatus } from '../../../types/task-status';
-import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDatepickerModule,MatDatepicker } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { UserUiService } from '../../../services/user-ui.service';
@@ -35,7 +35,7 @@ export class AddTask {
   subtasks: Subtask[] = [];
   showIcons = false;
   editIndex: number | null = null;
-
+@ViewChild('picker') picker!: MatDatepicker<any>;
   @ViewChildren('editInput') editInputs!: QueryList<ElementRef<HTMLInputElement>>;
 dueDateTouched = false
   isDatepickerOpen = false;
@@ -207,7 +207,7 @@ onDateChange(event: any) {
     this.priority.set(this.priority() === p ? null : p);
   }
 
-  async createTask() {
+  async  createTask() {
     const prio = this.priority();
     if (!this.title() || !this.selectedTaskType() || !prio || !this.dueDate()) {
       alert('Please fill all required fields!');
@@ -261,15 +261,38 @@ onDateChange(event: any) {
         return 1;
     }
   }
+selectedAssignedContacts: Contact[] = [];
+currentAssignedSelection: Contact[] = [];
 
-  resetForm() {
-    this.title.set('');
-    this.description.set('');
-    this.dueDate.set('');
-    this.priority.set(null);
-    this.assignedTo.set([]);
-    this.selectedTaskType.set(null);
-    this.subtasks = [];
-    this.subtaskInput = '';
-  }
+resetForm() {
+  this.title.set('');
+  this.description.set('');
+  this.dueDate.set('');
+  this.selectedTaskType.set(null);
+  this.priority.set(null);
+
+  this.subtasks = [];
+  this.subtaskInput = '';
+  this.showIcons = false;
+  this.editIndex = null;
+
+  this.taskTypeError = false;
+  this.taskTypeTouched = false;
+  this.taskTypeFocused = false;
+  this.dueDateTouched = false;
+
+  this.selectOpened = false;
+  this.assignedToText = '';
+
+  this.currentAssignedSelection = [];
+
+  this.picker?.close?.();
+  this.menuOpen = false;
+}
+
+
+
+
+
+
 }
