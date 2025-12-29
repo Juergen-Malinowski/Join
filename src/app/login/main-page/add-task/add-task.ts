@@ -37,8 +37,60 @@ export class AddTask {
   editIndex: number | null = null;
 
   @ViewChildren('editInput') editInputs!: QueryList<ElementRef<HTMLInputElement>>;
-
+dueDateTouched = false
   isDatepickerOpen = false;
+
+
+  isTouched = false;
+taskTypeTouched = false;
+taskTypeFocused = false;
+taskTypeError = false;
+
+get showTaskTypeError(): boolean {
+  return (
+    this.taskTypeTouched &&
+    !this.taskTypeFocused &&
+    !this.selectedTaskType()
+  );
+}
+
+onTaskTypeFocus() {
+  this.taskTypeFocused = true;
+}
+
+onTaskTypeBlur() {
+  this.taskTypeError = !this.selectedTaskType();
+}
+
+onTaskTypeChange(value: TaskType | null) {
+  this.selectedTaskType.set(value);
+
+ 
+  this.taskTypeError = false;
+}
+  
+
+onTouched() {
+  this.isTouched = true;
+}
+
+onChange(value: TaskType | null) {
+  this.selectedTaskType.set(value);
+}
+
+
+onCalendarClosed() {
+  
+  if (!this.dueDate()) {
+    this.dueDateTouched = true;
+  }
+}
+
+onDateChange(event: any) {
+  // Fehler zurücksetzen, da jetzt ein Datum gewählt wurde
+  this.dueDateTouched = false;
+  this.dueDate.set(event.value); // Signal aktualisieren
+}
 
   editSubtask(index: number) {
     this.editIndex = index;

@@ -1,8 +1,4 @@
 @use "../src/app/styles/colors.scss";
-
-
-
-
 .mat-calendar-body{
     background-color: colors.$white;
    
@@ -46,9 +42,6 @@ body .mdc-text-field{
     border-color: colors.$bgMiddleGrey;
     border-width: thin;
 }
-body .mdc-text-field.mdc-text-field--focused {
-  border-color: colors.$buttonBlue;
-}
 
 
 
@@ -63,10 +56,6 @@ body .mat-mdc-form-field
   .mdc-text-field__input::placeholder {
   color: colors.$bgMiddleGrey;
   opacity: 1;
-}
-
-body .mat-mdc-form-field.datepicker-focused .mdc-text-field{
-  border-color: colors.$buttonBlue;
 }
 
 
@@ -103,7 +92,10 @@ body .mdc-text-field--filled .mdc-floating-label--float-above{
     transform: none;
   
 }
+.mat-mdc-select-trigger {
+  padding-left: 30px;
 
+}
 body .mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper{
     height: 48px;
     display: flex;
@@ -119,4 +111,40 @@ body .mat-mdc-form-field-infix{
 body .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-floating-label{
     top: 30%
 }
+
+/* Blauer Standardrahmen */
+.mat-mdc-form-field-has-icon-suffix .mat-mdc-text-field-wrapper {
+  border-color: colors.$bgMiddleGrey;
+  
+
+  &:hover {
+    border-color: colors.$buttonBlue;
+  }
+}
+
+/* Roter Error-Rahmen */
+.error-border.mat-mdc-form-field .mat-mdc-text-field-wrapper {
+  border-color: colors.$errorRed;
+  border-style: none;
+  
+  
+}
+
+/* Blauer Rahmen, wenn Datum ausgewählt */
+.selected-border.mat-mdc-form-field .mat-mdc-text-field-wrapper {
+  border-color: colors.$buttonBlue;
+  
+}
+body .mat-mdc-form-field.invalid .mdc-text-field {
+  border-color: colors.$errorRed !important;
+}
+
+body .mat-mdc-form-field.invalid .mdc-text-field:hover,
+body .mat-mdc-form-field.invalid .mdc-text-field.mdc-text-field--focused {
+  border-color: colors.$errorRed !important;
+}
+
+
+
+
 

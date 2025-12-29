@@ -7,28 +7,61 @@
     <article class="area_left">
       <div class="area_input">
         <label>Title <span class="required">*</span></label>
-        <input type="text" [(ngModel)]="title" placeholder="Enter a title" required />
+       <form>
+  <input
+    type="text"
+    name="title"
+    [(ngModel)]="title"
+    #titleModel="ngModel"
+    placeholder="Enter a title"
+    required
+
+    [ngClass]="{ 'error-border': titleModel.invalid && titleModel.touched }"/>
+
+  <div *ngIf="titleModel.invalid && titleModel.touched" class="error-text">
+    This field is required
+  </div>
+</form>
+
       </div>
 
       <div class="area_input">
         <label>Description</label>
-        <input type="text" [(ngModel)]="description" placeholder="Enter a description" />
+        <textarea [(ngModel)]="description" placeholder="Enter a description"></textarea>
+
       </div>
       <div class="carlenda">
 <p>Due date <span class="required">*</span></p>
 <mat-form-field appearance="outline" floatLabel="auto"
-                [class.datepicker-focused]="isDatepickerOpen">
+  [ngClass]="{
+    'error-border': !dueDate() && dueDateTouched,
+    'selected-border': dueDate() && !(!dueDate() && dueDateTouched)
+  }">
+
   <input matInput
-         [matDatepicker]="picker"
+         name="dueDate"
          [(ngModel)]="dueDate"
+         #dueDateModel="ngModel"
          placeholder="DD/MM/YYYY"
+         required
+         [matDatepicker]="picker"
          (click)="picker.open()" />
+
   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
   <mat-datepicker #picker
-                  (opened)="isDatepickerOpen = true"
-                  (closed)="isDatepickerOpen = false">
-  </mat-datepicker>
+                  (closed)="onCalendarClosed()"
+                  (dateChange)="onDateChange($event)"></mat-datepicker>
 </mat-form-field>
+
+<div *ngIf="!dueDate() && dueDateTouched" class="error-text">
+  This field is required
+</div>
+
+
+
+
+
+
 
 
 </div>
@@ -140,18 +173,30 @@
       </div>
       <div>
         <p>Category <span class="required">*</span></p>
-<mat-form-field appearance="fill" floatLabel="always">
+<mat-form-field
+  appearance="fill"
+  floatLabel="always"
+  [class.invalid]="taskTypeError"
+>
   <mat-label *ngIf="!selectedTaskType()">Task Type</mat-label>
 
   <mat-select
     [value]="selectedTaskType()"
-    (selectionChange)="selectedTaskType.set($event.value)"
+    (selectionChange)="onTaskTypeChange($event.value)"
+    (blur)="onTaskTypeBlur()"
   >
-    <mat-option *ngFor="let type of taskTypes" [value]="type.value">
+    <mat-option *ngFor="let type of taskTypes" [value]="type">
       {{ type.name }}
     </mat-option>
   </mat-select>
 </mat-form-field>
+
+<div class="error-text" *ngIf="taskTypeError">
+  This field is required
+</div>
+
+
+
 
 
 
