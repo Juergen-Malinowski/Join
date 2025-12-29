@@ -6,6 +6,11 @@ import {
   collectionData,
   docData,
   getDoc,
+  getDocs,
+  collectionGroup,
+  query,
+  where,
+  writeBatch,
   addDoc,
   updateDoc,
   deleteDoc,
@@ -70,9 +75,21 @@ export class FirebaseServices {
       throw new Error('deleteContact: contactId is missing');
     }
 
+    const assignsGroup = collectionGroup(this.firestore, 'assigns');
+    const q = query(assignsGroup, where('contactId', '==', contactId));
+    const assignsSnap = await getDocs(q);
+
+    if (!assignsSnap.empty) {
+      const batch = writeBatch(this.firestore);
+      assignsSnap.forEach((docSnap) => {
+        batch.delete(docSnap.ref);
+      });
+      await batch.commit();
+
     const ref = doc(this.firestore, `contacts/${contactId}`);
     await deleteDoc(ref);
   }
+}
 
   /* ================================TASKS================================= */
 
