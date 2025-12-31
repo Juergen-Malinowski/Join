@@ -36,8 +36,9 @@ export class TaskList {
   }
 
   // Task per Klick anzeigen
-  onTaskClick(task: BoardTask) {
-    this.board.openDialogEditTask();
+  onTaskClick(task: BoardTask): void {
+    if (!task.id) return;
+    this.board.openDialogEditTask(task);
   }
 
   readonly tasks$: Observable<BoardTask[]> = this.firebase
@@ -109,3 +110,5 @@ export class TaskList {
     );
   }
 }
+
+

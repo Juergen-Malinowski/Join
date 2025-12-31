@@ -1,119 +1,137 @@
 <app-dialog #DialogShowEditTask class="edit_task_dialog">
-  <section class="dialog_show" [class.d_none]="isEditMode">
+  <section class="dialog_show" *ngIf="task() as t" [class.d_none]="isEditMode">
     <header>
-      <span>User Story</span>
-      <button class="close" type="button" (click)="DialogShowEditTask.close()" aria-label="Close Button">
+      <img *ngIf="taskTypeSvg" [src]="taskTypeSvg" alt="Task Type" class="task_type_icon" />
+
+      <button class="close" type="button" aria-label="Close Button" (click)="close()">
         <!-- close.svg -->
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 14 14"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <path
             d="M6.575 7.975L1.675 12.875C1.49167 13.0583 1.25833 13.15 0.975 13.15C0.691667 13.15 0.458333 13.0583 0.275 12.875C0.0916667 12.6917 0 12.4583 0 12.175C0 11.8917 0.0916667 11.6583 0.275 11.475L5.175 6.575L0.275 1.675C0.0916667 1.49167 0 1.25833 0 0.975C0 0.691667 0.0916667 0.458333 0.275 0.275C0.458333 0.0916667 0.691667 0 0.975 0C1.25833 0 1.49167 0.0916667 1.675 0.275L6.575 5.175L11.475 0.275C11.6583 0.0916667 11.8917 0 12.175 0C12.4583 0 12.6917 0.0916667 12.875 0.275C13.0583 0.458333 13.15 0.691667 13.15 0.975C13.15 1.25833 13.0583 1.49167 12.875 1.675L7.975 6.575L12.875 11.475C13.0583 11.6583 13.15 11.8917 13.15 12.175C13.15 12.4583 13.0583 12.6917 12.875 12.875C12.6917 13.0583 12.4583 13.15 12.175 13.15C11.8917 13.15 11.6583 13.0583 11.475 12.875L6.575 7.975Z"
-            fill="currentColor" />
+            fill="currentColor"
+          />
         </svg>
-
       </button>
     </header>
 
     <p class="area_title">
-      <span class="task_title">Kochwelt Page & Recipe Recommender</span>
-      <small class="task_description">Build start page with recipe recommendation.</small>
+      <span class="task_title">{{ t.title }}</span>
+      <small class="task_description">{{ t.description }}</small>
     </p>
 
     <p class="task_info">
-      <span>Due date: </span>
-      <span class="task_info_space_1">10/05/2023</span>
+      <span>Due date:</span>
+      <span class="task_info_space_1">{{ t.date }}</span>
     </p>
+
     <p class="task_info">
-      <span>Priority: </span>
-      <span class="task_info_space_2">Medium</span>
+      <span>Priority:</span>
+      <span class="task_info_space_2">
+        {{ t.priority === 1 ? 'Urgent' : t.priority === 2 ? 'Medium' : 'Low' }}
+      </span>
     </p>
 
     <span class="assigned_title">Assigned To:</span>
     <div class="area_assigned">
-      <p><span>EM</span><span>Emmanuel Mauert</span></p>
-      <p><span>MB</span><span>Marcel Bauer</span></p>
-      <p><span>M</span><span>Anton Myer</span></p>
+      <p *ngFor="let assign of t.assigns">
+        <span [style.background-color]="assign.color">{{ assign.initials }}</span>
+        <span>{{ assign.name }}</span>
+      </p>
     </div>
 
     <span class="subtasks_title">Subtasks</span>
     <div class="subtasks">
-      <!-- DONE -->
-      <p>
-        <span class="checkbox_icon done">
-          <!-- Check-Box -->
+      <p *ngFor="let sub of t.subtasks">
+        <span class="checkbox_icon" [class.done]="sub.done">
           <svg class="box" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="1" y="1" width="16" height="16" rx="3" stroke="currentColor" stroke-width="2" />
           </svg>
 
-          <!-- Check-Hook -->
           <svg class="check" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M1 8.5L5 12.5L13 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"
               stroke-linejoin="round" />
           </svg>
         </span>
-        <span>implement Recipe Recommendation</span>
+        <span>{{ sub.title }}</span>
       </p>
-
-      <!-- OPEN -->
-      <p>
-        <span class="checkbox_icon">
-          <!-- Check-Box -->
-          <svg class="box" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="1" y="1" width="16" height="16" rx="3" stroke="currentColor" stroke-width="2" />
-          </svg>
-
-          <!-- Check-Hook -->
-          <svg class="check" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 8.5L5 12.5L13 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round" />
-          </svg>
-        </span>
-
-        <span>Start Page Layout</span>
-      </p>
-
     </div>
-
 
     <footer>
       <button class="btn-delete">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <mask id="mask0_75601_14777" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24"
-            height="24">
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <mask
+            id="mask0_75601_14777"
+            style="mask-type: alpha"
+            maskUnits="userSpaceOnUse"
+            x="0"
+            y="0"
+            width="24"
+            height="24"
+          >
             <rect width="24" height="24" fill="#D9D9D9" />
           </mask>
           <g mask="url(#mask0_75601_14777)">
             <path
               d="M7 21C6.45 21 5.97917 20.8042 5.5875 20.4125C5.19583 20.0208 5 19.55 5 19V6C4.71667 6 4.47917 5.90417 4.2875 5.7125C4.09583 5.52083 4 5.28333 4 5C4 4.71667 4.09583 4.47917 4.2875 4.2875C4.47917 4.09583 4.71667 4 5 4H9C9 3.71667 9.09583 3.47917 9.2875 3.2875C9.47917 3.09583 9.71667 3 10 3H14C14.2833 3 14.5208 3.09583 14.7125 3.2875C14.9042 3.47917 15 3.71667 15 4H19C19.2833 4 19.5208 4.09583 19.7125 4.2875C19.9042 4.47917 20 4.71667 20 5C20 5.28333 19.9042 5.52083 19.7125 5.7125C19.5208 5.90417 19.2833 6 19 6V19C19 19.55 18.8042 20.0208 18.4125 20.4125C18.0208 20.8042 17.55 21 17 21H7ZM7 6V19H17V6H7ZM9 16C9 16.2833 9.09583 16.5208 9.2875 16.7125C9.47917 16.9042 9.71667 17 10 17C10.2833 17 10.5208 16.9042 10.7125 16.7125C10.9042 16.5208 11 16.2833 11 16V9C11 8.71667 10.9042 8.47917 10.7125 8.2875C10.5208 8.09583 10.2833 8 10 8C9.71667 8 9.47917 8.09583 9.2875 8.2875C9.09583 8.47917 9 8.71667 9 9V16ZM13 16C13 16.2833 13.0958 16.5208 13.2875 16.7125C13.4792 16.9042 13.7167 17 14 17C14.2833 17 14.5208 16.9042 14.7125 16.7125C14.9042 16.5208 15 16.2833 15 16V9C15 8.71667 14.9042 8.47917 14.7125 8.2875C14.5208 8.09583 14.2833 8 14 8C13.7167 8 13.4792 8.09583 13.2875 8.2875C13.0958 8.47917 13 8.71667 13 9V16Z"
-              fill="currentColor" />
+              fill="currentColor"
+            />
           </g>
         </svg>
         Delete
       </button>
 
       <button class="btn-edit" (click)="switchPage()">
-        <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          width="19"
+          height="19"
+          viewBox="0 0 19 19"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <path
             d="M2 16.25H3.4L12.025 7.625L10.625 6.225L2 14.85V16.25ZM16.3 6.175L12.05 1.975L13.45 0.575C13.8333 0.191667 14.3042 0 14.8625 0C15.4208 0 15.8917 0.191667 16.275 0.575L17.675 1.975C18.0583 2.35833 18.2583 2.82083 18.275 3.3625C18.2917 3.90417 18.1083 4.36667 17.725 4.75L16.3 6.175ZM14.85 7.65L4.25 18.25H0V14L10.6 3.4L14.85 7.65Z"
-            fill="currentColor" />
+            fill="currentColor"
+          />
         </svg>
         Edit
       </button>
-
     </footer>
-
   </section>
 
   <!-- -------------------------- Section EditTask --------------------------- -->
   <section class="dialog_edit" [class.d_none]="!isEditMode">
     <header>
-      <button class="close" type="button" (click)="DialogShowEditTask.close()" aria-label="Close Button">
+      <button
+        class="close"
+        type="button"
+        (click)="DialogShowEditTask.close()"
+        aria-label="Close Button"
+      >
         <!-- close.svg -->
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 14 14"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <path
             d="M6.575 7.975L1.675 12.875C1.49167 13.0583 1.25833 13.15 0.975 13.15C0.691667 13.15 0.458333 13.0583 0.275 12.875C0.0916667 12.6917 0 12.4583 0 12.175C0 11.8917 0.0916667 11.6583 0.275 11.475L5.175 6.575L0.275 1.675C0.0916667 1.49167 0 1.25833 0 0.975C0 0.691667 0.0916667 0.458333 0.275 0.275C0.458333 0.0916667 0.691667 0 0.975 0C1.25833 0 1.49167 0.0916667 1.675 0.275L6.575 5.175L11.475 0.275C11.6583 0.0916667 11.8917 0 12.175 0C12.4583 0 12.6917 0.0916667 12.875 0.275C13.0583 0.458333 13.15 0.691667 13.15 0.975C13.15 1.25833 13.0583 1.49167 12.875 1.675L7.975 6.575L12.875 11.475C13.0583 11.6583 13.15 11.8917 13.15 12.175C13.15 12.4583 13.0583 12.6917 12.875 12.875C12.6917 13.0583 12.4583 13.15 12.175 13.15C11.8917 13.15 11.6583 13.0583 11.475 12.875L6.575 7.975Z"
-            fill="currentColor" />
+            fill="currentColor"
+          />
         </svg>
-
       </button>
     </header>
 
@@ -165,5 +183,4 @@
       <button (click)="switchPage()">Safe</button>
     </footer>
   </section>
-
 </app-dialog>
