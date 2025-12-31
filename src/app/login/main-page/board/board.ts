@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { TaskList } from './task-list/task-list';
 import { DialogAddTask } from './dialog-add-task/dialog-add-task';
 import { DialogShowEditTask } from './task-preview/dialog-show-edit-task/dialog-show-edit-task';
+import { BoardTask } from '../../../interfaces/task-board.interface';
 
 @Component({
   selector: 'app-board',
@@ -19,8 +20,8 @@ export class Board {
     this.dialogAddTask.open();
   }
 
-  openDialogEditTask() {
-    this.dialogShowEditTask.open();
+  openDialogEditTask(task: BoardTask) {
+    this.dialogShowEditTask.open(task);
   }
 
 }

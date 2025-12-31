@@ -37,7 +37,7 @@ export class TaskList {
 
   // Task per Klick anzeigen
   onTaskClick(task: BoardTask) {
-    this.board.openDialogEditTask();
+    this.board.openDialogEditTask(task);
   }
 
   readonly tasks$: Observable<BoardTask[]> = this.firebase

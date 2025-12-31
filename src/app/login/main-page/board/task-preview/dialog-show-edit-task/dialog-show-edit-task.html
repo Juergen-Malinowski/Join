@@ -14,31 +14,31 @@
     </header>
 
     <p class="area_title">
-      <span class="task_title">Kochwelt Page & Recipe Recommender</span>
-      <small class="task_description">Build start page with recipe recommendation.</small>
+      <span class="task_title">{{ task?.title }}</span>
+      <small class="task_description">{{ task?.description }}</small>
     </p>
 
     <p class="task_info">
       <span>Due date: </span>
-      <span class="task_info_space_1">10/05/2023</span>
+      <span class="task_info_space_1">{{ task?.date | date:'dd/MM/yyyy' }}</span>
     </p>
     <p class="task_info">
       <span>Priority: </span>
-      <span class="task_info_space_2">Medium</span>
+      <span class="task_info_space_2">{{ task?.priority }}</span>
     </p>
 
     <span class="assigned_title">Assigned To:</span>
     <div class="area_assigned">
-      <p><span>EM</span><span>Emmanuel Mauert</span></p>
-      <p><span>MB</span><span>Marcel Bauer</span></p>
-      <p><span>M</span><span>Anton Myer</span></p>
+      <p *ngFor="let assign of task?.assigns">
+        <span [style.background-color]="assign.color">{{ assign.initials }}</span>
+        <span>{{ assign.name }}</span>
+      </p>
     </div>
 
     <span class="subtasks_title">Subtasks</span>
     <div class="subtasks">
-      <!-- DONE -->
-      <p>
-        <span class="checkbox_icon done">
+      <p *ngFor="let sub of task?.subtasks">
+        <span class="checkbox_icon" [class.done]="sub.done">
           <!-- Check-Box -->
           <svg class="box" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="1" y="1" width="16" height="16" rx="3" stroke="currentColor" stroke-width="2" />
@@ -50,25 +50,7 @@
               stroke-linejoin="round" />
           </svg>
         </span>
-        <span>implement Recipe Recommendation</span>
-      </p>
-
-      <!-- OPEN -->
-      <p>
-        <span class="checkbox_icon">
-          <!-- Check-Box -->
-          <svg class="box" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="1" y="1" width="16" height="16" rx="3" stroke="currentColor" stroke-width="2" />
-          </svg>
-
-          <!-- Check-Hook -->
-          <svg class="check" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 8.5L5 12.5L13 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round" />
-          </svg>
-        </span>
-
-        <span>Start Page Layout</span>
+        <span>{{ sub.title }}</span>
       </p>
 
     </div>
