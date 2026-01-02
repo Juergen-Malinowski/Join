@@ -210,11 +210,11 @@
 
     .prio_buttons{
       display: flex;
+      justify-content: space-evenly;
       gap: 16px;
       width: 100%;
 
       button {
-        flex: 1;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -225,7 +225,6 @@
         border-radius: 10px;
         border: none;
         cursor: pointer;
-        font-family: 'Inter', sans-serif;
         font-size: 16px;
         font-weight: 400;
         color: black;
