@@ -19,6 +19,12 @@
 .board_columns {
     display: flex;
     gap: 16px;
+
+    @media (max-width: 980px) {
+        flex-direction: column;
+    }
+
+
 }
 
 .board_column {
@@ -28,6 +34,26 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
+
+    @media (max-width: 980px) {
+        width: 800px;
+    }
+
+    @media (max-width: 850px) {
+        width: 650px;
+    }
+
+    @media (max-width: 690px) {
+        width: 500px;
+    }
+
+    @media (max-width: 550px) {
+        width: 400px;
+    }
+
+    @media (max-width: 445px) {
+        width: 270px;
+    }
 }
 
 .column_title {
@@ -67,14 +93,14 @@
 .no_tasks_box {
     width: 100%;
     height: 48px;
-    background-color: #E7E7E7; 
+    background-color: #E7E7E7;
     border-radius: 12px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    color: #A8A8A8; 
+    color: #A8A8A8;
     font-size: 14px;
     font-weight: 400;
 }
