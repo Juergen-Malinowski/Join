@@ -1,7 +1,8 @@
-<app-dialog #dialogAddTask>
+<app-dialog #dialogAddTask (closed)="menuOpen = false">
   <section class="add_task">
   <header>
     <span>Add Task</span>
+    <span (click)="dialogAddTask.close()">X</span>
   </header>
 
   <section class="area_mid">
