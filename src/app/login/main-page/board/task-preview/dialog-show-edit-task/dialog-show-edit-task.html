@@ -27,7 +27,7 @@
 
     <p class="task_info">
       <span>Due date:</span>
-      <span class="task_info_space_1">{{ t.date }}</span>
+      <span class="task_info_space_1">{{ t.date.toDate() | date:'dd.MM.yyyy' }}</span>
     </p>
 
     <p class="task_info">

@@ -14,6 +14,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { UserUiService } from '../../../services/user-ui.service';
 import { Router } from '@angular/router';
+import { Timestamp } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-add-task',
@@ -35,7 +36,7 @@ export class AddTask {
   // Signale
   title = signal('');
   description = signal('');
-  dueDate = signal('');
+  dueDate = signal<Date | null>(null);
   selectedTaskType = signal<TaskType | null>(null);
   priority = signal<'urgent' | 'medium' | 'low' | null>(null);
   contacts = signal<Contact[]>([]);
@@ -151,7 +152,7 @@ export class AddTask {
 
   onDateChange(event: any) {
     this.dueDateTouched = false;
-    this.dueDate.set(event.value);
+    this.dueDate.set(event.value as Date);
   }
 
   // ------------------- Priority -------------------
@@ -209,7 +210,7 @@ export class AddTask {
     const newTask: Omit<Task, 'id'> = {
       title: this.title(),
       description: this.description(),
-      date: this.dueDate(),
+      date: Timestamp.fromDate(this.dueDate()!),
       type: this.selectedTaskType()!,
       status: TaskStatus.ToDo,
       priority: this.getPriorityNumber(prio),
@@ -254,7 +255,7 @@ export class AddTask {
   resetForm() {
     this.title.set('');
     this.description.set('');
-    this.dueDate.set('');
+    this.dueDate.set(null);
     this.selectedTaskType.set(null);
     this.priority.set(null);
 
