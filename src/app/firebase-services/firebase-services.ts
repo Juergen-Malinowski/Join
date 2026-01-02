@@ -118,9 +118,8 @@ export class FirebaseServices {
 
   async editTask(task: Task): Promise<void> {
     if (!task.id) throw new Error('editTask: task.id is missing');
-
+    const ref = doc(this.firestore, `tasks/${task.id}`);
     const { id, ...data } = task;
-    const ref = doc(this.firestore, `tasks/${id}`);
     await updateDoc(ref, data);
   }
 
