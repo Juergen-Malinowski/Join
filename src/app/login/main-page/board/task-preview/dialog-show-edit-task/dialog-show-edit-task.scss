@@ -165,8 +165,7 @@
   flex-direction: column;
   padding: 40px;
   gap: 24px;
-  width: 525px; // Einheitlich zur Show-View
-
+  width: 525px; 
   header {
     align-self: flex-end;
   }
@@ -177,9 +176,9 @@
     gap: 8px;
 
     label {
+      font-weight: 400;
       font-size: 16px;
       color: colors.$black;
-      font-weight: 700;
     }
 
     input,
@@ -373,6 +372,82 @@
       border-bottom: 1px solid #eee;
       width: 100%;
     }
+    .subtask_list_edit {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.subtask_item_edit {
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-bottom: 1px solid transparent; /* Platzhalter für Layout-Stabilität */
+  
+  /* Hover-Effekt für die ganze Zeile */
+  &:hover {
+    background-color: #f0f0f0; /* Leichtes Grau beim Hovern */
+    border-radius: 8px;
+  }
+
+  /* Zeige Icons nur beim Hovern über die Zeile */
+  &:hover .subtask_icons {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.bullet_point {
+  margin-right: 12px;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.subtask_input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  outline: none;
+  
+  &:focus {
+    border-bottom: 1px solid #29abe2; /* Blaue Linie beim Fokus */
+  }
+}
+
+.subtask_icons {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  opacity: 0; /* Standardmäßig unsichtbar */
+  visibility: hidden;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.icon_btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2a3647;
+  
+  &:hover {
+    color: #29abe2; /* Blaue Farbe beim Hovern über das Icon */
+    transform: scale(1.1);
+  }
+}
+
+.separator {
+  width: 1px;
+  height: 16px;
+  background-color: #d1d1d1;
+  margin: 0 4px;
+}
+
   }
 
   footer {
