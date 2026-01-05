@@ -50,9 +50,6 @@
       .carlenda .required { 
         color: colors.$errorRed; 
       }
- 
-        
-        
         input { 
           height: 54px;
           &:focus { 
@@ -222,17 +219,9 @@
       border-bottom-right-radius: 0;
     }
   }
-  
-
   .subtask_list li { 
     display: flex; 
-    align-items: center; 
-    gap: 0.5rem; 
     padding: 0 10px;
-  
-    
-    
- 
     .icons { 
       display: flex; 
       gap: 5px; 
@@ -252,8 +241,6 @@
     }
     .task-wrapper { 
       flex: 1; 
-      display: flex; 
-      align-items: center; 
     }
     input { 
       width: 100%; 
@@ -293,6 +280,9 @@
       &.required, .footer { 
         color: colors.$errorRed; 
         font-size: 25px;
+        @media(max-width: 500px){
+          font-size: 15px;
+        }
       }
     }
     div { 
@@ -346,11 +336,11 @@
     }
   }
   .error-border { 
-    border: 1px solid red !important; 
+    border: 1px solid colors.$errorRed !important; 
     border-radius: 10px; 
   }
   .error-text { 
-    color: red; 
+    color: colors.$errorRed; 
     font-size: 12px; 
   }
   .seperator { 

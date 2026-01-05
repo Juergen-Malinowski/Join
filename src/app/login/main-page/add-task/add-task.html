@@ -212,7 +212,7 @@
                 (focus)="showIcons = true" (blur)="onBlur()" />
 
               <ng-container *ngIf="showIcons">
-                <p>x</p>
+                <p (mousedown)="clearInput()" style="cursor: pointer;">X</p>
                 <p>|</p>
 
                 <img src="img/Subtasks icons11.svg" alt="" (mousedown)="addSubtask()" style="cursor: pointer;">

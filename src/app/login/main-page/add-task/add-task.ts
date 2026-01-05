@@ -85,6 +85,10 @@ export class AddTask {
     this.subtaskInput = '';
   }
 
+  clearInput() {
+  this.subtaskInput = '';
+}
+
   editSubtask(index: number) {
     this.editIndex = index;
     queueMicrotask(() => {
