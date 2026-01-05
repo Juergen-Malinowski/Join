@@ -8,11 +8,13 @@ import { Contact } from '../../../../../interfaces/contact.interface';
 import { Timestamp } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-dialog-show-edit-task',
   standalone: true,
-  imports: [CommonModule, Dialog, FormsModule],
+  imports: [CommonModule, Dialog, FormsModule, MatSelectModule, MatFormFieldModule],
   templateUrl: './dialog-show-edit-task.html',
   styleUrl: './dialog-show-edit-task.scss',
 })
@@ -180,32 +182,22 @@ export class DialogShowEditTask {
     }
   }
 
-  // Variable für den Status des Dropdowns
-showDropdown: boolean = false;
+  selectOpened: boolean = false;
 
-// Funktion zum Öffnen/Schließen
-toggleDropdown() {
-  this.showDropdown = !this.showDropdown;
-}
-
-// Funktion zum Hinzufügen/Entfernen von Kontakten
-toggleAssign(contact: any) {
-  const index = this.editData.assigns.findIndex((c: any) => c.contactId === contact.id);
-  if (index > -1) {
-    this.editData.assigns.splice(index, 1); // Entfernen wenn schon da
-  } else {
-    this.editData.assigns.push({
-      contactId: contact.id,
-      name: contact.name,
-      color: contact.color,
-      initials: this.getInitials(contact.name)
-    }); 
+  getSelectedContacts(): Contact[] {
+    return this.contacts().filter(c => 
+      this.editData.assigns.some((a: any) => a.contactId === c.id)
+    );
   }
-}
 
-// Hilfsfunktion für das Styling (Checkbox & Active State)
-isAssigned(contact: any): boolean {
-  return this.editData.assigns.some((c: any) => c.contactId === contact.id);
-}
+  onSelectionChange(event: any) {
+    const selectedContacts: Contact[] = event.value;
+    this.editData.assigns = selectedContacts.map(c => ({
+      contactId: c.id,
+      name: c.name,
+      color: c.color,
+      initials: this.getInitials(c.name)
+    }));
+  }
 
 }
