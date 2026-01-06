@@ -248,6 +248,7 @@
       font-weight: 400;
       font-size: 16px;
       color: colors.$black;
+      margin-top: 30px;
     }
 
     input,
@@ -359,27 +360,36 @@
   }
 
   .subtasks {
-    .area_input div {
-      display: flex;
-      gap: 8px;
 
-      button {
-        width: 48px;
-        background: colors.$buttonGrey;
-        color: white;
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-      }
-    }
+.area_input div {
+  display: flex;
+  gap: 8px;
+  align-items: center;
 
-    p {
-      display: flex;
-      align-items: center;
-      padding: 8px;
-      border-bottom: 1px solid #eee;
-      width: 100%;
-    }
+  .confirm_btn {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: colors.$white;
+    color: colors.$black;
+
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .confirm_icon {
+    width: 14px;
+    height: 14px;
+    display: block;
+  }
+}
+
 
     .subtask_list_edit {
       display: flex;
@@ -393,16 +403,12 @@
       align-items: center;
       padding: 4px 8px;
       border-bottom: 1px solid transparent;
-      /* Platzhalter für Layout-Stabilität */
 
-      /* Hover-Effekt für die ganze Zeile */
       &:hover {
         background-color: #f0f0f0;
-        /* Leichtes Grau beim Hovern */
         border-radius: 8px;
       }
 
-      /* Zeige Icons nur beim Hovern über die Zeile */
       &:hover .subtask_icons {
         opacity: 1;
         visibility: visible;
@@ -423,8 +429,7 @@
       outline: none;
 
       &:focus {
-        border-bottom: 1px solid #29abe2;
-        /* Blaue Linie beim Fokus */
+        border-bottom: 1px solid colors.$buttonBlue;
       }
     }
 
@@ -433,25 +438,36 @@
       align-items: center;
       gap: 4px;
       opacity: 0;
-      /* Standardmäßig unsichtbar */
       visibility: hidden;
       transition: opacity 0.2s ease-in-out;
     }
 
+    /* ================= SVG ICON BUTTON ================= */
+
     .icon_btn {
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 4px;
+      width: 32px;
+      height: 32px;
+
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #2a3647;
+
+      background-color: colors.$white;
+      color: colors.$black;
+
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      padding: 0;
+
+      svg {
+        width: 14px;
+        height: 14px;
+        display: block;
+      }
 
       &:hover {
-        color: #29abe2;
-        /* Blaue Farbe beim Hovern über das Icon */
-        transform: scale(1.1);
+        color: colors.$buttonBlue;
       }
     }
 
@@ -462,6 +478,7 @@
       margin: 0 4px;
     }
   }
+
 
   footer {
     display: flex;
