@@ -339,6 +339,14 @@
   .area_assigned {
     width: 100%;
 
+    mat-option.mat-selected .mat-pseudo-checkbox {
+      border-color: colors.$white;
+    }
+
+    mat-option.mat-selected .mat-pseudo-checkbox::after {
+      border-color: colors.$white;
+    }
+
     .assigned-logos {
       display: flex;
       gap: 8px;
@@ -361,34 +369,34 @@
 
   .subtasks {
 
-.area_input div {
-  display: flex;
-  gap: 8px;
-  align-items: center;
+    .area_input div {
+      display: flex;
+      gap: 8px;
+      align-items: center;
 
-  .confirm_btn {
-    width: 48px;
-    height: 48px;
+      .confirm_btn {
+        width: 48px;
+        height: 48px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-    background-color: colors.$white;
-    color: colors.$black;
+        background-color: colors.$white;
+        color: colors.$black;
 
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    padding: 0;
-  }
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        padding: 0;
+      }
 
-  .confirm_icon {
-    width: 14px;
-    height: 14px;
-    display: block;
-  }
-}
+      .confirm_icon {
+        width: 14px;
+        height: 14px;
+        display: block;
+      }
+    }
 
 
     .subtask_list_edit {
