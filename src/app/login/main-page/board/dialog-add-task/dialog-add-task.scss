@@ -348,19 +348,33 @@
         }
       }
       .button_dark {
+        span{
+          color: white;
+        }
         width: 183px;
         height: 56px;
-
+        background-color: #2a3647;
+        color: colors.$white;
+        border-radius: 10px;
+        padding: 16px;
+        gap: 4px;
         font-size: 21px;
         font-weight: 700;
-        flex-direction: row-reverse;
         border: none;
+        transition: all 100ms ease-in-out;
+
         @media (max-width: 1400px) {
           font-size: 10px;
           width: 116px;
         }
         &:hover {
-          background: colors.$buttonBlue;
+          background: #29abe2;
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          transform: none;
+        }
+        &:active {
+          background: #091931;
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         }
       }
     }
