@@ -4,7 +4,7 @@
 /* ROOT WRAPPER                                          */
 /* ===================================================== */
 
-.display_hauptsacheichsehewas {
+.board_area {
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -201,8 +201,13 @@
     align-items: center;
     justify-content: center;
 
-    &:hover svg rect {
-        stroke: #4589ff;
+    &:hover {
+        svg rect {
+            stroke: #4589ff;
+        }
+        svg path {
+            stroke: #4589ff;
+        }
     }
 }
 
