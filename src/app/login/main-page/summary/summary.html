@@ -25,7 +25,7 @@
           </div>
           <div>
             <p>
-              <span class="task_number">1</span>
+              <span class="task_number">{{ (summary$ | async)?.todo }}</span>
               <span class="task_area">To-do</span>
             </p>
           </div>
@@ -62,7 +62,7 @@
             </div>
             <div>
               <p>
-                <span class="task_number">1</span>
+                <span class="task_number">{{ (summary$ | async)?.done }}</span>
                 <span class="task_area">Done</span>
               </p>
             </div>
@@ -99,14 +99,18 @@
               </svg>
             </div>
             <p>
-              <span class="task_number">1</span>
+              <span class="task_number">{{ (summary$ | async)?.urgent }}</span>
               <span class="task_area">Urgent</span>
             </p>
           </div>
           <div class="divider"></div>
           <div class="urgent_right">
             <p>
-              <span class="date">october 16, 2022</span>
+              <span class="date">{{
+                (summary$ | async)?.nextDueDate
+                  ? ui.formatTaskDate((summary$ | async)!.nextDueDate!)
+                  : 'No upcoming deadline'
+              }}</span>
               <span class="deadline"> Upcoming Deadline</span>
             </p>
           </div>
@@ -116,21 +120,21 @@
       <div class="area_bot">
         <div class="box_task_bord">
           <p>
-            <span class="task_number">5</span>
+            <span class="task_number">{{ (summary$ | async)?.total }}</span>
             <span class="span1">Tasks in</span>
             <span class="span2">Board</span>
           </p>
         </div>
         <div class="box_task_progress">
           <p>
-            <span class="task_number">5</span>
+            <span class="task_number">{{ (summary$ | async)?.inProgress }}</span>
             <span class="span1">Tasks in</span>
             <span class="span2">Progress</span>
           </p>
         </div>
         <div class="box_task_feedback">
           <p>
-            <span class="task_number">5</span>
+            <span class="task_number">{{ (summary$ | async)?.awaitFeedback }}</span>
             <span class="span1">Tasks in</span>
             <span class="span2">Awaiting Feedback</span>
           </p>
