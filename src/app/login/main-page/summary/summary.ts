@@ -17,6 +17,7 @@ export class Summary {
   private firebase = inject(FirebaseServices);
   private router = inject(Router);
   ui = inject(UserUiService);
+  greeting = this.getGreeting();
 
   summary$ = this.firebase.subTasks().pipe(
     map((tasks) => {
@@ -36,6 +37,13 @@ export class Summary {
 
   toBoard() {
     this.router.navigate(['/board']);
+  }
+
+  private getGreeting(): string {
+    const hour = new Date().getHours();
+    if (hour < 12) return 'Good morning,';
+    if (hour < 18) return 'Good afternoon,';
+    return 'Good evening,';
   }
 
   private getNextDueTask(tasks: Task[]): Task | null {
