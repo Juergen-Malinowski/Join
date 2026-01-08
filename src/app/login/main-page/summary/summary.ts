@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { AsyncPipe } from '@angular/common';
 import { UserUiService } from '../../../services/user-ui.service';
 import { Task } from '../../../interfaces/task.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-summary',
@@ -14,6 +15,7 @@ import { Task } from '../../../interfaces/task.interface';
 })
 export class Summary {
   private firebase = inject(FirebaseServices);
+  private router = inject(Router);
   ui = inject(UserUiService);
 
   summary$ = this.firebase.subTasks().pipe(
@@ -31,6 +33,10 @@ export class Summary {
       };
     })
   );
+
+  toBoard() {
+    this.router.navigate(['/board']);
+  }
 
   private getNextDueTask(tasks: Task[]): Task | null {
     return (
