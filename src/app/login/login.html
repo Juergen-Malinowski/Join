@@ -15,15 +15,15 @@
                     <span class="underline"></span>
                     <div class="inputs">
                         <div class="input_wrapper">
-                            <input placeholder="Email" type="email">
+                            <input placeholder="Email" [(ngModel)]="email">
                             <img src="img/mail.svg" alt="">
                         </div>
                         <div class="input_wrapper">
-                            <input placeholder="Password" type="password">
+                            <input placeholder="Password" type="password" [(ngModel)]="password">
                             <img src="img/lock.svg" alt="">
                         </div>
                         <div class="middle_bottom_area">
-                            <button class="dark_button">Log In</button>
+                            <button class="dark_button" (click)="login()">Log In</button>
                             <button class="light_button" type="button" (click)="guestLogin()">Guest Log In </button>
                         </div>
                     </div>
@@ -37,16 +37,16 @@
                     <span class="underline"></span>
                     <div class="inputs">
                         <div class="input_wrapper">
-                            <input placeholder="Name" type="email">
+                            <input placeholder="Name" [(ngModel)]="name">
                             <img src="img/person.svg" alt="">
                         </div>
 
                         <div class="input_wrapper">
-                            <input placeholder="Email" type="email">
+                            <input placeholder="Email" type="email" [(ngModel)]="email">
                             <img src="img/mail.svg" alt="">
                         </div>
                         <div class="input_wrapper">
-                            <input placeholder="Password" type="password">
+                            <input placeholder="Password" type="password" [(ngModel)]="password">
                             <img src="img/lock.svg" alt="">
                         </div>
 
@@ -58,7 +58,7 @@
                             <div class="policy_text">
                             <input type="checkbox"><span>  I accept the <span class="policy">Privacy policy</span></span>
                             </div>
-                            <button class="sign_up_button" (click)="openSignUp()">Sign up</button>
+                            <button class="sign_up_button" (click)="signup()">Sign up</button>
                         </div>
                     </div>
                 </div>

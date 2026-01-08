@@ -1,28 +1,55 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-
+import { FormsModule } from '@angular/forms';
+import { AuthService } from '../firebase-services/auth-services';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './login.html',
   styleUrl: './login.scss',
 })
 export class Login {
-isSignUp = false
-  constructor(private router: Router) {}
+  name = '';
+  email = '';
+  password = '';
+  isSignUp = false;
 
-  guestLogin() {
-  // Nach Klick auf Guest Login → Summary anzeigen
-  this.router.navigate(['/summary']);
+  constructor(private auth: AuthService, private router: Router) {}
 
-}
-openSignUp() {
-    this.isSignUp = !this.isSignUp;
+  async login() {
+    try {
+      await this.auth.login(this.email, this.password);
+      this.router.navigate(['/summary']);
+    } catch (error: any) {
+      console.error(error);
+      alert(error.code);
+    }
   }
 
+  async signup() {
+    try {
+      const user = await this.auth.signup(this.name, this.email, this.password);
+      this.router.navigate(['/summary']);
+    } catch (error: any) {
+      console.error(error);
+      alert(error.message);
+    }
+  }
 
-
+  async guestLogin() {
+    try {
+      await this.auth.loginGuest();
+      this.router.navigate(['/summary']);
+    } catch (error: any) {
+      console.error(error);
+      alert(error.message);
+    }
+  }
+  
+  openSignUp() {
+    this.isSignUp = !this.isSignUp;
+  }
 }

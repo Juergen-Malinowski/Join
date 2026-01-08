@@ -14,6 +14,7 @@ import {
   addDoc,
   updateDoc,
   deleteDoc,
+  setDoc,
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Contact } from '../interfaces/contact.interface';
@@ -203,5 +204,12 @@ export class FirebaseServices {
 
   async setLastUserColor(index: number): Promise<void> {
     await updateDoc(this.settingsDoc, { lastUserColor: index });
+  }
+
+  /* ================================ USERCONTACT =============================== */
+
+  async createUserContact(uid: string, contact: Omit<Contact, 'id'>): Promise<void> {
+    const ref = doc(this.firestore, `contacts/${uid}`);
+    await setDoc(ref, contact);
   }
 }
