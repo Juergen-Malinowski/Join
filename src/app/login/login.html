@@ -31,8 +31,8 @@
 
                 <div class="headline" *ngIf="isSignUp">
                     <div class="sign_up_arrow_container">
-                    <img src="img/arrow_left.svg" alt="" (click)="openSignUp()">
-                    <h1>Sign up </h1>
+                        <img src="img/arrow_left.svg" alt="" (click)="openSignUp()">
+                        <h1>Sign up </h1>
                     </div>
                     <span class="underline"></span>
                     <div class="inputs">
@@ -48,15 +48,16 @@
                         <div class="input_wrapper">
                             <input placeholder="Password" type="password">
                             <img src="img/lock.svg" alt="">
-                        </div>
+                        </div>        
 
-                         <div class="input_wrapper">
+                        <div class="input_wrapper">
                             <input placeholder="Confirm Password" type="password">
                             <img src="img/lock.svg" alt="">
                         </div>
                         <div class="sign_up_bottom">
                             <div class="policy_text">
-                            <input type="checkbox"><span>  I accept the <span class="policy">Privacy policy</span></span>
+                                <input type="checkbox"><span> I accept the <span class="policy">Privacy
+                                        policy</span></span>
                             </div>
                             <button class="sign_up_button" (click)="openSignUp()">Sign up</button>
                         </div>
@@ -67,4 +68,8 @@
         </div>
 
     </main>
+    <footer>
+        <a routerLink="/Privacy Policy">Privacy Policy</a>
+        <a routerLink="/Legal notice">Legal notice</a>
+    </footer>
 </div>
