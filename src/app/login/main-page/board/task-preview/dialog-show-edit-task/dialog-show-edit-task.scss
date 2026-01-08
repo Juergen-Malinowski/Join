@@ -375,6 +375,24 @@
       gap: 8px;
       align-items: center;
 
+      .close_btn {
+        width: 48px;
+        height: 48px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background-color: colors.$white;
+        color: colors.$black;
+
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        padding: 0;
+      }
+
+
       .confirm_btn {
         width: 48px;
         height: 48px;
@@ -461,7 +479,7 @@
       align-items: center;
       justify-content: center;
 
-      background-color: colors.$white;
+      background-color: colors.$navNotActive;
       color: colors.$black;
 
       border: none;
@@ -473,10 +491,6 @@
         width: 14px;
         height: 14px;
         display: block;
-      }
-
-      &:hover {
-        color: colors.$buttonBlue;
       }
     }
 
