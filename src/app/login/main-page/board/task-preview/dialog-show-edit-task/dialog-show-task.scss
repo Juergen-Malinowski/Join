@@ -43,15 +43,9 @@
       justify-content: center;
       align-items: center;
       position: absolute;
-      top: 40px;
-      right: 40px;
-      width: 32px;
-      height: 32px;
       padding: 0;
       background: transparent;
       border: none;
-      cursor: pointer;
-      border-radius: 50%;
       color: colors.$buttonGrey;
       transition: background-color 150ms ease-in-out;
 
@@ -141,7 +135,6 @@
       display: flex;
       align-items: center;
       gap: 16px;
-      // padding: 16px 16px;
 
       span:nth-child(1) {
         display: flex;
