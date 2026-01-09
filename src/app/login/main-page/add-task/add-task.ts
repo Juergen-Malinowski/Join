@@ -1,4 +1,4 @@
-import { Component, signal, effect, ViewChildren, QueryList, ElementRef, ViewChild } from '@angular/core';
+import { Component, signal, ViewChildren, QueryList, ElementRef, ViewChild, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -15,6 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import { UserUiService } from '../../../services/user-ui.service';
 import { Router } from '@angular/router';
 import { Timestamp } from '@angular/fire/firestore';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-add-task',
@@ -33,16 +34,17 @@ import { Timestamp } from '@angular/fire/firestore';
   styleUrls: ['./add-task.scss'],
 })
 export class AddTask {
-  // Signale
+
+private firebase = inject(FirebaseServices);
+
   title = signal('');
   description = signal('');
   dueDate = signal<Date | null>(null);
   selectedTaskType = signal<TaskType | null>(null);
   priority = signal<'urgent' | 'medium' | 'low' | null>(null);
-  contacts = signal<Contact[]>([]);
+  contacts = toSignal(this.firebase.subContactsList(), { initialValue: [] as Contact[] });
   assignedTo = signal<Contact[]>([]);
 
-  // Subtasks
   subtaskInput = '';
   subtasks: Subtask[] = [];
   showIcons = false;
@@ -50,9 +52,6 @@ export class AddTask {
   @ViewChildren('editInput') editInputs!: QueryList<ElementRef<HTMLInputElement>>;
   @ViewChild('picker') picker!: MatDatepicker<any>;
 
-  
-
-  // UI-Flags
   menuOpen = false;
   dueDateTouched = false;
   isDatepickerOpen = false;
@@ -63,21 +62,18 @@ export class AddTask {
   assignedToText: string = '';
   selectOpened = false;
 
-  // Messages
   taskAddedMessage = signal('');
   taskErrorMessage = signal('');
 
-  // Task types
   taskTypes = Object.entries(TaskType)
     .filter(([, value]) => typeof value === 'number')
     .map(([key, value]) => ({ name: key, value: value as TaskType }));
 
-  constructor(private firebase: FirebaseServices, public userUi: UserUiService, private router: Router) {
+  constructor(    
+    public userUi: UserUiService,
+    private router: Router,
+  ) {}
 
-    this.firebase.subContactsList().subscribe((data) => this.contacts.set(data));
-  }
-
-  // ------------------- Subtasks -------------------
   addSubtask() {
     const title = this.subtaskInput.trim();
     if (!title) return;
@@ -86,8 +82,8 @@ export class AddTask {
   }
 
   clearInput() {
-  this.subtaskInput = '';
-}
+    this.subtaskInput = '';
+  }
 
   editSubtask(index: number) {
     this.editIndex = index;
@@ -116,7 +112,6 @@ export class AddTask {
     }
   }
 
-  // ------------------- Task Type -------------------
   onTaskTypeFocus() {
     this.taskTypeFocused = true;
   }
@@ -142,7 +137,6 @@ export class AddTask {
     this.selectedTaskType.set(value);
   }
 
-  // ------------------- Datepicker -------------------
   onCalendarClosed() {
     if (!this.dueDate()) {
       this.dueDateTouched = true;
@@ -154,41 +148,43 @@ export class AddTask {
     this.dueDate.set(event.value as Date);
   }
 
-  // ------------------- Priority -------------------
   setPriority(p: 'urgent' | 'medium' | 'low') {
     this.priority.set(this.priority() === p ? null : p);
   }
 
   getPriorityNumber(p: 'urgent' | 'medium' | 'low') {
     switch (p) {
-      case 'urgent': return 1;
-      case 'medium': return 2;
-      case 'low': return 3;
+      case 'urgent':
+        return 1;
+      case 'medium':
+        return 2;
+      case 'low':
+        return 3;
     }
   }
 
-  // ------------------- Assigned Contacts -------------------
   isAssigned(contact: Contact): boolean {
-    return this.assignedTo().some(c => c.id === contact.id);
+    return this.assignedTo().some((c) => c.id === contact.id);
   }
 
   toggleContact(contact: Contact, checked: boolean) {
     const current = this.assignedTo();
     if (checked) {
-      if (!current.some(c => c.id === contact.id)) {
+      if (!current.some((c) => c.id === contact.id)) {
         this.assignedTo.set([...current, contact]);
       }
     } else {
-      this.assignedTo.set(current.filter(c => c.id !== contact.id));
+      this.assignedTo.set(current.filter((c) => c.id !== contact.id));
     }
     this.updateAssignedToText();
   }
 
   updateAssignedToText() {
-    this.assignedToText = this.assignedTo().map(c => c.name).join(', ');
+    this.assignedToText = this.assignedTo()
+      .map((c) => c.name)
+      .join(', ');
   }
 
-  // ------------------- Menu -------------------
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
   }
@@ -197,7 +193,6 @@ export class AddTask {
     this.menuOpen = false;
   }
 
-  // ------------------- Create Task -------------------
   async createTask() {
     const prio = this.priority();
     if (!this.title() || !this.selectedTaskType() || !prio || !this.dueDate()) {
@@ -240,7 +235,6 @@ export class AddTask {
         this.taskAddedMessage.set('');
         this.router.navigate(['/board']);
       }, 1000);
-
     } catch (err) {
       console.error(err);
       this.taskErrorMessage.set('Add failed');
@@ -248,7 +242,6 @@ export class AddTask {
     }
   }
 
-  // ------------------- Reset Form -------------------
   resetForm() {
     this.title.set('');
     this.description.set('');

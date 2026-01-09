@@ -11,6 +11,7 @@ import { firstValueFrom } from 'rxjs';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { UserUiService } from '../../../../../services/user-ui.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-dialog-show-edit-task',
@@ -42,7 +43,9 @@ export class DialogShowEditTask {
   newSubtaskTitle: string = '';
 
   constructor() {
-    this.firebase.subContactsList().subscribe((contacts) => {
+    this.firebase.subContactsList()
+    .pipe(takeUntilDestroyed())
+    .subscribe(contacts => {
       this.contacts.set(contacts);
     });
   }

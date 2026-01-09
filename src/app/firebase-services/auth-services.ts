@@ -26,10 +26,6 @@ export class AuthService {
     const user = this.auth.currentUser;
 
     try {
-      await this.router.navigate(['/Login']);
-      await new Promise(resolve => setTimeout(resolve, 50));
-
-      await this.router.navigate(['/Login']);
 
       if (user && user.isAnonymous) {
         await deleteUser(user);
@@ -38,6 +34,7 @@ export class AuthService {
       }
     } catch (error: any) {
       console.warn('Logout/Delete:', error.message);
+      } finally {
       this.router.navigate(['/Login']);
     }
   }

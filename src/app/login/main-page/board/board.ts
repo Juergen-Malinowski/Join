@@ -19,12 +19,21 @@ import { Auth, authState } from '@angular/fire/auth';
 @Component({
   selector: 'app-board',
   standalone: true,
-  imports: [DialogAddTask, DialogShowEditTask, CommonModule, CdkDrag, CdkDropList, CdkDropListGroup, TaskPreview, FormsModule, FilterTaskPipe,],
+  imports: [
+    DialogAddTask,
+    DialogShowEditTask,
+    CommonModule,
+    CdkDrag,
+    CdkDropList,
+    CdkDropListGroup,
+    TaskPreview,
+    FormsModule,
+    FilterTaskPipe,
+  ],
   templateUrl: './board.html',
   styleUrl: './board.scss',
 })
 export class Board {
-
   private readonly firebase = inject(FirebaseServices);
   private readonly userUi = inject(UserUiService);
 
@@ -48,22 +57,18 @@ export class Board {
     this.openDialogEditTask(task);
   }
 
-  // readonly tasks$: Observable<BoardTask[]> = this.firebase
-  //   .subTasks()
-  //   .pipe(switchMap((tasks: Task[]) => combineLatest(tasks.map((task) => this.enrichTask(task)))));
-
   readonly tasks$: Observable<BoardTask[]> = authState(inject(Auth)).pipe(
-  switchMap(user => {
-    if (!user) return of([]);
-    
-    return this.firebase.subTasks().pipe(
-      switchMap((tasks: Task[]) => {
-        if (tasks.length === 0) return of([]);
-        return combineLatest(tasks.map((task) => this.enrichTask(task)));
-      })
-    );
-  })
-);
+    switchMap((user) => {
+      if (!user) return of([]);
+
+      return this.firebase.subTasks().pipe(
+        switchMap((tasks: Task[]) => {
+          if (tasks.length === 0) return of([]);
+          return combineLatest(tasks.map((task) => this.enrichTask(task)));
+        }),
+      );
+    }),
+  );
 
   readonly todo$ = this.filterByStatus(TaskStatus.ToDo);
   readonly inProgress$ = this.filterByStatus(TaskStatus.InProgress);
@@ -87,7 +92,7 @@ export class Board {
       this.firebase.subTaskAssigns(task.id!),
     ]).pipe(
       switchMap(([subtasks, assigns]) => {
-        const done = subtasks.filter(st => st.done).length;
+        const done = subtasks.filter((st) => st.done).length;
         const total = subtasks.length;
 
         if (!assigns || assigns.length === 0) {
@@ -104,7 +109,9 @@ export class Board {
         const assignObservables = assigns.map((a: TaskAssignDb) =>
           this.firebase.subSingleContact(a.contactId).pipe(
             map((contact) => {
-              const c = contact ? this.firebase.toContact(contact) : { id: a.contactId, name: '', email: '', phone: '', color: '' };
+              const c = contact
+                ? this.firebase.toContact(contact)
+                : { id: a.contactId, name: '', email: '', phone: '', color: '' };
               const name = c.name ?? '';
               return {
                 contactId: a.contactId,
@@ -112,8 +119,8 @@ export class Board {
                 initials: this.userUi.getInitials(name),
                 color: c.color ?? '',
               } as TaskAssign;
-            })
-          )
+            }),
+          ),
         );
 
         return combineLatest(assignObservables).pipe(
@@ -124,13 +131,13 @@ export class Board {
             subtasksDone: done,
             subtasksTotal: total,
             progress: total === 0 ? 0 : Math.round((done / total) * 100),
-          }))
+          })),
         );
-      })
+      }),
     );
   }
 
   openDialogEditTask(task: BoardTask) {
-  this.dialogShowEditTask.open(task);
-}
+    this.dialogShowEditTask.open(task);
+  }
 }
