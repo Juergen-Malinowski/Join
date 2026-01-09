@@ -1,221 +1,158 @@
-@use"../styles/colors.scss";
+@use '../styles/colors.scss';
 
 .widescreen {
-    background-color: colors.$bgLightGrey ;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
+  background-color: colors.$bgLightGrey;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 
-    footer {
-        height: 911px;
-        /* max-height: 100vh; */
-        display: flex;
-        justify-content: center;
-        align-items: end;
-        margin-bottom: 35px;
-        gap: 30px;
-        color: colors.$bgMiddleGrey;
-        a{
-            cursor: pointer;
-            &:hover{
-                color: colors.$buttonBlue;
-            }
-        }
+  .login_footer {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: -120px;
+    gap: 16px;
+
+    a {
+      cursor: pointer;
+      text-decoration: none;
+      color: #a8a8a8;
+      font-size: 16px;
+      font-weight: 400;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+
+      &:hover {
+        color: #29abe2;
+        font-weight: 700;
+      }
     }
+  }
 }
 
-main {
-    width: 100%;
-    ;
-    padding-right: calc((100% - 1920px));
+.login_page {
+  width: 100%;
+  padding-right: calc((100% - 1920px));
 
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 25px;
 
-
-    header {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        padding: 25px;
-
-        img {
-            width: 100px;
-            height: 121px;
-            margin-top: 32px;
-        }
-
-        .header_right {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .sign_up {
-            background-color: colors.$bgGrey;
-            color: colors.$white;
-            width: 110px;
-            height: 25px;
-            border-radius: 10px;
-            font-size: 16px;
-            padding: 15px 0px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            &:hover {
-                background-color: colors.$buttonBlue;
-                border-color: colors.$buttonBlue;
-                cursor: pointer;
-
-            }
-        }
+    img {
+      width: 100px;
+      height: 121px;
+      margin-top: 32px;
     }
 
-    .main_contend {
+    .header_right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .sign_up {
+      background-color: colors.$bgGrey;
+      color: colors.$white;
+      width: 110px;
+      height: 25px;
+      border-radius: 10px;
+      font-size: 16px;
+      padding: 15px 0px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &:hover {
+        background-color: colors.$buttonBlue;
+        border-color: colors.$buttonBlue;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .main_contend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 406px);
+
+    .middle_area {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 550px;
+      width: 652px;
+      background-color: colors.$white;
+      border-radius: 20px;
+
+      .headline {
         display: flex;
-        justify-content: center;
         align-items: center;
-        height: calc(100vh - 406px);
-
-        .middle_area {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 550px;
-            width: 652px;
-            background-color: colors.$white;
-            border-radius: 20px;
-
-            .headline {
-                display: flex;
-                align-items: center;
-                flex-direction: column;
-                gap: 16px;
-
-                .sign_up_arrow_container {
-                    display: flex;
-
-                    img {
-                        right: 120px;
-                        position: relative;
-                        cursor: pointer;
-                    }
-
-                }
-
-                h1 {
-                    font-size: 61px;
-                }
-
-                .underline {
-                    width: 150px;
-                    height: 1px;
-                    border-style: solid;
-                    border-color: colors.$buttonBlue;
-                    margin-bottom: 16px;
-                }
-            }
-
-            .inputs {
-                display: flex;
-                flex-direction: column;
-                gap: 20px;
-                padding: 0 10px;
-                width: 422px;
-
-
-                .input_wrapper {
-                    border-style: solid;
-                    border-radius: 10px;
-                    border-color: colors.$bgMiddleGrey;
-                    border-width: thin;
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    padding: 0 10px;
-                    height: 48px;
-
-                }
-
-                .middle_bottom_area {
-                    display: flex;
-                    justify-content: center;
-                    gap: 30px;
-
-                    .policy_text {
-                        display: flex;
-                        gap: 10px;
-
-                        .policy {
-                            color: colors.$buttonBlue;
-                        }
-                    }
-
-                    .dark_button {
-                        background-color: colors.$bgGrey;
-                        color: colors.$white;
-                        width: 110px;
-                        height: 25px;
-                        border-radius: 10px;
-                        font-size: 21px;
-                        padding: 15px 0px;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-
-                        &:hover {
-                            background-color: colors.$buttonBlue;
-                            border-color: colors.$buttonBlue;
-                            cursor: pointer;
-
-                        }
-                    }
-
-                    .light_button {
-                        background-color: colors.$white;
-                        border-style: solid;
-                        border-width: thin;
-                        border-radius: 10px;
-                        padding: 15px 0px;
-                        width: 177px;
-                        height: 25px;
-                        font-size: 21px;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-
-                        &:hover {
-                            color: colors.$buttonBlue;
-                            border-color: colors.$buttonBlue;
-                            cursor: pointer;
-                        }
-                    }
-                }
-
-                input {
-                    outline: none;
-                    border-style: none;
-                    flex: 1;
-
-                }
-
-
-            }
-        }
-    }
-
-    .sign_up_bottom {
-        display: flex;
-        justify-content: center;
-        gap: 30px;
         flex-direction: column;
-        align-items: center;
+        gap: 16px;
 
-        .policy {
-            color: colors.$buttonBlue;
+        .sign_up_arrow_container {
+          display: flex;
+
+          img {
+            right: 120px;
+            position: relative;
+            cursor: pointer;
+          }
         }
 
-        .sign_up_button {
+        h1 {
+          font-size: 61px;
+        }
+
+        .underline {
+          width: 150px;
+          height: 1px;
+          border-style: solid;
+          border-color: colors.$buttonBlue;
+          margin-bottom: 16px;
+        }
+      }
+
+      .inputs {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 0 10px;
+        width: 422px;
+
+        .input_wrapper {
+          border-style: solid;
+          border-radius: 10px;
+          border-color: colors.$bgMiddleGrey;
+          border-width: thin;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0 10px;
+          height: 48px;
+        }
+
+        .middle_bottom_area {
+          display: flex;
+          justify-content: center;
+          gap: 30px;
+
+          .policy_text {
+            display: flex;
+            gap: 10px;
+
+            .policy {
+              color: colors.$buttonBlue;
+            }
+          }
+
+          .dark_button {
             background-color: colors.$bgGrey;
             color: colors.$white;
             width: 110px;
@@ -228,13 +165,70 @@ main {
             align-items: center;
 
             &:hover {
-                background-color: colors.$buttonBlue;
-                border-color: colors.$buttonBlue;
-                cursor: pointer;
-
+              background-color: colors.$buttonBlue;
+              border-color: colors.$buttonBlue;
+              cursor: pointer;
             }
+          }
+
+          .light_button {
+            background-color: colors.$white;
+            border-style: solid;
+            border-width: thin;
+            border-radius: 10px;
+            padding: 15px 0px;
+            width: 177px;
+            height: 25px;
+            font-size: 21px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &:hover {
+              color: colors.$buttonBlue;
+              border-color: colors.$buttonBlue;
+              cursor: pointer;
+            }
+          }
         }
+
+        input {
+          outline: none;
+          border-style: none;
+          flex: 1;
+        }
+      }
+    }
+  }
+
+  .sign_up_bottom {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-direction: column;
+    align-items: center;
+
+    .policy {
+      color: colors.$buttonBlue;
     }
 
+    .sign_up_button {
+      background-color: colors.$bgGrey;
+      color: colors.$white;
+      width: 110px;
+      height: 25px;
+      border-radius: 10px;
+      font-size: 21px;
+      padding: 15px 0px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
+      &:hover {
+        background-color: colors.$buttonBlue;
+        border-color: colors.$buttonBlue;
+        cursor: pointer;
+      }
+    }
+  }
 }
