@@ -19,14 +19,12 @@
       text-decoration: none;
       color: #a8a8a8;
       font-size: 16px;
-      font-weight: 400;
       padding: 8px;
       display: flex;
       align-items: center;
 
       &:hover {
         color: #29abe2;
-        font-weight: 700;
       }
     }
   }
@@ -328,6 +326,10 @@
           }
         }
       }
+    }
+
+    .login_footer {
+      order: 4;
     }
   }
 }
