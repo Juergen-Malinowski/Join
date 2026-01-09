@@ -232,3 +232,70 @@
     }
   }
 }
+
+@media (max-width: 700px) {
+    @media (max-width: 700px) {
+      .widescreen {
+        height: auto;
+        min-height: 100vh;
+    
+        .login_footer {
+          position: static;
+          bottom: auto;
+          margin-top: auto;
+          padding-bottom: 24px;
+        }
+      }
+    
+      .login_page {
+        padding-right: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 1;
+    
+        header {
+          /* Header-Container auflösen, damit Kinder sortiert werden können */
+          display: contents;
+    
+          img {
+            order: 1;
+            width: 64px;
+            height: 78px;
+            margin-top: 32px;
+            margin-left: 32px;
+            align-self: flex-start;
+          }
+    
+          .header_right {
+            order: 3; /* Positioniert das Element nach dem Login-Fenster */
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin: 32px 0;
+            justify-content: center;
+          }
+        }
+    
+        .main_contend {
+          order: 2;
+          height: auto;
+          margin-top: 50px;
+          width: 100%;
+    
+          .middle_area {
+            width: 90%;
+            max-width: 400px;
+            height: auto;
+            padding: 32px 16px;
+            flex-direction: column;
+    
+            .inputs {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+    
+}
