@@ -32,6 +32,14 @@
     background-clip: content-box;
   }
 
+  @media (max-width: 650px) {
+    width: 400px;
+  }
+
+  @media (max-width: 420px) {
+    width: 300px;
+  }
+
   header {
     display: flex;
     justify-content: space-between;
