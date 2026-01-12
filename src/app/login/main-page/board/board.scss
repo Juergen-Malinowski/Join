@@ -31,7 +31,8 @@
   display: flex;
   flex-direction: column;
   padding: 40px 24px;
-  
+  padding-bottom: 100px;
+
   @media (max-width: 980px) {
     padding-bottom: 200px;
   }
