@@ -1,4 +1,4 @@
-@use "../../../../styles/colors.scss";
+@use '../../../../styles/colors.scss';
 
 :host {
   display: block;
@@ -37,6 +37,7 @@
   font-size: 14px;
   color: colors.$bgMiddleGrey;
   margin: 0;
+  word-break: break-word;
 }
 
 .area_progress {
@@ -73,10 +74,13 @@
 }
 
 .area_assigns {
- display: grid;
- grid-template-columns: repeat(9, auto);
+  display: grid;
+  grid-template-columns: repeat(9, auto);
   min-height: 28px;
-  
+
+   @media (max-width: 1200px) {
+    grid-template-columns: repeat(8, auto);
+  }
 }
 
 .assign_avatar {
@@ -90,12 +94,12 @@
   align-items: center;
   justify-content: center;
   border: 2px solid colors.$white;
-  margin-left: -8px;
+  margin-left: -8px; 
 }
 
-.assign_avatar:nth-child(9n + 1) {
-  margin-left: 0;
-}
+// .assign_avatar:nth-child(9n + 1) {
+//   margin-left: 0;
+// }
 
 .area_prio {
   display: flex;
