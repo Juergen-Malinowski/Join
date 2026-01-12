@@ -15,6 +15,8 @@ import { TaskPreview } from './task-preview/task-preview';
 import { FormsModule } from '@angular/forms';
 import { FilterTaskPipe } from '../../../shared/pipes/filter-Task-pipe';
 import { Auth, authState } from '@angular/fire/auth';
+import { AuthService } from '../../../firebase-services/auth-services';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-board',
@@ -36,6 +38,8 @@ import { Auth, authState } from '@angular/fire/auth';
 export class Board {
   private readonly firebase = inject(FirebaseServices);
   private readonly userUi = inject(UserUiService);
+    private readonly router = inject(Router);
+  private readonly auth = inject(AuthService);
 
   TaskStatus = TaskStatus;
 
@@ -46,7 +50,13 @@ export class Board {
 
   openDialogAddTask(status: TaskStatus = TaskStatus.ToDo) {
     this.dialogAddTask.open(status);
+    const mq = window.matchMedia('(max-width: 980px)');
+if (mq.matches) {
+  this.router.navigate(['/add-task'], { queryParams: { status } });
+} 
   } 
+     
+
 
   onTaskClick(task: BoardTask): void {
     if (!task.id) return;
