@@ -1,6 +1,38 @@
+@use './../../../styles/colors.scss';
 @use './../../../styles/global-styles.scss';
 
-.main-area {
+.privacy_policy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 35px; 
+
+  h1 {
+    margin-bottom: 16px;
+    background: none;
+  }
+
+  article {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    gap: 10px; 
+  }
+
+  h2 {
+    font-size: 27px;
+    color: colors.$black;
+    margin: 0;
+    font-family: 'Inter';
+    font-weight: 700;
+  }
+
+  p {
+    font-size: 16px;
+    color: colors.$black;
+    margin: 0;
+    font-family: 'Inter';
+    font-weight: 400;
+  }
 }
