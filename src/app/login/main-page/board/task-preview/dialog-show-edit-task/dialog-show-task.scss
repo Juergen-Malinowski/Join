@@ -86,8 +86,21 @@
       font-weight: 400;
       font-size: 20px;
       padding-top: 20px;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      word-break: break-word;
+
       @media (max-width: 650px) {
         font-size: 16px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: break-word;
       }
     }
   }
@@ -110,7 +123,7 @@
       color: colors.$bgGrey;
       @media (max-width: 650px) {
         font-size: 16px;
-      }      
+      }
     }
 
     span:nth-child(2) {
