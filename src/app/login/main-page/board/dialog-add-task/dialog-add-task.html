@@ -187,7 +187,7 @@
     <footer>
       <span><span class="required">*</span>This field is required</span>
       <div>
-        <button type="button" class="button_light" (click)="resetForm()">Cancel X</button>
+        <button type="button" class="button_light" (click)="dialogAddTask.close()">Cancel X</button>
         <div class="create_task_button">
           <button [disabled]="taskAddedMessage()" class="button_dark" (click)="createTask()">
             <span>Create Task</span>
