@@ -1,5 +1,5 @@
 <section>
-  <main>
+  <main [class.guest-nav]="!(user$ | async)">
     <div>
       <img class="join_logo_nav" src="img/Capa_1.png" alt="" />
       @if (user$ | async) {
