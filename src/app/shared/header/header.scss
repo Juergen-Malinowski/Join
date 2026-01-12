@@ -9,6 +9,7 @@ section {
   align-items: center;
   padding-left: 10px;
   background-color: colors.$white;
+  position: sticky;
 }
 
 @media (min-width: 1440px) {
