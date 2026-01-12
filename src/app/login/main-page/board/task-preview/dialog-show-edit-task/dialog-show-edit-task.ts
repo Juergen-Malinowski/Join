@@ -106,6 +106,11 @@ export class DialogShowEditTask {
     }
   }
 
+  cancelAddSubtask() {
+    this.newSubtaskTitle = '';
+    (document.activeElement as HTMLElement)?.blur();
+  }
+
   removeSubtask(index: number) {
     this.editData.subtasks.splice(index, 1);
   }
@@ -210,17 +215,17 @@ export class DialogShowEditTask {
   }
 
   confirmEdit() {
-  this.editingIndex = null;
-  this.originalTitle = '';
-}
+    this.editingIndex = null;
+    this.originalTitle = '';
+  }
 
-cancelEdit() {
-  if (this.editingIndex === null) return;
+  cancelEdit() {
+    if (this.editingIndex === null) return;
 
-  this.editData.subtasks[this.editingIndex].title = this.originalTitle;
-  this.editingIndex = null;
-  this.originalTitle = '';
-}
+    this.editData.subtasks[this.editingIndex].title = this.originalTitle;
+    this.editingIndex = null;
+    this.originalTitle = '';
+  }
 
   clearEditing() {
     this.editingIndex = null;

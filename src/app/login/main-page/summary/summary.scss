@@ -1,6 +1,5 @@
 @use '../../../styles/colors.scss';
 
-// Mixin für Flex-Zentrierung (spart Code)
 @mixin flex-center {
   display: flex;
   justify-content: center;
@@ -17,7 +16,6 @@
 
   @media (max-width: 600px) { padding: 80px 24px 24px; }
 
-  // Header Bereich
   &-header {
     display: flex;
     align-items: center;
@@ -58,7 +56,7 @@
   align-items: center;
   gap: 60px;
 
-  @media (max-width: 1350px) { flex-direction: column; align-items: flex-start; }
+  @media (max-width: 1050px) { flex-direction: column; align-items: flex-start; }
   @media (max-width: 600px) { align-items: center; }
 
   > section {
@@ -144,7 +142,6 @@
     width: 100%;
     box-sizing: border-box;
 
-    // Spezifischer Hover-Override für Urgent
     &:hover {
       .symbol {
         background-color: colors.$bgOrange !important;
@@ -267,7 +264,7 @@
     color: colors.$buttonBlue;
   }
 
-  @media (max-width: 1350px) {
+  @media (max-width: 1050px) {
     display: none;
   }
 
