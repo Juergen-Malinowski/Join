@@ -47,7 +47,6 @@ export class Login {
       this.router.navigate(['/summary']);
     } catch (error: any) {
       console.error(error);
-      alert(error.message);
     }
   }
 
@@ -57,7 +56,6 @@ export class Login {
       this.router.navigate(['/summary']);
     } catch (error: any) {
       console.error(error);
-      alert(error.message);
     }
   }
   
