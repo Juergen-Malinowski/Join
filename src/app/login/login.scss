@@ -163,16 +163,16 @@
           .policy_text {
             display: flex;
             gap: 10px;
-            .checkbox::checkmark{
-              background-color: white;
-            }
+           
             .policy {
               color: colors.$buttonBlue;
             }
+            
           }
           .button_dark {
             &:hover {
               background-color: colors.$buttonBlue;
+              cursor: pointer;
               border-color: colors.$buttonBlue;
             }
           }
@@ -180,6 +180,7 @@
           .button_light {
             &:hover {
               color: colors.$buttonBlue;
+              cursor: pointer;
             }
           }
         }
@@ -189,6 +190,7 @@
           flex: 1;
           font-size: 20px; /* Match Figma */
         }
+       
       }
     }
   }
