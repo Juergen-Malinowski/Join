@@ -63,7 +63,7 @@
 
             <!-- TASKS -->
             <div class="task_card" *ngFor="let task of column.data | async | FilterTask : searchInput" cdkDrag
-              [cdkDragData]="task" (click)="onTaskClick(task)">
+              [cdkDragData]="task" [cdkDragStartDelay]='dragDelay' (click)="onTaskClick(task)">
               <app-task-preview [task]="task"></app-task-preview>
             </div>
           </div>

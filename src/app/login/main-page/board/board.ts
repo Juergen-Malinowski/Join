@@ -44,6 +44,8 @@ export class Board {
   TaskStatus = TaskStatus;
 
   searchInput: string = '';
+  isMobile = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  dragDelay = this.isMobile ? 400 : 0;
 
   @ViewChild(DialogAddTask) dialogAddTask!: DialogAddTask;
   @ViewChild(DialogShowEditTask) dialogShowEditTask!: DialogShowEditTask;
