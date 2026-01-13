@@ -32,8 +32,8 @@ section {
   height: 100%;
 
   @media (max-width: 500px) {
-      padding-right: 60px;
-    }
+    padding-right: 60px;
+  }
 
   > .user {
     @media (max-width: 500px) {
@@ -43,7 +43,7 @@ section {
     a {
       svg {
         width: 20px;
-        height: 20px;        
+        height: 20px;
 
         path {
           pointer-events: none;
@@ -66,8 +66,8 @@ section {
       gap: 10px;
 
       @media (max-width: 500px) {
-      gap: 0;
-    }
+        gap: 0;
+      }
     }
 
     svg {
@@ -125,6 +125,7 @@ section {
 @media (max-width: 1050px) {
   section {
     padding: 0;
+    height: 80px;
 
     > .content {
       > span {
