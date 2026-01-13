@@ -5,12 +5,11 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0px;
   gap: 24px; 
 
   /* Scrollbar Logic */
   overflow-y: auto;
-  max-height: calc(100vh - 40px); 
+  max-height: calc(100vh - 96px); 
   padding-bottom: 40px;
   -ms-overflow-style: none;  
   scrollbar-width: none;  
@@ -19,7 +18,7 @@
   }
 
   @media (max-width: 800px) {
-    max-height: calc(100vh - 180px);
+    max-height: calc(100vh - 80px);
     padding-bottom: 100px;
   }
 
@@ -33,7 +32,6 @@
     margin: 0;
     font-family: Inter;
     font-weight: 700;
-    font-style: Bold;
     background: none;
   }
 
