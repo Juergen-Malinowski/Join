@@ -335,43 +335,45 @@
           </button>
         </div>
       </div>
-      <span class="assigned_title">Assigned To:</span>
-      <div class="area_assigned">
-        <mat-form-field appearance="fill" floatLabel="always">
-          <mat-label>
-            {{
-              editData.assigns.length > 0 || selectOpened
-                ? 'Select contacts to assign'
-                : 'Select contacts to assign'
-            }}
-          </mat-label>
+      <div class="assigned area_input">
+        <label>Assigned To:</label>
+        <div class="area_assigned">
+          <mat-form-field appearance="fill" floatLabel="always">
+            <mat-label>
+              {{
+                editData.assigns.length > 0 || selectOpened
+                  ? 'Select contacts to assign'
+                  : 'Select contacts to assign'
+              }}
+            </mat-label>
 
-          <mat-select
-            panelClass="test-select"
-            multiple
-            [value]="getSelectedContacts()"
-            (selectionChange)="onSelectionChange($event)"
-            (openedChange)="selectOpened = $event"
-          >
-            <mat-select-trigger></mat-select-trigger>
+            <mat-select
+              panelClass="test-select"
+              multiple
+              [value]="getSelectedContacts()"
+              (selectionChange)="onSelectionChange($event)"
+              (openedChange)="selectOpened = $event"
+            >
+              <mat-select-trigger></mat-select-trigger>
 
-            <mat-option *ngFor="let contact of contacts()" [value]="contact">
-              <span class="sc_logo" [style.background]="contact.color">
-                {{ getInitials(contact.name) }}
-              </span>
-              {{ contact.name }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+              <mat-option *ngFor="let contact of contacts()" [value]="contact">
+                <span class="sc_logo" [style.background]="contact.color">
+                  {{ getInitials(contact.name) }}
+                </span>
+                {{ contact.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
 
-        <div class="assigned_logos" *ngIf="editData.assigns.length > 0">
-          <span
-            class="sc_logo"
-            *ngFor="let assign of editData.assigns"
-            [style.background-color]="assign.color"
-          >
-            {{ assign.initials }}
-          </span>
+          <div class="assigned_logos" *ngIf="editData.assigns.length > 0">
+            <span
+              class="sc_logo"
+              *ngFor="let assign of editData.assigns"
+              [style.background-color]="assign.color"
+            >
+              {{ assign.initials }}
+            </span>
+          </div>
         </div>
       </div>
       <div class="subtasks">
