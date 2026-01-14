@@ -5,32 +5,10 @@
   flex-direction: column;
   position: relative;
   padding: 40px;
+  padding-right: 25px;
   gap: 24px;
   width: 525px;
   max-height: 800px;
-  overflow-y: auto;
-  overflow-x: hidden;
-
-  &::-webkit-scrollbar {
-    width: 12px;
-  }
-
-  &::-webkit-scrollbar-button {
-    display: none;
-  }
-
-  &::-webkit-scrollbar-track {
-    background-color: transparent;
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: #a8a8a8;
-    border-radius: 12px;
-    border: 4px solid transparent;
-    background-clip: content-box;
-  }
 
   @media (max-width: 650px) {
     width: 400px;
@@ -38,6 +16,9 @@
 
   @media (max-width: 420px) {
     width: 300px;
+    max-height: 95vh;
+    padding: 30px;
+    padding-right: 10px;
   }
 
   header {
@@ -49,6 +30,34 @@
     &:hover {
       display: block;
       background-color: #d9d9d9;
+    }
+  }
+
+  main {
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 8px;
+    box-sizing: content-box;
+
+    &::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    &::-webkit-scrollbar-button {
+      display: none;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #a8a8a8;
+      border-radius: 12px;
+      border: 4px solid transparent;
+      background-clip: content-box;
     }
   }
 
@@ -297,9 +306,8 @@
       background-color: colors.$white;
       border-bottom: 2px solid colors.$buttonBlue;
       border-radius: 0;
-      }
     }
- 
+  }
 
   .bullet_point {
     margin-right: 12px;
@@ -398,7 +406,6 @@
 .edit_footer {
   display: flex;
   justify-content: flex-end;
-  margin-top: 32px;
 
   button {
     display: flex;
