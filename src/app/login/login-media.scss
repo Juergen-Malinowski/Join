@@ -1,4 +1,4 @@
-@use'../styles/colors.scss';
+@use '../styles/colors.scss';
 @media (max-width: 700px) {
   .widescreen {
     height: auto;
@@ -100,10 +100,29 @@
     }
     .login_footer {
       order: 4;
+      position: relative;
+      top: -12px;
     }
   }
 }
 @media (max-width: 450px) {
+  .widescreen {
+    .join_logo {
+      width: 80px;
+      height: auto;
+      transform: translate(-50%, -50%) scale(0.1);
+      animation: logoIntroSmall 1.5s ease forwards;
+    }
+    @keyframes logoIntroSmall {
+      to {
+        top: 0;
+        left: 25px;
+        width: 80px;
+        transform: scale(0.7);
+      }
+    }
+  }
+
   .login_page {
     header {
       img {
@@ -121,6 +140,7 @@
     .main_contend {
       .middle_area {
         padding: 32px 16px;
+        margin-top: 50px;
         .headline h1 {
           font-size: 36px;
         }
@@ -150,19 +170,20 @@
     }
   }
 }
+
 @media (max-width: 380px) {
   .join_logo {
     width: 80px;
     height: auto;
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%) scale(0.5);
     animation: logoIntroSmall 1.5s ease forwards;
   }
   @keyframes logoIntroSmall {
     to {
-      top: 25px;
+      top: 0;
       left: 25px;
       width: 80px;
-      transform: scale(0.8);
+      transform: scale(0.7);
     }
   }
   .login_footer {
