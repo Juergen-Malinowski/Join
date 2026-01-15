@@ -20,7 +20,7 @@
 .login_page > *:not(.join_logo) {
   opacity: 0;
   animation: showMain 1s forwards;
-  animation-delay: 0, 5s;
+  animation-delay: 0.5s;
 }
 @keyframes fadeOut {
   to {
