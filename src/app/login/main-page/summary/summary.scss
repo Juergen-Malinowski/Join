@@ -6,29 +6,34 @@
   align-items: center;
 }
 
-@media (max-width:1050px){
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background-color: white;
-  opacity: 1;
-  transition: opacity 1s ease; 
-  z-index: 9999; 
-  pointer-events: auto;
+@mixin card-base {
+  background: colors.$white;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: transform 100ms ease-in-out;
 }
 
-.overlay.hidden {
-  opacity: 0; 
-  pointer-events: none; 
-}
+@media (max-width: 1050px) {
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    @include flex-center;
+    flex-direction: column;
+    text-align: center;
+    background-color: white;
+    opacity: 1;
+    transition: opacity 1s ease;
+    z-index: 9999;
+    pointer-events: auto;
+  }
+
+  .overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
 }
 .summary {
   display: flex;
@@ -110,10 +115,7 @@
 .box_task_bord,
 .box_task_progress,
 .box_task_feedback {
-  background: colors.$white;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: transform 100ms ease-in-out;
+  @include card-base;
 
   &:hover {
     transform: scale(1.05);
@@ -180,8 +182,7 @@
 
 .area_mid {
   .box_urgent {
-    display: flex;
-    align-items: center;
+    @include flex-center;
     justify-content: space-evenly;
     padding: 0 48px;
     height: 168px;
@@ -266,10 +267,8 @@
   .box_task_bord,
   .box_task_progress,
   .box_task_feedback {
-    display: flex;
+    @include flex-center;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     width: 100%;
     height: 168px;
 
@@ -305,8 +304,6 @@
     margin: 0;
   }
 
-
-
   @media (max-width: 1200px) {
     .greeting {
       font-size: 38px;
@@ -331,17 +328,16 @@
   }
 }
 
-  .greeting {
-    font-weight: 500;
-    font-size: 30px;
-    color: colors.$bgGrey;
-  }
-  .name {
-    font-weight: 700;
-    font-size: 32px;
-    color: colors.$buttonBlue;
-    
-  }
+.greeting {
+  font-weight: 500;
+  font-size: 30px;
+  color: colors.$bgGrey;
+}
+.name {
+  font-weight: 700;
+  font-size: 32px;
+  color: colors.$buttonBlue;
+}
 
 @media (max-width: 1050px) {
   .summary {
@@ -475,9 +471,8 @@
 
 @media (max-height: 620px) {
   .summary {
-
     &-header {
-      flex-direction:row;
+      flex-direction: row;
       align-items: center;
     }
   }

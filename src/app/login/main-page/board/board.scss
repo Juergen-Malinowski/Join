@@ -308,6 +308,14 @@
 
   @media (max-width: 1050px) {
     flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    gap: 12px;
+    padding-bottom: 8px;
+
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
   }
 }
 
@@ -328,8 +336,24 @@
 
 .task_card {
   cursor: grab;
+
+   @media (max-width: 1050px) {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+  }
 }
 
 .task_card:active {
   cursor: grabbing;
+}
+
+@media (max-width: 1050px) {
+  .column_drop_area {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .column_drop_area::-webkit-scrollbar {
+    display: none;
+  }
 }

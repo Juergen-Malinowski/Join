@@ -67,7 +67,7 @@
       justify-content: end;
       gap: 10px;
       margin-top: 20px;
-      p{
+      p {
         font-size: 20px;
       }
     }
@@ -129,7 +129,6 @@
       .inputs {
         display: flex;
         flex-direction: column;
-        // gap: 32px;
         padding: 0 10px;
         width: 422px;
         .input_wrapper {
@@ -154,20 +153,20 @@
         .error-text {
           color: colors.$errorRed;
           font-size: 16px;
-          margin-top: -24px; /* Pull closer to input (32px gap - 24px = 8px visual gap) */
+          margin-top: -24px;
           text-align: left;
         }
         .middle_bottom_area {
-          display: flex;justify-content: center;
+          display: flex;
+          justify-content: center;
           gap: 30px;
           .policy_text {
             display: flex;
             gap: 10px;
-           
+
             .policy {
               color: colors.$buttonBlue;
             }
-            
           }
           .button_dark {
             &:hover {
@@ -188,9 +187,8 @@
           outline: none;
           border-style: none;
           flex: 1;
-          font-size: 20px; /* Match Figma */
+          font-size: 20px;
         }
-       
       }
     }
   }
@@ -201,7 +199,8 @@
     flex-direction: column;
     align-items: center;
     .policy {
-      color: colors.$buttonBlue; text-decoration: none;
+      color: colors.$buttonBlue;
+      text-decoration: none;
     }
     .sign_up_button {
       background-color: colors.$bgGrey;
@@ -215,15 +214,17 @@
       justify-content: center;
       align-items: center;
       &:hover {
-        border-color: colors.$buttonBlue; cursor: pointer;
+        border-color: colors.$buttonBlue;
+        cursor: pointer;
       }
-        &:hover:not(:disabled) {
-    background-color: colors.$buttonBlue;; 
-  }
-  &:disabled {
-    background-color: #58677b;  cursor: not-allowed; border-color: transparent;
-  }
-
+      &:hover:not(:disabled) {
+        background-color: colors.$buttonBlue;
+      }
+      &:disabled {
+        background-color: #58677b;
+        cursor: not-allowed;
+        border-color: transparent;
+      }
     }
   }
 }
@@ -276,11 +277,14 @@
       display: contents;
       img {
         position: absolute;
-        top: 32px;left: 32px; width: 64px; height: 78px;
+        top: 32px;
+        left: 32px;
+        width: 64px;
+        height: 78px;
         margin: 0;
       }
       .header_right {
-        order: 3; /* Positioniert das Element nach dem Login-Fenster */
+        order: 3;
         display: flex;
         align-items: center;
         gap: 16px;
@@ -309,7 +313,9 @@
             justify-content: center;
             img {
               position: absolute;
-              left: 32px; top: 42px; right: auto;
+              left: 32px;
+              top: 42px;
+              right: auto;
             }
           }
           h1 {
@@ -323,8 +329,7 @@
           width: 364px;
           max-width: 100%;
           padding: 0;
-          // gap: 24px;
-          /* Adjust gap for error messages on mobile */
+
           .error-text {
             margin-top: -16px;
           }
@@ -332,12 +337,12 @@
             flex-direction: column;
             padding: 0 60px;
             gap: 21px;
-
           }
 
           .sign_up_bottom {
             .sign_up_button {
-              width: 180px; height: 51px;
+              width: 180px;
+              height: 51px;
             }
           }
         }
@@ -352,13 +357,15 @@
   .login_page {
     header {
       img {
-        top: 16px; left: 16px;
+        top: 16px;
+        left: 16px;
         width: 48px;
         height: 58px;
       }
 
       .header_right {
-        flex-direction: row; gap: 12px;
+        flex-direction: row;
+        gap: 12px;
       }
     }
     .main_contend {
@@ -372,28 +379,43 @@
           .input_wrapper {
             height: 40px;
             input {
-              font-size: 16px; min-width: 0;
+              font-size: 16px;
+              min-width: 0;
             }
             img {
               width: 20px;
               height: 20px;
-              flex-shrink: 0; }}}}
-      .button_dark{
+              flex-shrink: 0;
+            }
+          }
+        }
+      }
+      .button_dark {
         font-size: 16px;
       }
-      .button_light{
-        font-size: 16px; padding: 16px 0;  }}}}
+      .button_light {
+        font-size: 16px;
+        padding: 16px 0;
+      }
+    }
+  }
+}
 @media (max-width: 380px) {
   .join_logo {
-    width: 80px;  height: auto;
-    transform: translate(-50%, -50%) scale(1);  animation: logoIntroSmall 1.5s ease forwards;
+    width: 80px;
+    height: auto;
+    transform: translate(-50%, -50%) scale(1);
+    animation: logoIntroSmall 1.5s ease forwards;
   }
   @keyframes logoIntroSmall {
     to {
-      top: 25px; left: 25px;  width: 80px; transform: scale(0.8);  
+      top: 25px;
+      left: 25px;
+      width: 80px;
+      transform: scale(0.8);
     }
   }
-  .login_footer{
+  .login_footer {
     bottom: 20px;
   }
 }
