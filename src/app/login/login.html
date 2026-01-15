@@ -6,7 +6,7 @@
   <header>
     <div class="header_right" *ngIf="!isSignUp">
       <p>Not a Join User?</p>
-      <button class="sign_up" (click)="openSignUp()">Sign Up</button>
+      <button class="button_dark" (click)="openSignUp()">Sign Up</button>
     </div>
   </header>
   <div class="main_contend">
@@ -82,7 +82,7 @@
                 <a routerLink="/Privacy Policy" class="policy">Privacy Policy</a>
               </span>
             </div>
-            <button class="sign_up_button" [disabled]="!agreed" (click)="signup()">Sign up</button>
+            <button class="button_dark" [disabled]="!agreed" (click)="signup()">Sign up</button>
           </div>
         </div>
       </div>

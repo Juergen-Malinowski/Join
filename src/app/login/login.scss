@@ -168,13 +168,7 @@
               color: colors.$buttonBlue;
             }
           }
-          .button_dark {
-            &:hover {
-              background-color: colors.$buttonBlue;
-              cursor: pointer;
-              border-color: colors.$buttonBlue;
-            }
-          }
+    
 
           .button_light {
             &:hover {
@@ -217,7 +211,18 @@
         border-color: colors.$buttonBlue;
         cursor: pointer;
       }
-      &:hover:not(:disabled) {
+     
+    }
+  }
+}
+
+      .button_dark {
+            &:hover {
+              background-color: colors.$buttonBlue;
+              cursor: pointer;
+              border-color: colors.$buttonBlue;
+            }
+             &:hover:not(:disabled) {
         background-color: colors.$buttonBlue;
       }
       &:disabled {
@@ -225,9 +230,7 @@
         cursor: not-allowed;
         border-color: transparent;
       }
-    }
-  }
-}
+          }
 .login_footer {
   position: relative;
   display: flex;
