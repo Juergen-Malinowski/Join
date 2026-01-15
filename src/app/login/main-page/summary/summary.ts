@@ -15,7 +15,7 @@ import { AuthService } from '../../../firebase-services/auth-services';
   selector: 'app-summary',
   imports: [AsyncPipe, NgIf],
   templateUrl: './summary.html',
-  styleUrls: ['./summary.scss'],
+  styleUrls: ['./summary.scss', './summary-media.scss'],
   animations: []
   
 })
