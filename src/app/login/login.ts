@@ -9,7 +9,7 @@ import { AuthService } from '../firebase-services/auth-services';
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './login.html',
-  styleUrl: './login.scss',
+  styleUrls: ['./login.scss','login-media.scss']
 })
 export class Login {
   name = '';
