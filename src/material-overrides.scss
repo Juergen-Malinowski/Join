@@ -1,9 +1,7 @@
-@use "../src/app/styles/colors.scss";
+@use '../src/app/styles/colors.scss';
 
 @media (max-width: 420px) {
-  body .mat-mdc-text-field-wrapper
-    .mat-mdc-form-field-flex
-    .mat-mdc-floating-label {
+  body .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-floating-label {
     font-size: 16px;
     transform: translateY(-5px) scale(1);
   }
@@ -19,19 +17,19 @@
 }
 
 body .mat-calendar-arrow {
-  fill: colors.$white ;
+  fill: colors.$white;
 }
 
 .mat-calendar-table-header {
-  background-color: colors.$white ;
+  background-color: colors.$white;
 }
 
 .mat-calendar-body-disabled {
-  color: rgba(0, 0, 0, 0.38); 
-  pointer-events: none;          
-  cursor: default;               
+  color: rgba(0, 0, 0, 0.38);
+  pointer-events: none;
+  cursor: default;
 }
-.mat-mdc-form-field-has-icon-suffix .mat-mdc-text-field-wrapper{
+.mat-mdc-form-field-has-icon-suffix .mat-mdc-text-field-wrapper {
   height: 48px;
 }
 
@@ -58,8 +56,7 @@ body .mat-calendar-controls {
 }
 
 .cdk-overlay-container .mdc-tooltip {
-  background-color: colors.$white ;
-
+  background-color: colors.$white;
 }
 
 body .mdc-text-field {
@@ -109,9 +106,7 @@ body .mat-mdc-option:focus.mdc-list-item,
 }
 
 body .mdc-text-field--filled .mdc-floating-label--float-above {
-
   transform: none;
-
 }
 
 body .mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper {
@@ -124,21 +119,20 @@ body .mat-mdc-form-field-infix {
   display: flex;
   align-items: center;
   height: 48px;
-
 }
-body .mdc-text-field__input::placeholder{
+body .mdc-text-field__input::placeholder {
   line-height: normal;
 }
 
-.mat-mdc-option.mdc-list-item{
+.mat-mdc-option.mdc-list-item {
   font-size: 20px;
   color: #2a3647;
 }
 
 body .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-floating-label {
   top: 30%;
-      font-size: 20px;
-    color: #2a3647;
+  font-size: 20px;
+  color: #2a3647;
 }
 
 .mat-mdc-form-field-has-icon-suffix .mat-mdc-text-field-wrapper {
@@ -152,8 +146,6 @@ body .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-floating-labe
 .error-border.mat-mdc-form-field .mat-mdc-text-field-wrapper {
   border-color: colors.$errorRed;
   border-style: none;
-
-
 }
 
 .selected-border.mat-mdc-form-field .mat-mdc-text-field-wrapper {
@@ -183,13 +175,13 @@ body .test-select .mat-mdc-option.mdc-list-item--selected {
 body .task-type-select .mat-mdc-option .mat-pseudo-checkbox {
   display: none;
 }
-body.task-type-select .mdc-text-field--no-label .mat-mdc-form-field-infix{
+body.task-type-select .mdc-text-field--no-label .mat-mdc-form-field-infix {
   padding: 0 !important;
 }
 
 .mat-pseudo-checkbox-full.mat-pseudo-checkbox-checked,
 .mat-pseudo-checkbox-full.mat-pseudo-checkbox-indeterminate {
-  background-image: url("../public/img/checkbox_checked_white.svg");
+  background-image: url('../public/img/checkbox_checked_white.svg');
   background-size: contain;
   background-repeat: no-repeat;
   width: 28px;
@@ -215,7 +207,8 @@ body .mdc-line-ripple::after {
   align-items: center;
 }
 
-.mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled):not(.mat-mdc-option-multiple){
-  background-color: none;
+.mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled):not(
+    .mat-mdc-option-multiple
+  ) {
+  background-color: blue;
 }
-
