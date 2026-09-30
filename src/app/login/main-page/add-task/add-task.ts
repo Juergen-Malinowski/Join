@@ -17,6 +17,9 @@ import { Router } from '@angular/router';
 import { Timestamp } from '@angular/fire/firestore';
 import { toSignal } from '@angular/core/rxjs-interop';
 
+/**
+ * Provides the standalone task-creation view and manages its form state.
+ */
 @Component({
   selector: 'app-add-task',
   standalone: true,
@@ -79,6 +82,7 @@ export class AddTask {
     this.minDate.set(today);
   }
 
+  /** Adds the current subtask input to the task when it contains text. */
   addSubtask() {
     const title = this.subtaskInput.trim();
     if (!title) return;
@@ -90,6 +94,7 @@ export class AddTask {
     this.subtaskInput = '';
   }
 
+  /** Activates inline editing for a subtask and focuses its input field. */
   editSubtask(index: number) {
     this.editIndex = index;
     queueMicrotask(() => {
@@ -172,6 +177,7 @@ export class AddTask {
     return this.assignedTo().some((c) => c.id === contact.id);
   }
 
+  /** Updates the assigned-contact selection and its display text. */
   toggleContact(contact: Contact, checked: boolean) {
     const current = this.assignedTo();
     if (checked) {
@@ -198,6 +204,10 @@ export class AddTask {
     this.menuOpen = false;
   }
 
+  /**
+   * Validates the required task fields and persists the task, assignments,
+   * and subtasks before returning to the board.
+   */
   async createTask() {
     const prio = this.priority();
     if (!this.title() || !this.selectedTaskType() || !prio || !this.dueDate()) {
@@ -247,6 +257,7 @@ export class AddTask {
     }
   }
 
+  /** Restores the task form and related UI state to their initial values. */
   resetForm() {
     this.title.set('');
     this.description.set('');

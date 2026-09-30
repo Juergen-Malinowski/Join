@@ -1,4 +1,4 @@
-import {  Component, signal, ViewChildren, QueryList, ElementRef, ViewChild, inject,} from '@angular/core';
+import { Component, signal, ViewChildren, QueryList, ElementRef, ViewChild, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -18,6 +18,9 @@ import { Dialog } from '../../../../shared/dialog/dialog';
 import { Timestamp } from '@angular/fire/firestore';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
+/**
+ * Manages task creation inside the board dialog, including assignments and subtasks.
+ */
 @Component({
   selector: 'app-dialog-add-task',
   imports: [
@@ -74,6 +77,7 @@ export class DialogAddTask {
     .filter(([, value]) => typeof value === 'number')
     .map(([key, value]) => ({ name: key, value: value as TaskType }));
 
+  /** Opens the dialog with the requested initial board status. */
   open(status: TaskStatus = TaskStatus.ToDo) {
     this.resetForm();
     this.currentStatus.set(status);
@@ -87,6 +91,7 @@ export class DialogAddTask {
       .subscribe((data) => this.contacts.set(data));
   }
 
+  /** Adds the current subtask input when it contains non-whitespace text. */
   addSubtask() {
     const title = this.subtaskInput.trim();
     if (!title) return;
@@ -94,6 +99,7 @@ export class DialogAddTask {
     this.subtaskInput = '';
   }
 
+  /** Activates inline editing for a subtask and focuses its input field. */
   editSubtask(index: number) {
     this.editIndex = index;
     queueMicrotask(() => {
@@ -176,6 +182,7 @@ export class DialogAddTask {
     return this.assignedTo().some((c) => c.id === contact.id);
   }
 
+  /** Updates the selected assignees and their compact display text. */
   toggleContact(contact: Contact, checked: boolean) {
     const current = this.assignedTo();
     if (checked) {
@@ -202,6 +209,9 @@ export class DialogAddTask {
     this.menuOpen = false;
   }
 
+  /**
+   * Validates and persists the task together with its assignments and subtasks.
+   */
   async createTask() {
     const prio = this.priority();
     if (!this.title() || !this.selectedTaskType() || !prio || !this.dueDate()) {
@@ -251,6 +261,7 @@ export class DialogAddTask {
     }
   }
 
+  /** Restores the dialog form and UI state before the next task is created. */
   resetForm() {
     this.title.set('');
     this.description.set('');
