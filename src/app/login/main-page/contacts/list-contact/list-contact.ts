@@ -8,6 +8,9 @@ import { Dialog } from '../../../../shared/dialog/dialog';
 import { DialogAddNewContact } from './dialog-add-new-contact/dialog-add-new-contact';
 import { UserUiService } from '../../../../services/user-ui.service';
 
+/**
+ * Displays the contact list and coordinates contact selection and creation.
+ */
 @Component({
   selector: 'app-list-contact',
   imports: [CommonModule, FormsModule, DialogAddNewContact],
@@ -44,6 +47,7 @@ export class ListContact {
     }
   }
 
+  /** Selects a contact and emits its ID to the parent contacts view. */
   onSelectContact(id: string) {
     this.dnoneList();
     this.selectedContactId.set(id);
@@ -54,6 +58,7 @@ export class ListContact {
     this.isDisplayed = true;
   }
 
+  /** Sorts contacts alphabetically and groups them by their initial letter. */
   private sortAndGroup(contacts: Contact[]): { letter: string; contacts: Contact[] }[] {
     const groups: Record<string, Contact[]> = {};
 
@@ -71,6 +76,7 @@ export class ListContact {
       }));
   }
 
+  /** Prepares a new contact with the next avatar color and opens the add dialog. */
   async onAddContact() {
     const colorIndex = await this.userUi.getNextColorIndex();
     const colorHex = this.userUi.getColorByIndex(colorIndex);
@@ -79,6 +85,7 @@ export class ListContact {
     this.DialogAddNewContact.open();
   }
 
+  /** Persists a valid contact form and closes the add dialog. */
   async saveNewContact(form: NgForm): Promise<void> {
     if (!form.valid) return;
     const data = this.formModel();
@@ -93,6 +100,7 @@ export class ListContact {
     this.writeConfirmation();
   }
 
+  /** Triggers the confirmation animation after a contact was created. */
   writeConfirmation(): void {
     const container = document.querySelector('.confirmation_container') as HTMLElement;
     container.classList.add('confirmation_container--active');

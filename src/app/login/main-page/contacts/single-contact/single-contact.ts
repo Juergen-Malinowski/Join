@@ -14,6 +14,9 @@ import { FirebaseServices } from '../../../../firebase-services/firebase-service
 import { UserUiService } from '../../../../services/user-ui.service';
 import { Router } from '@angular/router';
 
+/**
+ * Displays one selected contact and coordinates edit and delete actions.
+ */
 @Component({
   selector: 'app-single-contact',
   standalone: true,
@@ -45,6 +48,7 @@ export class SingleContact {
     this.isMenuOpen = false;
   }
 
+  /** Deletes the selected contact and handles account-specific restrictions. */
   async deleteContact(): Promise<void> {
     try {
     await this.firebase.deleteContact(this.contactId());
@@ -60,6 +64,7 @@ export class SingleContact {
   }
   }
 
+  /** Opens the edit dialog with a detached copy of the selected contact. */
   openEdit(contact: Contact): void {
     this.closeMenu();
     this.dialogEditContact.editModel = { ...contact };

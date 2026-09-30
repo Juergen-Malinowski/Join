@@ -13,6 +13,9 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Dialog } from '../../../../../shared/dialog/dialog';
 import { UserUiService } from '../../../../../services/user-ui.service';
 
+/**
+ * Manages the dialog for creating and persisting a new contact.
+ */
 @Component({
   selector: 'app-dialog-add-new-contact',
   imports: [CommonModule, FormsModule, Dialog],
@@ -41,6 +44,7 @@ export class DialogAddNewContact {
     return this.userUi.getInitials(name);
   }
 
+  /** Prepares an empty contact with the next avatar color and opens the dialog. */
   async open(): Promise<void> {
 
     const colorIndex = await this.userUi.getNextColorIndex();
@@ -55,6 +59,7 @@ export class DialogAddNewContact {
     this.addDialog.open();
   }
 
+  /** Persists the validated contact form and closes the dialog. */
   async saveNewContact(form: NgForm): Promise<void> {
     if (!form.valid) return;
     const data = this.formModel();
@@ -69,6 +74,7 @@ export class DialogAddNewContact {
     this.writeConfirmation();
   } 
 
+  /** Triggers the confirmation animation after a contact was created. */
   writeConfirmation(): void {
     const container = document.querySelector('.confirmation_container') as HTMLElement;
     container.classList.add('confirmation_container--active');

@@ -6,6 +6,9 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Dialog } from '../../../../../shared/dialog/dialog';
 import { UserUiService } from '../../../../../services/user-ui.service';
 
+/**
+ * Manages editing and deletion actions for an existing contact.
+ */
 @Component({
   selector: 'app-dialog-edit-contact',
   imports: [CommonModule, FormsModule, Dialog],
@@ -25,12 +28,14 @@ export class DialogEditContact {
     this.editDialog.open();
   }
 
+  /** Persists a valid contact edit and closes the dialog. */
   async saveEdit(form: NgForm): Promise<void> {
     if (!this.editModel.id || !form.valid) return;
     await this.firebase.editContact(this.editModel as Contact);
     this.editDialog.close();
   }
 
+  /** Deletes the edited contact and closes the dialog afterwards. */
   async deleteContact(): Promise<void> {
     const id = this.editModel.id;
     if (!id) return;
