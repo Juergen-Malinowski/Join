@@ -7,6 +7,9 @@ import { CommonModule } from '@angular/common';
   templateUrl: './privacy-policy.html',
   styleUrl: './privacy-policy.scss',
 })
+/**
+ * Displays the application's privacy policy.
+ */
 export class PrivacyPolicy {
 
 }

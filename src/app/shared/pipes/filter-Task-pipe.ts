@@ -5,6 +5,9 @@ import { BoardTask } from '../../interfaces/task-board.interface';
   name: 'FilterTask',
   standalone: true,
 })
+/**
+ * Filters board tasks by title or description using case-insensitive matching.
+ */
 export class FilterTaskPipe implements PipeTransform {
 
   transform(tasks: BoardTask[] | null, searchText: string): BoardTask[] {

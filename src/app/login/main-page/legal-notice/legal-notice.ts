@@ -7,6 +7,9 @@ import { CommonModule } from '@angular/common';
   templateUrl: './legal-notice.html',
   styleUrl: './legal-notice.scss',
 })
+/**
+ * Displays the application's legal notice.
+ */
 export class LegalNotice {
 
 }

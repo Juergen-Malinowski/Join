@@ -17,6 +17,9 @@ import { AuthService } from '../../../firebase-services/auth-services';
   animations: []
   
 })
+/**
+ * Displays task statistics, the next due task, and the post-login summary overlay.
+ */
 export class Summary implements OnInit {
   private firebase = inject(FirebaseServices);
   private router = inject(Router);
@@ -46,6 +49,9 @@ export class Summary implements OnInit {
     }),
   );
 
+  /**
+   * Starts the mobile post-login overlay sequence when a fresh login is detected.
+   */
 ngOnInit(): void {
   this.overlay.set(false);
 
@@ -92,6 +98,9 @@ private getGreeting(): string {
   return 'Good evening,';
 }
 
+  /**
+   * Returns the task with the nearest valid due date.
+   */
 private getNextDueTask(tasks: Task[]): Task | null {
   if (!tasks || tasks.length === 0) return null;
   const tasksWithDate = tasks.filter((t) => t.date && typeof t.date.toMillis === 'function');

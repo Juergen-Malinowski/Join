@@ -20,4 +20,7 @@ import { Header } from '../../shared/header/header';
     </div>`,
     styleUrl: './main-page.scss'
 })
+/**
+ * Provides the authenticated application shell with navigation, header, and child routes.
+ */
 export class MainPage {}

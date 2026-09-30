@@ -7,6 +7,9 @@ import { ChangeDetectorRef, Component, EventEmitter, Input, Output} from '@angul
   templateUrl: './dialog.html',
   styleUrl: './dialog.scss'
 })
+/**
+ * Provides a reusable animated dialog shell for feature components.
+ */
 export class Dialog {
   @Input() width = '480px';
   @Output() closed = new EventEmitter<void>();
@@ -16,6 +19,9 @@ export class Dialog {
 
   constructor(private cdr: ChangeDetectorRef) {}
   
+  /**
+   * Runs the closing animation before hiding the dialog and emitting its close event.
+   */
   close(): void {
     if (this.isClosing) return;
     this.isClosing = true;

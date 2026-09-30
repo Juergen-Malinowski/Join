@@ -7,6 +7,9 @@ import { CommonModule, Location } from '@angular/common';
   templateUrl: './helper.html',
   styleUrl: './helper.scss',
 })
+/**
+ * Displays the application help content and provides back navigation.
+ */
 export class Helper {
 
   constructor(private location: Location) {}

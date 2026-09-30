@@ -10,6 +10,9 @@ import { AuthService } from '../../firebase-services/auth-services';
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss',
 })
+/**
+ * Renders the primary application navigation based on the current auth state.
+ */
 export class Navbar {
   authService = inject(AuthService);
   user$ = this.authService.currentUser$;

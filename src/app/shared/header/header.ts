@@ -11,6 +11,9 @@ import { FirebaseServices } from '../../firebase-services/firebase-services';
   templateUrl: './header.html',
   styleUrls: ['./header.scss'],
 })
+/**
+ * Provides the application header, user menu, responsive state, and logout action.
+ */
 export class Header implements OnInit {
   firebase = inject(FirebaseServices);
   menuOpen = false;
@@ -32,11 +35,17 @@ export class Header implements OnInit {
     this.router.navigate(['/Login']);
   }
 
+  /**
+   * Closes the user menu and signs out the current user.
+   */
   async onLogout() {
     this.closeMenu();
     await this.authService.logout();
   }
 
+  /**
+   * Closes the user menu when a click occurs outside the menu controls.
+   */
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent) {
     const target = event.target as HTMLElement;
