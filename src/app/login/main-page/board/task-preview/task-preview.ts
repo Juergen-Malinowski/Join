@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { BoardTask } from '../../../../interfaces/task-board.interface';
 import { TaskType } from '../../../../types/task-type';
 
+/**
+ * Renders the compact board-card representation of a task.
+ */
 @Component({
   selector: 'app-task-preview',
   standalone: true,
@@ -16,6 +19,7 @@ export class TaskPreview {
   readonly TaskType = TaskType;
   readonly maxVisibleAssigns = 3;
 
+  /** Returns the icon that represents the current task type. */
   get taskTypeSvg(): string {
     switch (this.task.type) {
       case TaskType.UserStory:
@@ -44,6 +48,7 @@ export class TaskPreview {
       .join(', ');
   }
 
+  /** Creates the fallback avatar background for assignees hidden by the card limit. */
   get remainingAssignsGradient(): string {
     const remaining = this.task.assigns.slice(this.maxVisibleAssigns);
 

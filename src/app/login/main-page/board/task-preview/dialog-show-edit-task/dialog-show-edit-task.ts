@@ -14,6 +14,9 @@ import { UserUiService } from '../../../../../services/user-ui.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterModule } from '@angular/router';
 
+/**
+ * Displays task details and manages editing, assignments, and subtasks in a dialog.
+ */
 @Component({
   selector: 'app-dialog-show-edit-task',
   standalone: true,
@@ -54,6 +57,7 @@ export class DialogShowEditTask {
       });
   }
 
+  /** Opens the dialog for the selected board task in read-only mode. */
   open(task: BoardTask): void {
     this.task.set(task);
     this.isEditMode = false;
@@ -64,6 +68,7 @@ export class DialogShowEditTask {
     this.dialog.close();
   }
 
+  /** Returns the icon that represents the current task type. */
   get taskTypeSvg(): string {
     if (!this.task()) return '';
     switch (this.task()!.type) {
@@ -76,6 +81,7 @@ export class DialogShowEditTask {
     }
   }
 
+  /** Toggles between detail and edit mode and prepares an editable task snapshot. */
   switchPage(): void {
     this.isEditMode = !this.isEditMode;
 
@@ -98,6 +104,7 @@ export class DialogShowEditTask {
     this.subtaskInput?.nativeElement.focus();
   }
 
+  /** Adds a new unsaved subtask to the current edit state. */
   addSubtask() {
     if (this.newSubtaskTitle.trim()) {
       this.editData.subtasks.push({
@@ -121,6 +128,7 @@ export class DialogShowEditTask {
     return this.userUi.getInitials(name);
   }
 
+  /** Toggles a persisted subtask's completion state. */
   async toggleSubtask(index: number, task: BoardTask) {
     if (!task.subtasks || !task.subtasks[index]) return;
     const subtask = task.subtasks[index];
@@ -130,6 +138,7 @@ export class DialogShowEditTask {
     }
   }
 
+  /** Deletes the current task together with its nested assignments and subtasks. */
   async deleteTask(): Promise<void> {
     const taskId = this.task()?.id;
     if (!taskId) return;
@@ -137,6 +146,9 @@ export class DialogShowEditTask {
     this.close();
   }
 
+  /**
+   * Persists task field changes and synchronizes assignments and subtasks with Firestore.
+   */
   async saveTask() {
     const currentTask = this.task();
     if (!currentTask?.id) return;
@@ -195,12 +207,14 @@ export class DialogShowEditTask {
 
   selectOpened: boolean = false;
 
+  /** Returns contacts that are currently assigned in the edit state. */
   getSelectedContacts(): Contact[] {
     return this.contacts().filter((c) =>
       this.editData.assigns.some((a: any) => a.contactId === c.id),
     );
   }
 
+  /** Rebuilds the editable assignment list from the contact selection. */
   onSelectionChange(event: any) {
     const selectedContacts: Contact[] = event.value;
     this.editData.assigns = selectedContacts.map((c) => ({
@@ -211,6 +225,7 @@ export class DialogShowEditTask {
     }));
   }
 
+  /** Starts inline editing while preserving the original title for cancellation. */
   setEditing(index: number) {
     this.editingIndex = index;
     this.originalTitle = this.editData.subtasks[index].title;
@@ -221,6 +236,7 @@ export class DialogShowEditTask {
     this.originalTitle = '';
   }
 
+  /** Restores the original subtask title and exits inline editing. */
   cancelEdit() {
     if (this.editingIndex === null) return;
 
