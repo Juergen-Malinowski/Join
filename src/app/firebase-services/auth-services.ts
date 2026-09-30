@@ -13,6 +13,9 @@ import { UserUiService } from '../services/user-ui.service';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
+/**
+ * Handles authentication flows and exposes the current authentication state.
+ */
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private auth = inject(Auth);
@@ -24,12 +27,14 @@ export class AuthService {
   private justLoggedInSubject = new BehaviorSubject<boolean>(false);
   justLoggedIn$ = this.justLoggedInSubject.asObservable();
 
+  /** Signs in a registered user and marks the session as newly authenticated. */
   async login(email: string, password: string) {
     const cred = await signInWithEmailAndPassword(this.auth, email, password);
     this.justLoggedInSubject.next(true);
     return cred;
   }
 
+  /** Creates a user account and the corresponding contact record. */
   async signup(name: string, email: string, password: string) {
     const cred = await createUserWithEmailAndPassword(this.auth, email, password);
 
@@ -49,12 +54,14 @@ export class AuthService {
     return cred.user;
   }
 
+  /** Starts an anonymous guest session. */
   async loginGuest() {
     const cred = await signInAnonymously(this.auth);
     this.justLoggedInSubject.next(true);
     return cred;
   }
 
+  /** Ends the active session and removes anonymous guest accounts. */
   async logout() {
     const user = this.auth.currentUser;
 

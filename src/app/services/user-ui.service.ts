@@ -6,6 +6,9 @@ import { TaskStatus } from '../types/task-status';
 
 export type TaskUrgency = 'normal' | 'urgent';
 
+/**
+ * Provides reusable UI helpers for avatar colors, initials, and task date states.
+ */
 @Injectable({
   providedIn: 'root',
 })
@@ -15,11 +18,13 @@ export class UserUiService {
   private injector = inject(Injector);
   private readonly twoDaysInMS = 2 * 24 * 60 * 60 * 1000;
 
+  /** Initializes the local avatar color sequence from Firestore. */
   async init(): Promise<void> {
     const firebase = this.injector.get(FirebaseServices);
     this.lastUserColor = await firebase.getLastUserColor();
   }
 
+  /** Returns up to two initials for a contact name, or G as a fallback. */
   getInitials(name?: string): string {
     if (!name || typeof name !== 'string') {
       return 'G';
@@ -32,6 +37,7 @@ export class UserUiService {
     return first + last || 'G';
   }
 
+  /** Advances and persists the cyclic avatar color index. */
   async getNextColorIndex(): Promise<number> {
     const firebase = this.injector.get(FirebaseServices);
     this.lastUserColor = (this.lastUserColor % this.maxColors) + 1;
@@ -39,27 +45,31 @@ export class UserUiService {
     return this.lastUserColor;
   }
 
+  /** Resolves a stored color index to its CSS custom property value. */
   getColorByIndex(index: number): string {
     const cssVar = `--userColor${index}`;
     const style = getComputedStyle(document.documentElement);
     return style.getPropertyValue(cssVar).trim() || '#000000';
   }
 
+  /** Checks whether a task is urgent and still in an active workflow state. */
   isUrgentAndActive(task?: Task): boolean {
-  return (
-    task?.priority === 1 &&
-    [
-      TaskStatus.ToDo,
-      TaskStatus.InProgress,
-      TaskStatus.AwaitFeedback,
-    ].includes(task.status)
-  );
-}
+    return (
+      task?.priority === 1 &&
+      [
+        TaskStatus.ToDo,
+        TaskStatus.InProgress,
+        TaskStatus.AwaitFeedback,
+      ].includes(task.status)
+    );
+  }
 
+  /** Maps the task priority to the urgency state used by the UI. */
   getTaskUrgency(task?: Task): TaskUrgency {
     return task?.priority === 1 ? 'urgent' : 'normal';
   }
 
+  /** Returns the number of calendar days remaining until a due date. */
   getRemainingDays(dueDate?: Timestamp): number | null {
     if (!dueDate) return null;
 
@@ -69,6 +79,7 @@ export class UserUiService {
     return Math.ceil((dueTime - now) / (24 * 60 * 60 * 1000));
   }
 
+  /** Formats a Firestore due date for display using the requested locale. */
   formatTaskDate(dueDate?: Timestamp, locale: string = 'de-DE'): string {
     if (!dueDate) return '';
 
