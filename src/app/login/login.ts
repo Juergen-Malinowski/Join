@@ -4,6 +4,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../firebase-services/auth-services';
 
+/**
+ * Provides login, registration, and guest access for the application.
+ */
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -33,6 +36,7 @@ export class Login {
     private cd: ChangeDetectorRef
   ) {}
 
+  /** Authenticates a registered user and opens the summary page. */
   async login(): Promise<void> {
     this.loginError = false;
     try {
@@ -44,6 +48,7 @@ export class Login {
     }
   }
 
+  /** Validates the registration form, creates the account, and opens the summary page. */
   async signup(): Promise<void> {
     this.nameError = !this.name?.trim();
     this.emailError = !this.email?.trim();
@@ -99,6 +104,7 @@ export class Login {
     }
   }
 
+  /** Starts a guest session and opens the summary page. */
   async guestLogin(): Promise<void> {
     try {
       await this.auth.loginGuest();
@@ -106,6 +112,7 @@ export class Login {
     } catch (error: any) {}
   }
 
+  /** Toggles between login and registration views and clears related errors. */
   openSignUp(): void {
     this.isSignUp = !this.isSignUp;
     this.loginError = false;

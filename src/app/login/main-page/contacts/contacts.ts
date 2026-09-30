@@ -3,6 +3,9 @@ import { Component, ChangeDetectionStrategy, signal, ViewChild } from '@angular/
 import { SingleContact } from './single-contact/single-contact';
 import { ListContact } from './list-contact/list-contact';
 
+/**
+ * Coordinates the contact list and the currently selected contact detail view.
+ */
 @Component({
   selector: 'app-contacts',
   standalone: true,
@@ -17,10 +20,12 @@ export class Contacts {
 
   selectedContactId = signal<string | null>(null);
 
+  /** Selects the contact that should be shown in the detail view. */
   setSelectedContact(id: string) {
     this.selectedContactId.set(id);
   }
 
+  /** Returns from the detail view to the contact list. */
   returnArrow(): void {
     this.selectedContactId.set(null);
     if (this.listContact) {

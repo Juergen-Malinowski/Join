@@ -18,6 +18,9 @@ import { Auth, authState } from '@angular/fire/auth';
 import { AuthService } from '../../../firebase-services/auth-services';
 import { Router } from '@angular/router';
 
+/**
+ * Displays tasks by workflow status and coordinates board interactions.
+ */
 @Component({
   selector: 'app-board',
   standalone: true,
@@ -49,6 +52,7 @@ export class Board {
   @ViewChild(DialogAddTask) dialogAddTask!: DialogAddTask;
   @ViewChild(DialogShowEditTask) dialogShowEditTask!: DialogShowEditTask;
 
+  /** Opens task creation in the dialog or dedicated mobile view. */
   openDialogAddTask(status: TaskStatus = TaskStatus.ToDo) {
     this.dialogAddTask.open(status);
     const mq = window.matchMedia('(max-width: 980px)');
@@ -58,6 +62,7 @@ if (mq.matches) {
   } 
      
 
+  /** Opens the selected task in the task detail dialog. */
   onTaskClick(task: BoardTask): void {
     if (!task.id) return;
     this.openDialogEditTask(task);
@@ -81,6 +86,7 @@ if (mq.matches) {
   readonly awaitFeedback$ = this.filterByStatus(TaskStatus.AwaitFeedback);
   readonly done$ = this.filterByStatus(TaskStatus.Done);
 
+  /** Persists a task's new workflow status after a drag-and-drop action. */
   async drop(event: CdkDragDrop<BoardTask[]>, status: TaskStatus): Promise<void> {
     const task = event.item.data;
     if (task.id) {
@@ -88,10 +94,12 @@ if (mq.matches) {
     }
   }
 
+  /** Returns the board task stream filtered by one workflow status. */
   private filterByStatus(status: TaskStatus): Observable<BoardTask[]> {
     return this.tasks$.pipe(map((tasks) => tasks.filter((task) => task.status === status)));
   }
 
+  /** Combines a task with its current assignments, subtasks, and progress data. */
   private enrichTask(task: Task): Observable<BoardTask> {
     return combineLatest([
       this.firebase.subSubtasks(task.id!),
@@ -143,6 +151,7 @@ if (mq.matches) {
     );
   }
 
+  /** Opens the task detail dialog for an existing task. */
   openDialogEditTask(task: BoardTask) {
     this.dialogShowEditTask.open(task);
   }
