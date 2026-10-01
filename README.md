@@ -303,7 +303,6 @@ Completed repository work includes:
 - cleanup and professionalization of source-code comments and JSDoc
 - removal of redundant generated repository documentation
 - consolidation of technical architecture documentation
-- cleanup of repository history related to accidental no-op commits
 - review of existing application structure and selected technical debt
 
 Further portfolio preparation includes:
