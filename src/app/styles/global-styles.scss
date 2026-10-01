@@ -66,10 +66,6 @@
   &:hover {
     background-color: colors.$bgMiddleGrey;
     transition: background-color 150ms ease-in-out;
-
-    @media (max-width: 1050px) {
-      display: none;
-    }
   }
 
   @media (max-width: 1050px) {

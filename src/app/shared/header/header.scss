@@ -32,7 +32,7 @@ section {
   height: 100%;
 
   @media (max-width: 500px) {
-    padding-right: 60px;
+    padding-right: 2px;
   }
 
   > .user {
@@ -106,22 +106,18 @@ section {
     list-style: none;
     margin: 0;
     padding: 0;
-    
 
     li {
       margin: 8px 0;
       padding: 5px 0;
-       &:hover {
+      &:hover {
         background-color: colors.$navActive;
-        
       }
     }
 
     a {
       color: #a8a8a8;
       text-decoration: none;
-
-     
     }
   }
 }
@@ -145,13 +141,11 @@ section {
       }
 
       .user {
+        width: 100%;
+
         > svg {
           flex-shrink: 0;
         }
-      }
-
-      .user .icons a svg {
-        display: none;
       }
     }
   }
@@ -159,8 +153,21 @@ section {
   .icons {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     width: 100%;
+
+    > a {
+      order: 2;
+      margin-left: auto;
+    }
+
+    .mobil {
+      order: 1;
+    }
+
+    .menu-icon {
+      order: 3;
+      margin-left: 10px;
+    }
   }
 
   .mobil {
@@ -168,6 +175,15 @@ section {
     justify-content: space-between;
     width: 78vw;
     padding-left: 30px;
+  }
+
+  @media (max-width: 500px) {
+    .mobil {
+      width: auto;
+      flex: 1;
+      min-width: 0;
+      padding-left: 16px;
+    }
   }
 
   @keyframes run {
@@ -201,7 +217,7 @@ section {
 
       li {
         margin: 8px 0;
-        &:hover{
+        &:hover {
           background-color: colors.$navActive;
         }
       }
