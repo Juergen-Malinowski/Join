@@ -98,6 +98,7 @@
 
     width: 100%;
     max-width: 100%;
+
     @media (min-width: 581px) {
       width: 312px;
     }
@@ -150,6 +151,7 @@
     align-items: center;
     justify-content: center;
     gap: 16px;
+
     @media (max-width: 580px) {
       display: contents;
     }
@@ -183,13 +185,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-
       grid-column: 2;
       grid-row: 1;
-
       width: 40px;
       height: 40px;
-
       background-color: colors.$navBgActiveGrey;
       border-radius: 16px;
       border: none;
@@ -201,23 +200,6 @@
       width: 20px;
       height: 20px;
     }
-  }
-}
-
-.drag-test-box {
-  width: 200px;
-  height: 100px;
-  border-radius: 8px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-weight: 500;
-  cursor: grab;
-
-  &:active {
-    cursor: grabbing;
   }
 }
 
@@ -252,7 +234,51 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 12px;
   margin-bottom: 8px;
+}
+
+.column_controls,
+.scroll_controls {
+  display: flex;
+  align-items: center;
+}
+
+.column_controls {
+  gap: 8px;
+}
+
+.scroll_controls {
+  display: none;
+  gap: 4px;
+
+  @media (max-width: 1050px) {
+    display: flex;
+  }
+}
+
+.scroll_arrow {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid colors.$navBgActiveGrey;
+  border-radius: 10px;
+  background-color: colors.$white;
+  color: colors.$navBgActiveGrey;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    color: colors.$buttonBlue;
+    border-color: colors.$buttonBlue;
+  }
+
+  &:disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
 }
 
 .add_task_btn {
@@ -285,12 +311,37 @@
     flex-direction: row;
     overflow-x: auto;
     overflow-y: hidden;
-
     gap: 12px;
-    padding-bottom: 8px;
-
-    scroll-snap-type: x mandatory;
+    padding: 0 24px 12px 0;
+    scroll-snap-type: x proximity;
+    scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: colors.$navBgActiveGrey colors.$bgLightGrey;
+  }
+
+  @media (max-width: 580px) {
+    padding-right: 32px;
+  }
+}
+
+@media (max-width: 1050px) {
+  .column_drop_area::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .column_drop_area::-webkit-scrollbar-track {
+    background: colors.$bgLightGrey;
+    border-radius: 999px;
+  }
+
+  .column_drop_area::-webkit-scrollbar-thumb {
+    background: colors.$navBgActiveGrey;
+    border-radius: 999px;
+  }
+
+  .column_drop_area::-webkit-scrollbar-thumb:hover {
+    background: colors.$buttonBlue;
   }
 }
 
@@ -300,11 +351,9 @@
   background-color: #e7e7e7;
   border-radius: 10px;
   border: 1px dashed #a8a8a8;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   color: #a8a8a8;
   font-size: 14px;
   font-weight: 400;
@@ -323,15 +372,4 @@
 
 .task_card:active {
   cursor: grabbing;
-}
-
-@media (max-width: 1050px) {
-  .column_drop_area {
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-
-  .column_drop_area::-webkit-scrollbar {
-    display: none;
-  }
 }

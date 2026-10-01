@@ -1,4 +1,4 @@
-import { Component, ViewChild, inject } from '@angular/core';
+import { Component, ViewChild, ViewChildren, QueryList, ElementRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DialogAddTask } from './dialog-add-task/dialog-add-task';
 import { DialogShowEditTask } from './task-preview/dialog-show-edit-task/dialog-show-edit-task';
@@ -15,7 +15,6 @@ import { TaskPreview } from './task-preview/task-preview';
 import { FormsModule } from '@angular/forms';
 import { FilterTaskPipe } from '../../../shared/pipes/filter-Task-pipe';
 import { Auth, authState } from '@angular/fire/auth';
-import { AuthService } from '../../../firebase-services/auth-services';
 import { Router } from '@angular/router';
 
 /**
@@ -41,26 +40,26 @@ import { Router } from '@angular/router';
 export class Board {
   private readonly firebase = inject(FirebaseServices);
   private readonly userUi = inject(UserUiService);
-    private readonly router = inject(Router);
-  private readonly auth = inject(AuthService);
+  private readonly router = inject(Router);
 
   TaskStatus = TaskStatus;
   searchInput: string = '';
   isMobile = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
   dragDelay = this.isMobile ? 400 : 0;
+  scrollStateVersion = 0;
 
   @ViewChild(DialogAddTask) dialogAddTask!: DialogAddTask;
   @ViewChild(DialogShowEditTask) dialogShowEditTask!: DialogShowEditTask;
+  @ViewChildren('dropArea') dropAreas!: QueryList<ElementRef<HTMLElement>>;
 
   /** Opens task creation in the dialog or dedicated mobile view. */
   openDialogAddTask(status: TaskStatus = TaskStatus.ToDo) {
     this.dialogAddTask.open(status);
     const mq = window.matchMedia('(max-width: 980px)');
-if (mq.matches) {
-  this.router.navigate(['/add-task'], { queryParams: { status } });
-} 
-  } 
-     
+    if (mq.matches) {
+      this.router.navigate(['/add-task'], { queryParams: { status } });
+    }
+  }
 
   /** Opens the selected task in the task detail dialog. */
   onTaskClick(task: BoardTask): void {
@@ -92,6 +91,41 @@ if (mq.matches) {
     if (task.id) {
       await this.firebase.updateTaskStatus(task.id, status);
     }
+  }
+
+  /** Scrolls one task row by approximately one visible card width. */
+  scrollTasks(columnIndex: number, direction: -1 | 1): void {
+    const area = this.getDropArea(columnIndex);
+    if (!area) return;
+
+    const card = area.querySelector<HTMLElement>('.task_card');
+    const gap = Number.parseFloat(getComputedStyle(area).columnGap || getComputedStyle(area).gap) || 12;
+    const distance = (card?.offsetWidth || area.clientWidth * 0.85) + gap;
+
+    area.scrollBy({ left: direction * distance, behavior: 'smooth' });
+    window.setTimeout(() => this.syncScrollControls(), 250);
+  }
+
+  /** Returns whether the selected task row can scroll in the requested direction. */
+  canScrollTasks(columnIndex: number, direction: -1 | 1): boolean {
+    this.scrollStateVersion;
+    const area = this.getDropArea(columnIndex);
+    if (!area) return false;
+
+    const maxScrollLeft = area.scrollWidth - area.clientWidth;
+    if (maxScrollLeft <= 1) return false;
+
+    return direction < 0 ? area.scrollLeft > 1 : area.scrollLeft < maxScrollLeft - 1;
+  }
+
+  /** Refreshes arrow disabled states after manual or programmatic scrolling. */
+  syncScrollControls(): void {
+    this.scrollStateVersion++;
+  }
+
+  /** Returns a board column's horizontal task container by its rendered index. */
+  private getDropArea(columnIndex: number): HTMLElement | undefined {
+    return this.dropAreas?.get(columnIndex)?.nativeElement;
   }
 
   /** Returns the board task stream filtered by one workflow status. */
