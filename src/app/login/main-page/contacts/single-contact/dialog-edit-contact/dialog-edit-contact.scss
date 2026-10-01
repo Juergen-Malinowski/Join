@@ -39,7 +39,6 @@
       justify-content: center;
       align-items: center;
 
-
       &:hover {
         background-color: colors.$bgMiddleGrey;
         transition: background-color 150ms ease-in-out;
@@ -225,9 +224,15 @@
 
 @media (max-width: 1200px) {
   :host ::ng-deep app-dialog {
-    .left_side { width: 360px; }
-    .left_side span { font-size: 40px; }
-    .left_side p { font-size: 20px; }
+    .left_side {
+      width: 360px;
+    }
+    .left_side span {
+      font-size: 40px;
+    }
+    .left_side p {
+      font-size: 20px;
+    }
     .mid_side {
       font-size: 20px;
       margin: -60px 0px 0px 0px;
@@ -243,7 +248,6 @@
       height: auto;
       align-items: center;
     }
-    .sc_dialog .close:hover { display: none; }
     .sc_dialog .close {
       top: 24px;
       right: 24px;
@@ -258,7 +262,9 @@
       width: 100%;
       padding: 80px 40px 80px 40px;
       z-index: 10;
-      img { display: none; }
+      img {
+        display: none;
+      }
     }
     .right_side {
       width: 100%;
@@ -270,32 +276,59 @@
 
 @media (max-width: 500px) {
   :host ::ng-deep app-dialog {
-    .left_side { padding: 40px 24px; }
-    .left_side .seperator { width: 60px; margin-top: 5px; }
-    .left_side span { font-size: 32px; }
-    .left_side p { font-size: 16px; }
+    .left_side {
+      padding: 40px 24px;
+    }
+    .left_side .seperator {
+      width: 60px;
+      margin-top: 5px;
+    }
+    .left_side span {
+      font-size: 32px;
+    }
+    .left_side p {
+      font-size: 16px;
+    }
     .mid_side {
       font-size: 10px;
       margin: -60px 0px 0px 0px;
       z-index: 10;
     }
-    .mid_side .sc_logo, .mid_side img {
+    .mid_side .sc_logo,
+    .mid_side img {
       width: 80px;
       height: 80px;
       font-size: 32px;
     }
-    .right_side { padding: 20px 16px; gap: 10px; }
-    form label { width: 100%; padding: 6px 10px; }
-    form label input { font-size: 12px; }
-    .dialog_buttons { gap: 12px; }
-    .dialog_buttons .button_light, .dialog_buttons .button_dark {
+    .right_side {
+      padding: 20px 16px;
+      gap: 10px;
+    }
+    form label {
+      width: 100%;
+      padding: 6px 10px;
+    }
+    form label input {
+      font-size: 12px;
+    }
+    .dialog_buttons {
+      gap: 12px;
+    }
+    .dialog_buttons .button_light,
+    .dialog_buttons .button_dark {
       font-size: 10px;
       font-weight: 400;
       width: 90px;
       padding: 0px 4px;
       gap: 1px;
     }
-    .dialog_buttons .button_dark { justify-content: center; }
-    .dialog_buttons .button_light svg, .dialog_buttons .button_dark svg { width: 10px; height: 10px; }
+    .dialog_buttons .button_dark {
+      justify-content: center;
+    }
+    .dialog_buttons .button_light svg,
+    .dialog_buttons .button_dark svg {
+      width: 10px;
+      height: 10px;
+    }
   }
 }
