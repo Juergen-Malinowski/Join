@@ -241,6 +241,26 @@
   }
 }
 
+@media (max-width: 1050px) and (max-height: 879px) {
+  :host ::ng-deep app-dialog {
+    .sc_dialog {
+      gap: 16px;
+    }
+
+    .left_side {
+      padding: 50px 40px;
+    }
+
+    .right_side {
+      padding: 24px 20px;
+    }
+
+    form {
+      gap: 24px;
+    }
+  }
+}
+
 @media (max-width: 500px) {
   :host ::ng-deep app-dialog {
     .left_side {
