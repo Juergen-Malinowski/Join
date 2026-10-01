@@ -35,29 +35,53 @@
             { title: 'In progress', status: TaskStatus.InProgress, data: inProgress$ },
             { title: 'Await feedback', status: TaskStatus.AwaitFeedback, data: awaitFeedback$ },
             { title: 'Done', status: TaskStatus.Done, data: done$ }
-          ]
+          ];
+          let columnIndex = index
         ">
         <div class="board_column">
           <div class="column_header">
             <span class="column_title">{{ column.title }}</span>
 
-            <button class="add_task_btn" type="button" aria-label="Add Task" *ngIf="column.status !== TaskStatus.Done"
-              (click)="openDialogAddTask(column.status)">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="1" y="1" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2" />
-                <path d="M12 8V16" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
-                <path d="M16 12.0754L8 12.0754" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
-              </svg>
-            </button>
+            <div class="column_controls">
+              <div class="scroll_controls" *ngIf="((column.data | async)?.length || 0) > 1">
+                <button class="scroll_arrow" type="button"
+                  [attr.aria-label]="'Scroll ' + column.title + ' tasks left'"
+                  [disabled]="!canScrollTasks(columnIndex, -1)" (click)="scrollTasks(columnIndex, -1)">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </button>
+
+                <button class="scroll_arrow" type="button"
+                  [attr.aria-label]="'Scroll ' + column.title + ' tasks right'"
+                  [disabled]="!canScrollTasks(columnIndex, 1)" (click)="scrollTasks(columnIndex, 1)">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </button>
+              </div>
+
+              <button class="add_task_btn" type="button" aria-label="Add Task"
+                *ngIf="column.status !== TaskStatus.Done" (click)="openDialogAddTask(column.status)">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="1" y="1" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2" />
+                  <path d="M12 8V16" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
+                  <path d="M16 12.0754L8 12.0754" stroke="#2A3647" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </button>
+            </div>
           </div>
 
-          <div class="column_drop_area" cdkDropList (cdkDropListDropped)="drop($event, column.status)">
+          <div #dropArea class="column_drop_area" cdkDropList
+            (cdkDropListDropped)="drop($event, column.status)" (scroll)="syncScrollControls()">
             <div class="no_tasks_box" *ngIf="(column.data | async)?.length === 0">
               No tasks {{ column.title }}
             </div>
 
             <div class="task_card" *ngFor="let task of column.data | async | FilterTask : searchInput" cdkDrag
-              [cdkDragData]="task" [cdkDragStartDelay]='dragDelay' (click)="onTaskClick(task)">
+              [cdkDragData]="task" [cdkDragStartDelay]="dragDelay" (click)="onTaskClick(task)">
               <app-task-preview [task]="task"></app-task-preview>
             </div>
           </div>
