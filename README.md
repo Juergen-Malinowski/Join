@@ -4,6 +4,8 @@ Join is a task and contact management application built with Angular and Firebas
 
 The project was developed as a team project during the Developer Akademie training program. Git and GitHub were used to coordinate development, manage feature branches, and integrate the work of multiple team members into the shared codebase.
 
+![Join project preview](./public/IMG/join.webp)
+
 ---
 
 ## Setup / Quick Start
