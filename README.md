@@ -4,6 +4,12 @@ Join is a task and contact management application built with Angular and Firebas
 
 The project was developed as a team project during the Developer Akademie training program. Git and GitHub were used to coordinate development, manage feature branches, and integrate the work of multiple team members into the shared codebase.
 
+<br>
+
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Open%20Project-2ea44f?style=for-the-badge)](https://join.juergen-malinowski.de)
+
+<br>
+
 ![Join project preview](./public/IMG/join.webp)
 
 ---
