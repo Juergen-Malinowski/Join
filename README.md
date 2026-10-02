@@ -294,41 +294,33 @@ For a more detailed technical overview, see [docs/ARCHITECTURE.md](docs/ARCHITEC
 
 ## Responsive Design
 
-The responsive optimization targets viewport widths from **320 px to 3440 px**, covering small smartphones through tablets and standard desktop layouts up to QHD and ultrawide displays.
+Join provides responsive layouts for viewport widths from **320 px to 3440 px**, covering small smartphones, tablets, standard desktop layouts, QHD, and ultrawide displays.
 
-The responsive review includes representative widths across this range and additional checks around layout-specific breakpoints used by the application.
+The application adapts navigation, dialogs, forms, contact views, and task-related layouts to the available viewport. On smaller screens, the Kanban board supports horizontal navigation and scrolling so that the four workflow columns remain usable without compressing task cards beyond a practical width.
 
-The final validated viewport set and any responsive adjustments will be documented after the responsive optimization phase is completed.
+Responsive behavior was validated across representative viewport sizes and around layout-specific breakpoints used by the application.
 
 ---
 
 ## Post-Project Refinement
 
-After completion of the original team project, the repository is being prepared for use as a public portfolio project. The post-project work includes targeted technical and documentation improvements while preserving the original application concept.
+After completion of the original team project, the application was further refined for portfolio use.
 
-Completed repository work includes:
+The post-project work focused on improving the existing implementation without changing the original application concept. This included targeted bug fixes, responsive optimization across mobile, tablet, desktop, and ultrawide layouts, improvements to mobile board navigation, documentation cleanup, refinement of code comments and JSDoc, updates to the legal and privacy information, and preparation of the application for production deployment.
 
-- cleanup and professionalization of source-code comments and JSDoc
-- removal of redundant generated repository documentation
-- consolidation of technical architecture documentation
-- review of existing application structure and selected technical debt
-
-Further portfolio preparation includes:
-
-- responsive validation and targeted optimization from 320 px to 3440 px
-- production build verification
-- deployment configuration and public live deployment
-- final README and repository presentation tuning
-
-The feature branches and commit history provide the detailed record of these changes.
+The current repository therefore represents a technically refined and production-deployed version of the original team project.
 
 ---
 
 ## Deployment
 
-A public portfolio deployment is planned after the responsive validation and production-build review are complete.
+The production version is publicly available at:
 
-The live URL and the final deployment environment will be added here once the deployment has been verified.
+**https://join.juergen-malinowski.de**
+
+The Angular production build is hosted as a static application on **ALL-INKL.COM** webspace. Apache serves the generated application files, while the repository's `public/.htaccess` provides the single-page application fallback by routing non-file requests to `index.html`.
+
+HTTPS is enforced for the public deployment. Firebase Authentication and Cloud Firestore remain the application's external backend services for authentication and persistent application data.
 
 ---
 

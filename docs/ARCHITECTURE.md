@@ -243,6 +243,33 @@ done
 
 `appSettings/contacts` stores the most recently used avatar color index. The value is used to cycle through the available user colors when new user-related contact data is created.
 
+## Deployment Architecture
+
+The production application is delivered as a static Angular build from **ALL-INKL.COM** webspace under:
+
+**https://join.juergen-malinowski.de**
+
+```text
+Browser
+   │
+   ▼
+HTTPS
+   │
+   ▼
+ALL-INKL.COM / Apache
+   │
+   ├── Angular production files
+   └── .htaccess SPA fallback
+            │
+            ▼
+      Angular application
+            │
+            ├── Firebase Authentication
+            └── Cloud Firestore
+```
+
+Apache serves existing static files directly and routes other application requests to `index.html`, allowing Angular Router URLs to resolve correctly in the single-page application. Authentication and persistent application data remain hosted in Firebase and are accessed from the Angular application through AngularFire.
+
 ## Key Technical Decisions
 
 - Angular standalone components are used instead of NgModule-based feature modules.
